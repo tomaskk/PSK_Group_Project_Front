@@ -1,1 +1,8 @@
-PSK_Group_Project_Front
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## How-to
+
+In the project directory:
+1. 'npm install'
+2. 'npm start'
+

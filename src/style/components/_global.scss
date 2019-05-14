@@ -1,0 +1,32 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html,
+body,
+#root,
+.content-container-div {
+    height: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+body,
+#root,
+.content-container-div {
+    background-color: $background-site;
+    display: flex;
+    font-family: $font-base;
+    font-size: $font-size-base;
+    line-height: $line-height;
+}
+
+p {
+    margin: 0;
+}

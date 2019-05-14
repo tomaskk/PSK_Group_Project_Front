@@ -1,0 +1,54 @@
+.popup {
+    @include shadow;
+    background: $background-contrast;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+
+    &__section {
+        border-bottom: 1px solid $border;
+        display: flex;
+        justify-content: space-between;
+        padding: $spacing-small;
+
+        &--last {
+            border-bottom: 0;
+        }
+
+        &--main {
+            flex-direction: column;
+            padding-bottom: $spacing;
+            padding-top: $spacing;
+        }
+    }
+
+    &__row {
+        align-items: center;
+        display: flex;
+        padding-bottom: $spacing;
+
+        &--last {
+            padding-bottom: 0;
+        }
+    }
+
+    &__label {
+        font-weight: 600;
+        padding-left: $spacing-small;
+
+        &--active {
+            color: $active;
+        }
+    }
+
+    &__checkbox {
+        border: 1px solid $border;
+        border-radius: 0;
+        height: 14px;
+        width: 14px;
+
+        &--active {
+            display: none;
+        }
+    }
+}

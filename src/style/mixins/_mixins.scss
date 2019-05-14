@@ -1,0 +1,16 @@
+@mixin reset-list-style {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin shadow {
+    background: $background-contrast;
+    border-radius: $radius;
+    box-shadow: 0 2px 12px 0 $background-shadow;
+}

@@ -1,0 +1,14 @@
+JOIN YOUR REDUCERS TO REDUX:
+	IMPORT THEM TO FOLDER src/store/store.js
+	INSERT THEM TO OBJECT WHICH IS PASSED AS AN ARGUMENT TO COMBINEREDUCERS FUNCTION
+
+EXAMPLE:
+	import reducer1 from './reducers/reducer1.js'
+	import reducer2 from './reducers/reducer2.js'
+	import reducer3 from './reducers/reducer3.js'
+	
+	const rootReducer = combineReducers({
+		reducer1,
+		reducer2,
+		reducer3
+	});

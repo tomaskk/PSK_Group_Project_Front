@@ -1,0 +1,26 @@
+<form class="form">
+  <div class="profile__section section">
+    <h2 class="heading2">I want to learn</h2>
+    <div class="form__row form__row--goal">
+      <div class="form__field form__field--wide form__field--with-controls">
+        <div class="form__input-wrapper">
+          <label for="name" class="form__label">Name</label>
+          <input type="text" id="name" value="React.js" class="form__input form__input--short form__input--small" />
+        </div>
+        <div class="form__input-controls">
+          <%include src="../delete.html" %>
+        </div>
+      </div>
+    </div>
+    <div class="form__row form__row--goal">
+      <div class="form__field form__field--wide">
+        <div class="form__input-wrapper form__separator">
+          <label for="comment" class="form__label">Comment</label>
+          <textarea id="comment" class="form__input form__input--small form__input--textarea">I’m really interested in mobile app development. Would like to get familiar with using React Native for iOS app development.</textarea>
+        </div>
+      </div>
+    </div>
+    <%include src="../add.html" %>
+  </div>
+  <%include src="../actions.html" %>
+</form>

@@ -1,0 +1,9 @@
+﻿.error {
+    background-color: #FF9494;
+    color: azure;
+    padding: $spacing-tiny;
+
+    &__hidden {
+        display: none;
+    }
+}

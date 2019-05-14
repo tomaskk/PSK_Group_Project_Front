@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%include src="../components/head.html" %>
+  <body>
+    <div class="sidebar">
+      <div>
+        <%include src="../components/logo.html" %>
+        <div class="me">
+          <%include src="../components/me.html" %>
+          <%include src="../components/administrator.html" %>
+        </div>
+        <%include src="../components/nav/nav-admin.html" %>
+      </div>
+      <%include src="../components/copyright.html" %>
+    </div>
+    <div class="container">
+      <%include src="../components/header.html" %>
+      <main class="main">
+        <h1 class="heading1">My profile</h1>
+        <div class="content content--stretch">
+          <%include src="../components/profile-tabs/profile-tabs-skills.html" %>
+          <div class="profile content__scrollable">
+            <div class="profile__section section">
+              <h2 class="heading2">I'm a specialist at</h2>
+              <ul class="skills">
+                <li class="skills__row">
+                  <%include src="../components/skills/skill-edit.html" %>
+                  <%include src="../components/delete.html" %>
+                </li>
+                <li class="skills__row">
+                  <%include src="../components/skills/skill-edit.html" %>
+                  <%include src="../components/delete.html" %>
+                </li>
+                <li class="skills__row">
+                  <%include src="../components/skills/skill-edit.html" %>
+                  <%include src="../components/delete.html" %>
+                </li>
+              </ul>
+              <div class="form typeahead">
+                <div class="form__field typeahead__search">
+                  <input type=text class="form__input form__input--short typeahead__input" />
+                  <img src="/images/search.svg" class="typeahead__input-icon" />
+                </div>
+                <ul class="typeahead__results">
+                  <li>
+                    <a href="" class="typeahead__result typeahead__result--selected">
+                      Java
+                      <img src="/images/tick.svg" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" class="typeahead__result">Java Enterprice Edition</a>
+                  </li>
+                  <li>
+                    <a href="" class="typeahead__result">Java Server Pages (JSP)</a>
+                  </li>
+                  <li>
+                    <a href="" class="typeahead__result">Core Java</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="profile__separator">
+              <%include src="../components/actions.html" %>
+            </div>
+            <%include src="../components/profile-goals.html" %>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
