@@ -236,7 +236,7 @@ class SelfProfileMainScreen extends Component {
         break
 
       case "save_goals_edit":
-        var allSkills = this.state.masterAt;
+        allSkills = this.state.masterAt;
         let i = 0;
 
         allSkills.forEach(item => {
@@ -263,7 +263,7 @@ class SelfProfileMainScreen extends Component {
       case "create_goal":
         if(this.state.newGoalSubject !== "" && this.state.newGoalComment !== "")
         {
-           var allSkills = this.props.selfProfileReducer.wantsToLearn;
+           allSkills = this.props.selfProfileReducer.wantsToLearn;
            let newSkill = { subject: this.state.newGoalSubject, comment: this.state.newGoalComment};
            allSkills.push(newSkill);
            this.props.updateWantsToLearnInStore(allSkills);
