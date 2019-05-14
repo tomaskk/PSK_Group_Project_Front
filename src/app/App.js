@@ -9,8 +9,8 @@ import "../style/site-styles.scss";
 import "../../public/index.html";
 import TopHeader from "../components/TopHeader/TopHeader.jsx";
 import SelfProfileMainScreen from "../components/SelfProfile/SelfProfileMainScreen.js";
-import AdminPeopleTakenLD from "../components/Keliones_Tab/AdminPeopleTakenLD.jsx";
-import AdminPeopleWhoLeft from "../components/Zmones_Tab/AdminPeopleWhoLeft.jsx";
+import AllVoyagesList from "../components/Menu_Management/Keliones_Tab/VoyagesList.jsx";
+import AllPeopleList from "../components/Menu_Management/Zmones_Tab/PeopleList.jsx";
 import UserProfileMainScreen from "../components/UserProfile/UserProfileMainScreen.jsx";
 import "../style/site-styles.scss";
 import "../../public/index.html";
@@ -29,8 +29,9 @@ class App extends Component {
               <TopHeader />
               <Route exact path="/" component={SelfProfileMainScreen} />
              
-              <Route path="/host/manage/users" component={AdminPeopleTakenLD} />
-              <Route path="/host/manage/voyages" component={AdminPeopleWhoLeft} />
+              <Route path="/host/manage/users" component={AllPeopleList} />
+              <Route path="/host/manage/voyages" component={AllVoyagesList} />
+
               <Route path="/host/help" component={HelpPage} />
               <Route path="/host/user/:userId" component={UserProfileMainScreen} />
 

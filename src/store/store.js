@@ -1,6 +1,6 @@
 import {combineReducers, compose} from 'redux';
 import {createStore} from 'redux';
-import {LDReducer} from '../components/Keliones_Tab/AdminPeopleTakenLDComponents/reducers/LDReducer'
+import {LDReducer} from '../components/Menu_Management/Zmones_Tab/PeopleListComponents/reducers/LDReducer'
 import userProfileReducer from "../components/UserProfile/UserProfileComponents/reducers/userProfileReducer";
 import selfProfileReducer from '../components/SelfProfile/reducers/selfProfileReducer'
 
