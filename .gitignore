@@ -24,3 +24,7 @@ yarn-error.log*
 
 
 node_modules
+
+# Microsoft visual studio folders
+.vs
+
