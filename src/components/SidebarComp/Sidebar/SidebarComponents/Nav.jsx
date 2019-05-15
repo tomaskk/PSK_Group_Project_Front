@@ -11,44 +11,66 @@ import SvgAdmin from "./images/SvgAdmin.jsx";
 const SEARCH_ROUTES = ["search", "user"];
 
 class Nav extends Component {
+  isSearchNavigationActive = () => {
+    var currentPathName = this.props.location.pathname;
+    return currentPathName.search(SEARCH_ROUTES.join("|")) !== -1;
+  };
 
-    isSearchNavigationActive = () => {
-        var currentPathName = this.props.location.pathname;
-        return currentPathName.search(SEARCH_ROUTES.join('|')) !== -1;
-    };
+  isNavigationLinkActive = pathname => {
+    var currentPathName = this.props.location.pathname;
+    return currentPathName === pathname;
+  };
 
-    isNavigationLinkActive = pathname => {
-        var currentPathName = this.props.location.pathname;
-        return currentPathName === pathname;
-    };
-
-    render() {
+  render() {
     return (
       <nav>
         <ul className="nav">
           <li>
-            <NavLink to="/" exact className="nav-link" activeClassName="nav-link nav-link--active">
+            <NavLink
+              to="/"
+              exact
+              className="nav-link"
+              activeClassName="nav-link nav-link--active"
+            >
               <div className="nav-link__icon">
-              {this.isNavigationLinkActive("/") ? <SvgProfileActive /> : <SvgProfile />}
+                {this.isNavigationLinkActive("/") ? (
+                  <SvgProfileActive />
+                ) : (
+                  <SvgProfile />
+                )}
               </div>
               My profile
             </NavLink>
           </li>
           <li>
-              <NavLink to="/host/search"
-                        className="nav-link"
-                        activeClassName="nav-link nav-link--active"
-                        isActive={this.isSearchNavigationActive}>
+            <NavLink
+              to="/host/search"
+              className="nav-link"
+              activeClassName="nav-link nav-link--active"
+              isActive={this.isSearchNavigationActive}
+            >
               <div className="nav-link__icon">
-              {this.isSearchNavigationActive() ? <SvgListActive /> : <SvgList />}
+                {this.isSearchNavigationActive() ? (
+                  <SvgListActive />
+                ) : (
+                  <SvgList />
+                )}
               </div>
               Find a mentor
             </NavLink>
           </li>
           <li>
-            <NavLink to="/host/help" className="nav-link" activeClassName="nav-link nav-link--active">
+            <NavLink
+              to="/host/help"
+              className="nav-link"
+              activeClassName="nav-link nav-link--active"
+            >
               <div className="nav-link__icon">
-              {this.isNavigationLinkActive("/host/help") ? <SvgHelpActive /> : <SvgHelp /> }
+                {this.isNavigationLinkActive("/host/help") ? (
+                  <SvgHelpActive />
+                ) : (
+                  <SvgHelp />
+                )}
               </div>
               Help
             </NavLink>
