@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import UserProfile1Header from "./UserProfileComponents/UserProfile1Header.jsx";
-import UserProfile2Nav from "./UserProfileComponents/UserProfile2Nav.jsx";
-import UserProfile3Footer from "./UserProfileComponents/UserProfile3Footer.jsx";
-import { store } from "../../store/store.js";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import UserProfile1Header from './UserProfileComponents/UserProfile1Header.jsx';
+import UserProfile2Nav from './UserProfileComponents/UserProfile2Nav.jsx';
+import UserProfile3Footer from './UserProfileComponents/UserProfile3Footer.jsx';
+import { store } from '../../store/store.js';
+import { connect } from 'react-redux';
 
 class UserProfileMainScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: "Specialist"
+      currentTab: 'Specialist'
     };
   }
 
   changeState = () => {
     this.setState({
       currentTab:
-        this.state.currentTab === "Specialist" ? "Learn" : "Specialist"
+        this.state.currentTab === 'Specialist' ? 'Learn' : 'Specialist'
     });
   };
 

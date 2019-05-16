@@ -1,10 +1,13 @@
-﻿import React, { Component } from "react";
-import SvgLogo from "./LoginPageComponents/img/SvgLogo.jsx";
-import SlackLogo from "./LoginPageComponents/img/SlackLogo.jsx";
-import Illustration from "./LoginPageComponents/img/illustration.png";
-import { ServerHostName } from "../../constants/UriConstants.js";
-import { connect } from "react-redux";
-import { tryLogin, tryRegister } from "./LoginPageComponents/actions/ActionCreators";
+﻿import React, { Component } from 'react';
+import SvgLogo from './LoginPageComponents/img/SvgLogo.jsx';
+import SlackLogo from './LoginPageComponents/img/SlackLogo.jsx';
+import Illustration from './LoginPageComponents/img/illustration.png';
+import { ServerHostName } from '../../constants/UriConstants.js';
+import { connect } from 'react-redux';
+import {
+  tryLogin,
+  tryRegister
+} from './LoginPageComponents/actions/ActionCreators';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -31,7 +34,7 @@ class LoginPage extends Component {
   };
 
   OnSlackButtonClick = () => {
-    alert("Slack button clicked");
+    alert('Slack button clicked');
   };
 
   OnCheckBoxClick = () => {
@@ -53,7 +56,7 @@ class LoginPage extends Component {
         <div className="content content__login">
           <div className="section section--login">
             <div className="form__row form__login--heading">
-              <SvgLogo />{" "}
+              <SvgLogo />{' '}
             </div>
             <div className="form__row form__login--heading">
               <h1 className="heading1">Log in</h1>
@@ -100,7 +103,7 @@ class LoginPage extends Component {
                     Remember me
                   </label>
                 </div>
-                <a href={ServerHostName + "/forgot"}>Forgot password?</a>
+                <a href={ServerHostName + '/forgot'}>Forgot password?</a>
               </div>
 
               <div className="form__row form__row--login">

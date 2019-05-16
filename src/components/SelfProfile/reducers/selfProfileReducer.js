@@ -1,25 +1,25 @@
-import * as constants from "../actions/switchTabs.js";
+import * as constants from '../actions/switchTabs.js';
 
-//-- currentTab -> for routing;
-//--    self    -> temporary/fake user data for testing purposes
+// -- currentTab -> for routing;
+// --    self    -> temporary/fake user data for testing purposes
 const initialState = {
-  currentTab: "personal_info",
-  //self: {
-  photo: "https://www.w3schools.com/howto/img_avatar.png",
-  name: "Bart",
-  surname: "Simpson",
-  email: "email@random.devb.com",
-  city: "Vilnius",
+  currentTab: 'personal_info',
+  // self: {
+  photo: 'https://www.w3schools.com/howto/img_avatar.png',
+  name: 'Bart',
+  surname: 'Simpson',
+  email: 'email@random.devb.com',
+  city: 'Vilnius',
   masterAt: [
-    { subject: "Python", stars: 3 },
-    { subject: "Spring Boot", stars: 2 },
-    { subject: "React Native", stars: 1 }
+    { subject: 'Python', stars: 3 },
+    { subject: 'Spring Boot', stars: 2 },
+    { subject: 'React Native', stars: 1 }
   ],
   wantsToLearn: [
-    { subject: "AngularJS", comment: "I'm really interested in Angular!" },
-    { subject: ".NET", comment: "I'm really interested in .NET!" }
+    { subject: 'AngularJS', comment: "I'm really interested in Angular!" },
+    { subject: '.NET', comment: "I'm really interested in .NET!" }
   ]
-  //}
+  // }
 };
 
 export default (state = initialState, action) => {

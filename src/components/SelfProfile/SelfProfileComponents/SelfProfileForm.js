@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import Calendar from "./SelfProfileImages/Calendar.jsx";
-import CalendarDisabled from "./SelfProfileImages/CalendarDisabled.jsx";
-import PlusActive from "./SelfProfileImages/PlusActive.jsx";
-import Edit from "../SelfProfileComponents/SelfProfileImages/Edit.jsx";
+import Calendar from './SelfProfileImages/Calendar.jsx';
+import CalendarDisabled from './SelfProfileImages/CalendarDisabled.jsx';
+import PlusActive from './SelfProfileImages/PlusActive.jsx';
+import Edit from './SelfProfileImages/Edit.jsx';
 
 export default function SelfProfileForm(props) {
   const editIsDisabled = props.dataShared.isEditModeDisabled;
 
   const editBtns = (
-    <div class="actions">
+    <div className="actions">
       <button
         type="button"
         className="button button--cancel"
@@ -44,7 +44,7 @@ export default function SelfProfileForm(props) {
         <input
           type="text"
           name="photo"
-          className={className + " form__input-suffix-field"}
+          className={`${className} form__input-suffix-field`}
           value={props.dataShared.photo}
           onChange={props.handleChange}
         />
@@ -53,17 +53,17 @@ export default function SelfProfileForm(props) {
   );
 
   const className = editIsDisabled
-    ? "form__input form__input--disabled"
-    : "form__input";
+    ? 'form__input form__input--disabled'
+    : 'form__input';
   return (
     <form className="form">
-      <div class="profile__section section">
+      <div className="profile__section section">
         <div className="form__row">
           <div className="profile__photos">
-            <div class="progress-circle progress-circle--full">
+            <div className="progress-circle progress-circle--full">
               <img
                 src={props.dataShared.photo}
-                class="photo profile__photo"
+                className="photo profile__photo"
                 height="64"
                 width="64"
               />
@@ -150,7 +150,7 @@ export default function SelfProfileForm(props) {
               <input
                 type="text"
                 name="sld"
-                className={className + " form__input-suffix-field"}
+                className={`${className} form__input-suffix-field`}
                 value={props.dataShared.sld}
                 disabled={editIsDisabled}
                 onChange={props.handleChange}
@@ -162,7 +162,7 @@ export default function SelfProfileForm(props) {
         <div className="form__row form__row--last">
           {!editIsDisabled && EditPhotoInput}
         </div>
-        <div>{!editIsDisabled ? editBtns : ""}</div>
+        <div>{!editIsDisabled ? editBtns : ''}</div>
       </div>
     </form>
   );

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function LearnRow(props) {
   return (
@@ -8,5 +8,5 @@ export default function LearnRow(props) {
         <p>{props.learnComment}</p>
       </div>
     </div>
-  )
+  );
 }

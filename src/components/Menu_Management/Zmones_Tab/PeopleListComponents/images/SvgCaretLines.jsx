@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 export default () => (
   <svg
     className="location-caret"

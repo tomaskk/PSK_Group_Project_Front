@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import SvgHelp from "../../Sidebar/SidebarComponents/images/SvgHelp.jsx";
-import SvgHelpActive from "../../Sidebar/SidebarComponents/images/SvgHelpActive.jsx";
-import SvgProfile from "../../Sidebar/SidebarComponents/images/SvgProfile.jsx";
-import SvgProfileActive from "../../Sidebar/SidebarComponents/images/SvgProfileActive.jsx";
-import SvgList from "../../Sidebar/SidebarComponents/images/SvgList.jsx";
-import SvgListActive from "../../Sidebar/SidebarComponents/images/SvgListActive.jsx";
-import SvgAdmin from "./images/SvgAdmin.jsx";
-import SvgAdminActive from "./images/SvgAdminActive.jsx";
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import SvgHelp from '../../Sidebar/SidebarComponents/images/SvgHelp.jsx';
+import SvgHelpActive from '../../Sidebar/SidebarComponents/images/SvgHelpActive.jsx';
+import SvgProfile from '../../Sidebar/SidebarComponents/images/SvgProfile.jsx';
+import SvgProfileActive from '../../Sidebar/SidebarComponents/images/SvgProfileActive.jsx';
+import SvgList from '../../Sidebar/SidebarComponents/images/SvgList.jsx';
+import SvgListActive from '../../Sidebar/SidebarComponents/images/SvgListActive.jsx';
+import SvgAdmin from './images/SvgAdmin.jsx';
+import SvgAdminActive from './images/SvgAdminActive.jsx';
 
-const ADMIN_ROUTES = ["users", "lost", "requests", "hours", "user"];
+const ADMIN_ROUTES = ['users', 'lost', 'requests', 'hours', 'user'];
 
 class NavAdmin extends Component {
   isAdminNavigationActive = () => {
     var currentPathName = this.props.location.pathname;
-    return currentPathName.search(ADMIN_ROUTES.join("|")) !== -1;
+    return currentPathName.search(ADMIN_ROUTES.join('|')) !== -1;
   };
 
   isNavigationLinkActive = pathname => {
@@ -34,7 +34,7 @@ class NavAdmin extends Component {
               activeClassName="nav-link nav-link--active"
             >
               <div className="nav-link__icon">
-                {this.isNavigationLinkActive("/") ? (
+                {this.isNavigationLinkActive('/') ? (
                   <SvgProfileActive />
                 ) : (
                   <SvgProfile />
@@ -51,7 +51,7 @@ class NavAdmin extends Component {
               isActive={this.isAdminNavigationActive}
             >
               <div className="nav-link__icon">
-                {this.isNavigationLinkActive("/host/admin") ? (
+                {this.isNavigationLinkActive('/host/admin') ? (
                   <SvgListActive />
                 ) : (
                   <SvgList />
@@ -67,7 +67,7 @@ class NavAdmin extends Component {
               activeClassName="nav-link nav-link--active"
             >
               <div className="nav-link__icon">
-                {this.isNavigationLinkActive("/host/help") ? (
+                {this.isNavigationLinkActive('/host/help') ? (
                   <SvgHelpActive />
                 ) : (
                   <SvgHelp />

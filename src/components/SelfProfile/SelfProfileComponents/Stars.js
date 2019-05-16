@@ -1,10 +1,10 @@
 import React from 'react';
-import Star from './SelfProfileImages/Star.jsx'
-import StarDisabled from './SelfProfileImages/StarDisabled.jsx'
+import Star from './SelfProfileImages/Star.jsx';
+import StarDisabled from './SelfProfileImages/StarDisabled.jsx';
 
 export default function Stars(props) {
   const threeStars = (
-    <div >
+    <div>
       <Star />
       <Star />
       <Star />
@@ -27,11 +27,17 @@ export default function Stars(props) {
     </div>
   );
 
-  let starOutput = { oneStar }
+  let starOutput = { oneStar };
 
-  if (props.starCount === 3) { starOutput = threeStars }
-  if (props.starCount === 2) { starOutput = twoStars }
-  if (props.starCount === 1) { starOutput = oneStar }
+  if (props.starCount === 3) {
+    starOutput = threeStars;
+  }
+  if (props.starCount === 2) {
+    starOutput = twoStars;
+  }
+  if (props.starCount === 1) {
+    starOutput = oneStar;
+  }
 
-  return <div>{starOutput}</div>
+  return <div>{starOutput}</div>;
 }

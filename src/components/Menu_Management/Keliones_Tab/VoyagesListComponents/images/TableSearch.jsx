@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import SvgSearch from "./SvgSearch.jsx";
+import React, { Component } from 'react';
+import SvgSearch from './SvgSearch.jsx';
 
 const TableSearch = () => {
   return (

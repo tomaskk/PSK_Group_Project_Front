@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import SlackLogo from "../UserProfileImages/UserProfileHeaderImages/SlackLogo.jsx";
+import React, { Component } from 'react';
+import SlackLogo from '../UserProfileImages/UserProfileHeaderImages/SlackLogo.jsx';
 
 export default class UserProfile1Header extends Component {
   handleEmailClick = email => {
-    const el = document.createElement("textarea");
+    const el = document.createElement('textarea');
     el.value = email;
     document.body.appendChild(el);
     el.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
     document.body.removeChild(el);
   };
 
   openConversation = () => {
-    const queryParamChannel = "channel";
-    const queryParamTeam = "team";
-    const queryParamId = "id";
-    const urlBaseNative = new URL("slack://user?");
-    const urlBaseWeb = new URL("https://slack.com/app_redirect?");
+    const queryParamChannel = 'channel';
+    const queryParamTeam = 'team';
+    const queryParamId = 'id';
+    const urlBaseNative = new URL('slack://user?');
+    const urlBaseWeb = new URL('https://slack.com/app_redirect?');
     const timeoutValue = 3000;
-    const wName = "window_1";
+    const wName = 'window_1';
 
     // constants; to be replaced with parameters in refactored version
-    const userID = "UD0G9NH37";
-    const teamID = "TD1MK9F6J";
+    const userID = 'UD0G9NH37';
+    const teamID = 'TD1MK9F6J';
 
     // quering native Slack app
     var paramsNative = new URLSearchParams();
