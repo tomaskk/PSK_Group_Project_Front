@@ -6,3 +6,9 @@ In the project directory:
 1. 'npm install'
 2. 'npm start'
 
+## Development tooling
+
+Dev tools were set up to be used on VS Code
+
+### Code style and linting
+
