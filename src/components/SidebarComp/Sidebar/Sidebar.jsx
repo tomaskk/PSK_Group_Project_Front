@@ -15,16 +15,24 @@ class Sidebar extends Component {
           <div className="me">
             <Link to="/" className="nav-link">
               <div className="progress-circle">
-                  <img src={this.props.userInfo.photo} className="photo me__photo" />
+                <img
+                  src={this.props.userInfo.photo}
+                  className="photo me__photo"
+                  height="64"
+                  width="64"
+                />
               </div>
             </Link>
-            <h2 className="heading2 me__name">{this.props.userInfo.self.firstName} {this.props.userInfo.self.lastName}</h2>
+            <h2 className="heading2 me__name">
+              {this.props.userInfo.self.firstName}{" "}
+              {this.props.userInfo.self.lastName}
+            </h2>
             <div className="badge">
               <SvgSchool />
               Welcome (disable me)
             </div>
           </div>
-          <Nav switch={this.props.switch}/>
+          <Nav switch={this.props.switch} />
         </div>
         <Copyright />
       </div>
