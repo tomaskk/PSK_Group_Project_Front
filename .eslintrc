@@ -1,7 +1,18 @@
 {
-    "extends": ["airbnb", "prettier"],
-    "plugins": ["prettier"],
-    "rules": {
-      "prettier/prettier": ["error"]
-    }
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+
+    "import/prefer-default-export": false,
+    "react/destructuring-assignment": false,
+    "prefer-destructuring": ["warn"],
+    "react/no-unescaped-entities": false,
+
+    "jsx-a11y/label-has-for": false,
+    "jsx-a11y/label-has-associated-control": false,
+    "jsx-a11y/anchor-is-valid": false,
+    "jsx-a11y/click-events-have-key-events": false,
+    "jsx-a11y/no-static-element-interactions": false
+  }
 }

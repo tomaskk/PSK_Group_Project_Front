@@ -5,7 +5,7 @@ module.exports = {
         publicPath: '/'
     },
     devtool: 'source-map',
-    entry: './src/index.js',
+    entry: './src/index.jsx',
     module: {
       rules: [
         {
