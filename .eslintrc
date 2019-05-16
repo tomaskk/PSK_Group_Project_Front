@@ -8,6 +8,10 @@
     "react/destructuring-assignment": false,
     "prefer-destructuring": ["warn"],
     "react/no-unescaped-entities": false,
+    "import/extensions": false,
+    "eslint-disable-next-line": false,
+    "class-methods-use-this": ["off"],
+    "react/prefer-stateless-function": ["warn"],
 
     "jsx-a11y/label-has-for": false,
     "jsx-a11y/label-has-associated-control": false,

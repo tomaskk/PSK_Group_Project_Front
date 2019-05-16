@@ -1,11 +1,21 @@
+/* eslint-disable react/sort-comp */
+
 import React from 'react';
+import { CSVLink } from 'react-csv';
+import { Route } from 'react-router-dom';
 import ColTable from './VoyagesListComponents/ColTable.jsx';
 import UserTable from './VoyagesListComponents/UserTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
-import { CSVLink } from 'react-csv';
 import Head from './VoyagesListComponents/Head.jsx';
-import { Route } from 'react-router-dom';
+
+// Provides users
+// eslint-disable-next-line no-unused-vars
 import storage from './VoyagesListComponents/LocalStorage.js';
+
+const CSVStyle = {
+  color: 'white',
+  textDecoration: 'none'
+};
 
 export default class VoyagesList extends React.Component {
   constructor(props) {
@@ -35,11 +45,19 @@ export default class VoyagesList extends React.Component {
 
   componentWillMount() {
     this.state.users = [
+      // eslint-disable-next-line no-undef
       ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users
     ];
     this.state.data = [
+      // eslint-disable-next-line no-undef
       ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users
     ];
+  }
+
+  getSorting(order, orderBy) {
+    return order === 'desc'
+      ? (a, b) => this.desc(a, b, orderBy)
+      : (a, b) => -this.desc(a, b, orderBy);
   }
 
   // Sorting functions--------------------------
@@ -53,12 +71,6 @@ export default class VoyagesList extends React.Component {
     return 0;
   }
 
-  getSorting(order, orderBy) {
-    return order === 'desc'
-      ? (a, b) => this.desc(a, b, orderBy)
-      : (a, b) => -this.desc(a, b, orderBy);
-  }
-
   stableSort(array, cmp) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -70,8 +82,10 @@ export default class VoyagesList extends React.Component {
   }
 
   sortList(order, orderBy) {
-    let newUsers = this.stableSort(
-      this.state.users,
+    const { users: prevUsers } = this.state;
+
+    const newUsers = this.stableSort(
+      prevUsers,
       this.getSorting(order, orderBy)
     );
     this.setState({ users: newUsers });
@@ -81,7 +95,9 @@ export default class VoyagesList extends React.Component {
   // Events-------------------------------------
 
   onDeleteUser(id) {
-    let newUsers = Array.from(this.state.users);
+    const { users: prevUsers } = this.state;
+
+    let newUsers = Array.from(prevUsers);
     const ind = newUsers.findIndex(i => i.id === id);
     newUsers.splice(ind, 1);
 
@@ -109,8 +125,10 @@ export default class VoyagesList extends React.Component {
   }
 
   onNameSearch(typed) {
-    let libraries = Array.from(this.state.data);
-    let searchString = typed.trim().toLowerCase();
+    const { data } = this.state;
+
+    let libraries = Array.from(data);
+    const searchString = typed.trim().toLowerCase();
     if (searchString.length > 0) {
       libraries = libraries.filter(function(i) {
         return i.name.toLowerCase().match(searchString);
@@ -123,13 +141,13 @@ export default class VoyagesList extends React.Component {
   render() {
     return (
       <main className="main">
-        <div class="admin__header">
+        <div className="admin__header">
           <h1 className="heading1" style={{ float: 'left' }}>
             Management
           </h1>
           <a
             href=""
-            class="button button--primary button--spaced admin__action"
+            className="button button--primary button--spaced admin__action"
           >
             <CSVLink
               style={CSVStyle}
@@ -163,8 +181,3 @@ export default class VoyagesList extends React.Component {
     );
   }
 }
-
-const CSVStyle = {
-  color: 'white',
-  textDecoration: 'none'
-};
