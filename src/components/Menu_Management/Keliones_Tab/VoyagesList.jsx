@@ -3,6 +3,7 @@
 import React from 'react';
 import { CSVLink } from 'react-csv';
 import { Route } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import ColTable from './VoyagesListComponents/ColTable.jsx';
 import UserTable from './VoyagesListComponents/UserTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
@@ -12,9 +13,11 @@ import Head from './VoyagesListComponents/Head.jsx';
 // eslint-disable-next-line no-unused-vars
 import storage from './VoyagesListComponents/LocalStorage.js';
 
-const CSVStyle = {
+const ButtonTextStyle = {
   color: 'white',
-  textDecoration: 'none'
+  textDecoration: 'none',
+  fontSize: 14,
+  fontWeight: 700,
 };
 
 export default class VoyagesList extends React.Component {
@@ -54,13 +57,14 @@ export default class VoyagesList extends React.Component {
     ];
   }
 
+  // Sorting functions--------------------------
+  // TODO: move them out of render component
   getSorting(order, orderBy) {
     return order === 'desc'
       ? (a, b) => this.desc(a, b, orderBy)
       : (a, b) => -this.desc(a, b, orderBy);
   }
 
-  // Sorting functions--------------------------
   desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
@@ -138,6 +142,10 @@ export default class VoyagesList extends React.Component {
     this.tableElement.current.changeUsers(libraries);
   }
 
+  renderAddVoyageModal() {
+    console.log('modal will be rendered');
+  }
+
   render() {
     return (
       <main className="main">
@@ -150,7 +158,7 @@ export default class VoyagesList extends React.Component {
             className="button button--primary button--spaced admin__action"
           >
             <CSVLink
-              style={CSVStyle}
+              style={ButtonTextStyle}
               data={this.state.users}
               filename="AllVoyages.csv"
             >
@@ -158,6 +166,23 @@ export default class VoyagesList extends React.Component {
               Download as CSV
             </CSVLink>
           </a>
+          <Button
+            variant="success"
+            style={{
+              // Matches CSVLink button
+              ...ButtonTextStyle,
+              marginTop: -12,
+              paddingTop: 12,
+              paddingBottom: 12,
+              paddingRight: 22,
+              paddingLeft: 22,
+              backgroundColor: 'green',
+              borderRadius: 5,
+            }}
+            onClick={this.renderAddVoyageModal}
+          >
+            Add voyage
+          </Button>
         </div>
         <div className="content content--bottom-square">
           <ColTable />
