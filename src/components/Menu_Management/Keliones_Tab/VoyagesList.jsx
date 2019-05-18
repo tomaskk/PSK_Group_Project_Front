@@ -4,6 +4,7 @@ import React from 'react';
 import { CSVLink } from 'react-csv';
 import { Route } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { Row, Col } from 'react-bootstrap';
 
 import ColTable from './VoyagesListComponents/ColTable.jsx';
 import UserTable from './VoyagesListComponents/UserTable.jsx';
@@ -20,14 +21,15 @@ const ButtonTextStyle = {
   textDecoration: 'none',
   fontSize: 14,
   fontWeight: 700,
+  marginLeft: 16,
 };
 
 const styles = {
   CSVButton: ButtonTextStyle,
-  organizeTravelButton: {
-    // Matches CSVLink button
-    ...ButtonTextStyle,
-    marginTop: -13,
+  createTravelButton: ButtonTextStyle,
+
+  buttonRow: {
+    textAlign: 'right',
   },
 };
 
@@ -166,32 +168,36 @@ export default class VoyagesList extends React.Component {
   render() {
     return (
       <main className="main">
-        <div className="admin__header">
-          <h1 className="heading1" style={{ float: 'left' }}>
-            Management
-          </h1>
-          <a
-            href=""
-            className="button button--primary button--spaced admin__action"
-          >
-            <CSVLink
-              style={styles.CSVButton}
-              data={this.state.users}
-              filename="AllVoyages.csv"
+        <Row>
+          <Col xs={4}>
+            <h1 className="heading1" style={{ float: 'left' }}>
+              Management
+            </h1>
+          </Col>
+          <Col xs={8} style={styles.buttonRow}>
+            <a href="" className="button--primary admin__action">
+              <CSVLink
+                style={{ ...styles.CSVButton, marginLeft: 0 }}
+                data={this.state.users}
+                filename="AllVoyages.csv"
+              >
+                <SvgDownload />
+                Download as CSV
+              </CSVLink>
+            </a>
+            <Button
+              variant="success" // Green button style
+              style={styles.createTravelButton}
+              onClick={this.togglePopup}
             >
-              <SvgDownload />
-              Download as CSV
-            </CSVLink>
-          </a>
-          <Button
-            variant="success"
-            style={styles.organizeTravelButton}
-            onClick={this.togglePopup}
-          >
-            Add voyage
-          </Button>
-          <Popup onToggle={this.togglePopup} isOpen={this.state.showingPopup} />
-        </div>
+              Create Travel
+            </Button>
+            <Popup
+              onToggle={this.togglePopup}
+              isOpen={this.state.showingPopup}
+            />
+          </Col>
+        </Row>
         <div className="content content--bottom-square">
           <ColTable />
           <Head
