@@ -4,12 +4,14 @@ import React from 'react';
 import { CSVLink } from 'react-csv';
 import { Route } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+
 import ColTable from './VoyagesListComponents/ColTable.jsx';
 import UserTable from './VoyagesListComponents/UserTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
 import Head from './VoyagesListComponents/Head.jsx';
+import Popup from '../../common/Popup.jsx';
 
-// Provides users
+// Provides users - false error
 // eslint-disable-next-line no-unused-vars
 import storage from './VoyagesListComponents/LocalStorage.js';
 
@@ -18,6 +20,22 @@ const ButtonTextStyle = {
   textDecoration: 'none',
   fontSize: 14,
   fontWeight: 700,
+};
+
+const styles = {
+  CSVButton: ButtonTextStyle,
+  organizeTravelButton: {
+    // Matches CSVLink button
+    ...ButtonTextStyle,
+    marginTop: -12,
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingRight: 22,
+    paddingLeft: 22,
+    backgroundColor: 'green',
+    borderRadius: 5,
+    border: 0,
+  },
 };
 
 export default class VoyagesList extends React.Component {
@@ -32,7 +50,9 @@ export default class VoyagesList extends React.Component {
       searchString: '',
       classes: props.classes,
       typed: '',
-      data: []
+      data: [],
+
+      showingPopup: false,
     };
 
     this.tableElement = React.createRef();
@@ -44,17 +64,25 @@ export default class VoyagesList extends React.Component {
     this.onNameSearch = this.onNameSearch.bind(this);
     this.onDeleteUser = this.onDeleteUser.bind(this);
     this.sortList = this.sortList.bind(this);
+
+    this.togglePopup = this.togglePopup.bind(this);
   }
 
   componentWillMount() {
     this.state.users = [
       // eslint-disable-next-line no-undef
-      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users
+      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users,
     ];
     this.state.data = [
       // eslint-disable-next-line no-undef
-      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users
+      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users,
     ];
+  }
+
+  togglePopup() {
+    this.setState(prevState => ({
+      showingPopup: !prevState.showingPopup,
+    }));
   }
 
   // Sorting functions--------------------------
@@ -142,10 +170,6 @@ export default class VoyagesList extends React.Component {
     this.tableElement.current.changeUsers(libraries);
   }
 
-  renderAddVoyageModal() {
-    console.log('modal will be rendered');
-  }
-
   render() {
     return (
       <main className="main">
@@ -158,7 +182,7 @@ export default class VoyagesList extends React.Component {
             className="button button--primary button--spaced admin__action"
           >
             <CSVLink
-              style={ButtonTextStyle}
+              style={styles.CSVButton}
               data={this.state.users}
               filename="AllVoyages.csv"
             >
@@ -168,21 +192,15 @@ export default class VoyagesList extends React.Component {
           </a>
           <Button
             variant="success"
-            style={{
-              // Matches CSVLink button
-              ...ButtonTextStyle,
-              marginTop: -12,
-              paddingTop: 12,
-              paddingBottom: 12,
-              paddingRight: 22,
-              paddingLeft: 22,
-              backgroundColor: 'green',
-              borderRadius: 5,
-            }}
-            onClick={this.renderAddVoyageModal}
+            style={styles.organizeTravelButton}
+            onClick={this.togglePopup}
           >
             Add voyage
           </Button>
+          <Popup
+            togglePopup={this.togglePopup}
+            isOpen={this.state.showingPopup}
+          />
         </div>
         <div className="content content--bottom-square">
           <ColTable />
