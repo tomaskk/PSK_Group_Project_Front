@@ -15,6 +15,7 @@ import UserProfileMainScreen from '../components/UserProfile/UserProfileMainScre
 
 import HelpPage from '../components/HelpPage/HelpPage.jsx';
 import Favicon from 'react-favicon';
+import 'react-bootstrap/dist/react-bootstrap.min.js';
 
 class App extends Component {
   render() {

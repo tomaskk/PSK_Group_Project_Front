@@ -9,7 +9,7 @@ import ColTable from './VoyagesListComponents/ColTable.jsx';
 import UserTable from './VoyagesListComponents/UserTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
 import Head from './VoyagesListComponents/Head.jsx';
-import Popup from '../../common/Popup.jsx';
+import Popup from '../../common/Popup/index.js';
 
 // Provides users - false error
 // eslint-disable-next-line no-unused-vars
@@ -27,14 +27,7 @@ const styles = {
   organizeTravelButton: {
     // Matches CSVLink button
     ...ButtonTextStyle,
-    marginTop: -12,
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingRight: 22,
-    paddingLeft: 22,
-    backgroundColor: 'green',
-    borderRadius: 5,
-    border: 0,
+    marginTop: -13,
   },
 };
 
@@ -48,7 +41,6 @@ export default class VoyagesList extends React.Component {
       lastActiveOrder: 'asc',
       orderBy: '',
       searchString: '',
-      classes: props.classes,
       typed: '',
       data: [],
 
@@ -83,6 +75,7 @@ export default class VoyagesList extends React.Component {
     this.setState(prevState => ({
       showingPopup: !prevState.showingPopup,
     }));
+    console.log(this.state);
   }
 
   // Sorting functions--------------------------
@@ -197,10 +190,7 @@ export default class VoyagesList extends React.Component {
           >
             Add voyage
           </Button>
-          <Popup
-            togglePopup={this.togglePopup}
-            isOpen={this.state.showingPopup}
-          />
+          <Popup onToggle={this.togglePopup} isOpen={this.state.showingPopup} />
         </div>
         <div className="content content--bottom-square">
           <ColTable />
