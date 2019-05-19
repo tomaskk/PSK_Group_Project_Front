@@ -15,6 +15,7 @@ import Popup from '../../common/Popup/index.js';
 // Provides users - false error
 // eslint-disable-next-line no-unused-vars
 import storage from './VoyagesListComponents/LocalStorage.js';
+import { getSorting, stableSort } from '../../../helpers/Sorting';
 
 const ButtonTextStyle = {
   color: 'white',
@@ -41,18 +42,12 @@ export default class VoyagesList extends React.Component {
       users: [],
       nameOrder: 'asc',
       lastActiveOrder: 'asc',
-      orderBy: '',
-      searchString: '',
-      typed: '',
       data: [],
 
       showingPopup: false,
     };
 
     this.tableElement = React.createRef();
-    this.getSorting.bind(this);
-    this.stableSort.bind(this);
-    this.desc.bind(this);
     this.sortByLastActive = this.sortByLastActive.bind(this);
     this.sortByName = this.sortByName.bind(this);
     this.onNameSearch = this.onNameSearch.bind(this);
@@ -77,44 +72,12 @@ export default class VoyagesList extends React.Component {
     this.setState(prevState => ({
       showingPopup: !prevState.showingPopup,
     }));
-    console.log(this.state);
-  }
-
-  // Sorting functions--------------------------
-  // TODO: move them out of render component
-  getSorting(order, orderBy) {
-    return order === 'desc'
-      ? (a, b) => this.desc(a, b, orderBy)
-      : (a, b) => -this.desc(a, b, orderBy);
-  }
-
-  desc(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-
-  stableSort(array, cmp) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-      const order = cmp(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map(el => el[0]);
   }
 
   sortList(order, orderBy) {
     const { users: prevUsers } = this.state;
 
-    const newUsers = this.stableSort(
-      prevUsers,
-      this.getSorting(order, orderBy)
-    );
+    const newUsers = stableSort(prevUsers, getSorting(order, orderBy));
     this.setState({ users: newUsers });
     this.tableElement.current.changeUsers(newUsers);
   }
