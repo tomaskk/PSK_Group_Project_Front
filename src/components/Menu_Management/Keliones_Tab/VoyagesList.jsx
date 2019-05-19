@@ -4,20 +4,34 @@ import React from 'react';
 import { CSVLink } from 'react-csv';
 import { Route } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { Row, Col } from 'react-bootstrap';
+
 import ColTable from './VoyagesListComponents/ColTable.jsx';
 import UserTable from './VoyagesListComponents/UserTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
 import Head from './VoyagesListComponents/Head.jsx';
+import Popup from '../../common/Popup/index.js';
 
-// Provides users
+// Provides users - false error
 // eslint-disable-next-line no-unused-vars
 import storage from './VoyagesListComponents/LocalStorage.js';
+import { getSorting, stableSort } from '../../../helpers/Sorting';
 
 const ButtonTextStyle = {
   color: 'white',
   textDecoration: 'none',
   fontSize: 14,
   fontWeight: 700,
+  marginLeft: 16,
+};
+
+const styles = {
+  CSVButton: ButtonTextStyle,
+  createTravelButton: ButtonTextStyle,
+
+  buttonRow: {
+    textAlign: 'right',
+  },
 };
 
 export default class VoyagesList extends React.Component {
@@ -28,70 +42,42 @@ export default class VoyagesList extends React.Component {
       users: [],
       nameOrder: 'asc',
       lastActiveOrder: 'asc',
-      orderBy: '',
-      searchString: '',
-      classes: props.classes,
-      typed: '',
-      data: []
+      data: [],
+
+      showingPopup: false,
     };
 
     this.tableElement = React.createRef();
-    this.getSorting.bind(this);
-    this.stableSort.bind(this);
-    this.desc.bind(this);
     this.sortByLastActive = this.sortByLastActive.bind(this);
     this.sortByName = this.sortByName.bind(this);
     this.onNameSearch = this.onNameSearch.bind(this);
     this.onDeleteUser = this.onDeleteUser.bind(this);
     this.sortList = this.sortList.bind(this);
+
+    this.togglePopup = this.togglePopup.bind(this);
   }
 
   componentWillMount() {
     this.state.users = [
       // eslint-disable-next-line no-undef
-      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users
+      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users,
     ];
     this.state.data = [
       // eslint-disable-next-line no-undef
-      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users
+      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users,
     ];
   }
 
-  // Sorting functions--------------------------
-  // TODO: move them out of render component
-  getSorting(order, orderBy) {
-    return order === 'desc'
-      ? (a, b) => this.desc(a, b, orderBy)
-      : (a, b) => -this.desc(a, b, orderBy);
-  }
-
-  desc(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-
-  stableSort(array, cmp) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-      const order = cmp(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map(el => el[0]);
+  togglePopup() {
+    this.setState(prevState => ({
+      showingPopup: !prevState.showingPopup,
+    }));
   }
 
   sortList(order, orderBy) {
     const { users: prevUsers } = this.state;
 
-    const newUsers = this.stableSort(
-      prevUsers,
-      this.getSorting(order, orderBy)
-    );
+    const newUsers = stableSort(prevUsers, getSorting(order, orderBy));
     this.setState({ users: newUsers });
     this.tableElement.current.changeUsers(newUsers);
   }
@@ -142,48 +128,39 @@ export default class VoyagesList extends React.Component {
     this.tableElement.current.changeUsers(libraries);
   }
 
-  renderAddVoyageModal() {
-    console.log('modal will be rendered');
-  }
-
   render() {
     return (
       <main className="main">
-        <div className="admin__header">
-          <h1 className="heading1" style={{ float: 'left' }}>
-            Management
-          </h1>
-          <a
-            href=""
-            className="button button--primary button--spaced admin__action"
-          >
-            <CSVLink
-              style={ButtonTextStyle}
-              data={this.state.users}
-              filename="AllVoyages.csv"
+        <Row>
+          <Col xs={4}>
+            <h1 className="heading1" style={{ float: 'left' }}>
+              Management
+            </h1>
+          </Col>
+          <Col xs={8} style={styles.buttonRow}>
+            <a href="" className="button--primary admin__action">
+              <CSVLink
+                style={{ ...styles.CSVButton, marginLeft: 0 }}
+                data={this.state.users}
+                filename="AllVoyages.csv"
+              >
+                <SvgDownload />
+                Download as CSV
+              </CSVLink>
+            </a>
+            <Button
+              variant="success" // Green button style
+              style={styles.createTravelButton}
+              onClick={this.togglePopup}
             >
-              <SvgDownload />
-              Download as CSV
-            </CSVLink>
-          </a>
-          <Button
-            variant="success"
-            style={{
-              // Matches CSVLink button
-              ...ButtonTextStyle,
-              marginTop: -12,
-              paddingTop: 12,
-              paddingBottom: 12,
-              paddingRight: 22,
-              paddingLeft: 22,
-              backgroundColor: 'green',
-              borderRadius: 5,
-            }}
-            onClick={this.renderAddVoyageModal}
-          >
-            Add voyage
-          </Button>
-        </div>
+              Create Travel
+            </Button>
+            <Popup
+              onToggle={this.togglePopup}
+              isOpen={this.state.showingPopup}
+            />
+          </Col>
+        </Row>
         <div className="content content--bottom-square">
           <ColTable />
           <Head

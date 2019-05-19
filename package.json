@@ -2,7 +2,7 @@
   "name": "psk-group-front",
   "version": "1.0.0",
   "description": "main react app",
-  "main": "./src/app/App.js",
+  "main": "./src/app/App.jsx",
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
