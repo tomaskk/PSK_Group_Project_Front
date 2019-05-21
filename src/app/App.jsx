@@ -25,7 +25,7 @@ class App extends Component {
           <div className="content-container-div">
             <Sidebar />
 
-            <div className="container">
+            <div className="containerr">
               <TopHeader />
               <Route exact path="/" component={SelfProfileMainScreen} />
 

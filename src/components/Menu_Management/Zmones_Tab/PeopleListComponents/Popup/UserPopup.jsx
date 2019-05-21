@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 
-
-
 import PropTypes from 'prop-types';
 
   const UserPopup = props => {
@@ -14,7 +12,7 @@ import PropTypes from 'prop-types';
       <Modal.Header closeButton>
         <Modal.Title> 
           <h4>
-            Profile of <b><i>{userInfo.name} {userInfo.surname}</i></b> 
+            Profile of <b><i> {userInfo.name} {userInfo.surname} </i></b> 
             <img src={userInfo.pic} alt="Profile pic" height="42" width="42" style={{borderRadius: "50%", marginLeft: "24px"}}/> 
           </h4>
         </Modal.Title>

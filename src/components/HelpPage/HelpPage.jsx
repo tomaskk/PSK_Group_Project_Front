@@ -21,7 +21,7 @@ const HelpPage = () => {
         <p style={{marginLeft: "20px", marginBottom: "10px"}}> <b> Team members: </b> </p>
 
         <ul>
-          <p style={{marginLeft: "20px", marginBottom: "10px"}}> 3rd course, 5th group: </p>
+          <p style={{marginLeft: "20px", marginBottom: "10px"}}> Software engineering - 3rd course, 5th group: </p>
           <li style={{marginLeft: "32px", marginBottom: "10px"}}> Elena Reivytytė       </li>
           <li style={{marginLeft: "32px", marginBottom: "10px"}}> Emilija Lamanauskaitė </li>
           <li style={{marginLeft: "32px", marginBottom: "10px"}}> Karolis Staskevičius  </li>
