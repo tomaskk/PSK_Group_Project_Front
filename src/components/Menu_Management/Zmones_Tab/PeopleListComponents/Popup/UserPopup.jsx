@@ -108,6 +108,7 @@ import PropTypes from 'prop-types';
 UserPopup.propTypes = {
   onToggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  userInfo: PropTypes.object.isRequired
 };
 
 export default UserPopup;
