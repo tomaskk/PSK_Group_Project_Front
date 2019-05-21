@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SvgHand from './images/SvgHand.jsx';
+import UserPopup from './Popup/UserPopup.jsx';
 
 class UserRow extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showModal: false
+    };
 
     this.handleHandClick = this.handleHandClick.bind(this);
   }
 
   handleHandClick(e) {
     e.preventDefault();
-    alert("clicked on " + this.props.name + "  " + this.props.surname);
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
+    }));
   }
 
   render() {
@@ -35,11 +42,12 @@ class UserRow extends Component {
         </td>
         <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
           <div class="table__content table__content--actions">
-            <a href="" class="table__action" onClick={this.handleHandClick}>
+            <a class="table__action" onClick={this.handleHandClick}>
               <SvgHand />
             </a>
           </div>
         </td>
+        <UserPopup onToggle={this.handleHandClick} isOpen={this.state.showModal} userInfo={this.props}/>
       </tr>
     );
   }

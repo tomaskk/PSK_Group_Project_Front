@@ -25,6 +25,7 @@ class UserTable extends Component {
                 id={user.id}
                 pic={user.pic}
                 activity={user.activity}
+                topic={user.topic}
               />
             ))}
           </tbody>
