@@ -21,9 +21,9 @@ class UserRow extends Component {
             {this.props.name}
           </div>
         </td>
-        <td class="table__cell table__cell--main ">{this.props.topic}</td>
+        <td class="table__cell table__cell--main ">{this.props.surname}</td>
         <td class="table__cell table__cell--tiny table__cell--short table__cell--date">
-          {this.props.date}
+          {this.props.activity}
         </td>
         <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
           <div class="table__content table__content--actions">

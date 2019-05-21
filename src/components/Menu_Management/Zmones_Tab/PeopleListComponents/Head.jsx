@@ -60,7 +60,7 @@ class Head extends Component {
       newUsers = newUsers.filter(i => i.name.toLowerCase().match(typedName));
     }
     if (typedTopic.length > 0) {
-      newUsers = newUsers.filter(i => i.topic.toLowerCase().match(typedTopic));
+      newUsers = newUsers.filter(i => i.surname.toLowerCase().match(typedTopic));
     }
     this.props.filterData(newUsers);
   }
@@ -121,7 +121,7 @@ class Head extends Component {
               <div class="table__header-content">
                 <div class="table__column">
                   <div class="table__label">
-                    <label for="goal">Topic</label>
+                    <label for="goal">Surname</label>
                     <a
                       href=""
                       class="table__header-action"
@@ -151,7 +151,7 @@ class Head extends Component {
               <div class="table__header-content">
                 <div class="table__column">
                   <div class="table__label">
-                    <label for="specialist">Date</label>
+                    <label for="specialist">Status</label>
                     <a
                       href=""
                       class="table__header-action"
@@ -169,7 +169,7 @@ class Head extends Component {
               <div class="table__header-content">
                 <div class="table__column">
                   <div class="table__label">
-                    <label for="location">Length</label>
+                    <label for="location">Find more</label>
                     <a
                       href=""
                       class="table__header-action"
@@ -177,7 +177,6 @@ class Head extends Component {
                         this.onSort(e, 'hours');
                       }}
                     >
-                      <Reorder />
                     </a>
                   </div>
                 </div>
