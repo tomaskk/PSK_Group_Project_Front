@@ -19,11 +19,13 @@ class UserTable extends Component {
               <UserRow
                 key={index}
                 name={user.name}
-                topic={user.topic}
+                surname={user.surname}
                 date={user.date}
                 hours={user.hours}
                 id={user.id}
                 pic={user.pic}
+                activity={user.activity}
+                topic={user.topic}
               />
             ))}
           </tbody>
@@ -47,6 +49,7 @@ UserTable.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
+      surname: PropTypes.string,
       topic: PropTypes.string,
       hours: PropTypes.string,
       date: PropTypes.string

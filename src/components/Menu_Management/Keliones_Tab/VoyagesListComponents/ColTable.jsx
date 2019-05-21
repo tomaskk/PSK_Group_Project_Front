@@ -11,7 +11,7 @@ export default class ColTable extends Component {
         <ul className="tabs">
           <li>
             <Link to="/host/manage/users" className="tabs__link">
-              Active users
+              Available users
             </Link>
           </li>
           <li>

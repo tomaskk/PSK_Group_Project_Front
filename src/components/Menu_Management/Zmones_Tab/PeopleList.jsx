@@ -12,7 +12,6 @@ class PeopleList extends React.Component {
   constructor(props) {
     super(props);
   }
-  // Render-------------------------------------------
 
   render() {
     return (
