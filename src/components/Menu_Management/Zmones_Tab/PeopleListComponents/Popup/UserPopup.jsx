@@ -5,8 +5,9 @@ import { Button, Modal, Table } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
 
-const UserPopup = props => {
+  const UserPopup = props => {
   const { onToggle, isOpen, userInfo } = props;
+  const items = ['Apple', 'Orange', 'Banana', 'Pear'];
 
   return (
     <Modal show={isOpen} onHide={onToggle} className="Popup" size = "lg" centered>
@@ -65,28 +66,18 @@ const UserPopup = props => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>CHI-998</td>
-              <td>2010-10-10</td>
-              <td>2010-10-11</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>VNO-08</td>
-              <td>2010-10-16</td>
-              <td>2010-10-17</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>VNO-12</td>
-              <td>2010-10-10</td>
-              <td>2010-11-11</td>
-            </tr>
+            {items.map(item => 
+              <tr>
+                <td>X</td>
+                <td>{item}</td>
+                <td>2010-10-16</td>
+                <td>2010-10-17</td>
+              </tr>
+            )}
           </tbody>
         </Table>
 
-        <h5>{userInfo.name}'s created travels:</h5>
+        <h5><b>{userInfo.name}</b>'s created travels:</h5>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -105,7 +96,6 @@ const UserPopup = props => {
             </tr>
           </tbody>
         </Table>
-        
       </Modal.Body>
 
       <Modal.Footer>
