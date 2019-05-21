@@ -9,7 +9,7 @@ const HelpPage = () => {
         </h1>
       </div>
 
-      <div className="content content--bottom-square" style={{height: "100%"}}>
+      <div className="content content--bottom-square content__scrollable" style={{height: "100%"}}>
         <h5  style={{margin: "32px"}}>Help page of the PSK Group project.</h5>
 
         <p style={{marginLeft: "20px", marginBottom: "10px"}}> <b> Project title: </b> Travel Agent </p>
