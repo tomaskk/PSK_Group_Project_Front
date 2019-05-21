@@ -85,6 +85,26 @@ const UserPopup = props => {
             </tr>
           </tbody>
         </Table>
+
+        <h5>{userInfo.name}'s created travels:</h5>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Start time</th>
+              <th>End time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>CHI-998</td>
+              <td>2010-10-10</td>
+              <td>2010-10-11</td>
+            </tr>
+          </tbody>
+        </Table>
         
       </Modal.Body>
 
