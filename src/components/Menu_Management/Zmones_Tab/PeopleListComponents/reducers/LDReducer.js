@@ -8,8 +8,8 @@ const initialState = {
   typedName: '',
   typedTopic: '',
   nameDirection: true,
-  topicDirection: true,
-  dateDirection: true,
+  surnameDirection: true,
+  activityDirection: true,
   hoursDirection: true
 };
 
@@ -25,20 +25,20 @@ export const LDReducer = (state = initialState, action) => {
           currentSort: action.property
         };
       }
-      if (action.property === 'topic')
+      if (action.property === 'surname')
         return {
           ...state,
           filteredUsers: action.payload,
           sortedUsers: action.sorted,
-          topicDirection: !state.topicDirection,
+          surnameDirection: !state.surnameDirection,
           currentSort: action.property
         };
-      if (action.property === 'date')
+      if (action.property === 'activity')
         return {
           ...state,
           filteredUsers: action.payload,
           sortedUsers: action.sorted,
-          dateDirection: !state.dateDirection,
+          activityDirection: !state.activityDirection,
           currentSort: action.property
         };
       if (action.property === 'hours')
@@ -56,7 +56,7 @@ export const LDReducer = (state = initialState, action) => {
     case 'STORE_FILTER':
       if (action.property === 'name')
         return { ...state, typedName: action.typed };
-      if (action.property === 'topic')
+      if (action.property === 'surname')
         return { ...state, typedTopic: action.typed };
 
     default:

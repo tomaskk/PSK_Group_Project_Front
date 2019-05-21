@@ -55,7 +55,7 @@ class Head extends Component {
     const typedName = this.nameInput.current.value.toLowerCase();
     const typedTopic = this.topicInput.current.value.toLowerCase();
     this.props.storeFilter('name', typedName);
-    this.props.storeFilter('topic', typedTopic);
+    this.props.storeFilter('surname', typedTopic);
     if (typedName.length > 0) {
       newUsers = newUsers.filter(i => i.name.toLowerCase().match(typedName));
     }
@@ -67,19 +67,25 @@ class Head extends Component {
 
   onSort(e, orderBy) {
     if (e !== null) e.preventDefault();
+    //sets parameters
     if (orderBy == 'name') var order = !this.props.nameDirection;
-    if (orderBy == 'topic') var order = !this.props.topicDirection;
+    if (orderBy == 'surname') var order = !this.props.surnameDirection;
     if (orderBy == 'hours') var order = !this.props.hoursDirection;
-    if (orderBy == 'date') var order = !this.props.dateDirection;
+    if (orderBy == 'activity') var order = !this.props.activityDirection;
     if (orderBy == '') return;
+
+    //updates sort locally
     let newUsers = this.stableSort(
       this.props.filteredUsers,
       this.getSorting(order, orderBy)
     );
+    //does the same
     let sortedUsers = this.stableSort(
       this.props.sortedUsers,
       this.getSorting(order, orderBy)
     );
+
+    // only updates info in store
     this.props.sortData(orderBy, newUsers, sortedUsers);
   }
 
@@ -126,7 +132,7 @@ class Head extends Component {
                       href=""
                       class="table__header-action"
                       onClick={e => {
-                        this.onSort(e, 'topic');
+                        this.onSort(e, 'surname');
                       }}
                     >
                       <Reorder />
@@ -156,7 +162,7 @@ class Head extends Component {
                       href=""
                       class="table__header-action"
                       onClick={e => {
-                        this.onSort(e, 'date');
+                        this.onSort(e, 'activity');
                       }}
                     >
                       <Reorder />
@@ -169,7 +175,7 @@ class Head extends Component {
               <div class="table__header-content">
                 <div class="table__column">
                   <div class="table__label">
-                    <label for="location">Find more</label>
+                    <label for="location">Find out more</label>
                     <a
                       href=""
                       class="table__header-action"
@@ -193,8 +199,8 @@ const mapStateToProps = state => ({
   sortedUsers: state.LDReducer.sortedUsers,
   filteredUsers: state.LDReducer.filteredUsers,
   nameDirection: state.LDReducer.nameDirection,
-  topicDirection: state.LDReducer.topicDirection,
-  dateDirection: state.LDReducer.dateDirection,
+  surnameDirection: state.LDReducer.surnameDirection,
+  activityDirection: state.LDReducer.activityDirection,
   hoursDirection: state.LDReducer.hoursDirection,
   typedName: state.LDReducer.typedName,
   typedTopic: state.LDReducer.typedTopic,
@@ -219,9 +225,9 @@ Head.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      topic: PropTypes.string,
+      surname: PropTypes.string,
       hours: PropTypes.string,
-      date: PropTypes.string
+      activity: PropTypes.string
     })
   ),
   onSearch: PropTypes.func,
