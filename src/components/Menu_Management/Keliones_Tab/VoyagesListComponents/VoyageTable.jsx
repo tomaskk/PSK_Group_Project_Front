@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import UserRow from './UserRow.jsx';
+import VoyageRow from './VoyageRow.jsx';
 
-class UserTable extends Component {
+class VoyageTable extends Component {
   constructor(props) {
     super(props);
 
@@ -27,7 +27,7 @@ class UserTable extends Component {
         <table className="table">
           <tbody>
             {this.state.users.map((user, index) => (
-              <UserRow
+              <VoyageRow
                 onDeleteClick={this.onDeleteClick}
                 key={index}
                 name={user.name}
@@ -43,4 +43,4 @@ class UserTable extends Component {
   }
 }
 
-export default UserTable;
+export default VoyageTable;
