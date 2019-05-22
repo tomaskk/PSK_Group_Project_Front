@@ -11,7 +11,7 @@ import UserTable from './VoyagesListComponents/UserTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
 import Head from './VoyagesListComponents/Head.jsx';
 import Popup from '../../common/Popup/index.js';
-import CreateTravelForm from '../../CreateTravelForm/CreateTravelForm'; // TODO add index.js
+import TravelCreationPopup from '../../TravelCreationPopup/TravelCreationPopup';
 
 // Provides users - false error
 // eslint-disable-next-line no-unused-vars
@@ -158,15 +158,11 @@ export default class VoyagesList extends React.Component {
             >
               {createButtonText}
             </Button>
-            <Popup
-              title={createButtonText}
-              onExit={this.togglePopup}
-              onCancel={this.togglePopup}
-              onAccept={this.togglePopup}
-              isOpen={this.state.showingPopup}
-            >
-              <CreateTravelForm />
-            </Popup>
+            <TravelCreationPopup
+              popupTitle={createButtonText}
+              showingPopup={this.state.showingPopup}
+              onTogglePopup={this.togglePopup}
+            />
           </Col>
         </Row>
         <div className="content content--bottom-square">
