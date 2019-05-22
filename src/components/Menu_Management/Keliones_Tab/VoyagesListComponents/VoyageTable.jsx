@@ -26,12 +26,12 @@ class VoyageTable extends Component {
       <div className="content__scrollable">
         <table className="table">
           <tbody>
-            {this.state.users.map((user, index) => (
+            {this.state.users.map(user => (
               <VoyageRow
                 onDeleteClick={this.onDeleteClick}
-                key={index}
+                key={user.id}
                 name={user.name}
-                lastActive={user.lastActive}
+                startsOn={user.lastActive}
                 id={user.id}
                 pic={user.pic}
               />
