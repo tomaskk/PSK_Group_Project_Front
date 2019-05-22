@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SvgHand from './images/SvgHand.jsx';
 import UserPopup from './Popups/UserPopup.jsx';
+import AssignTravelPopup from './Popups/AssignTravelPopup.jsx';
 import Plus from './images/Plus.jsx';
 
 class UserRow extends Component {
@@ -9,7 +10,8 @@ class UserRow extends Component {
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: false,
+      assignTravelModal: false
     };
 
     this.handleHandClick = this.handleHandClick.bind(this);
@@ -26,7 +28,7 @@ class UserRow extends Component {
   handlePlusClick(e) {
     e.preventDefault();
     this.setState(prevState => ({
-      showModal: !prevState.showModal,
+      assignTravelModal: !prevState.assignTravelModal,
     }));
   }
 
@@ -60,6 +62,7 @@ class UserRow extends Component {
             </div>
         </td>
         <UserPopup onToggle={this.handleHandClick} isOpen={this.state.showModal} userInfo={this.props}/>
+        <AssignTravelPopup onToggle={this.handlePlusClick} isOpen={this.state.assignTravelModal} userInfo={this.props}/>
       </tr>
     );
   }
