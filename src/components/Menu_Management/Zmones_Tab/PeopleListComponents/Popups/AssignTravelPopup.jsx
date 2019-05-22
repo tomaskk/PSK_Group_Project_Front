@@ -34,7 +34,7 @@ import PropTypes from 'prop-types';
           </tbody>
         </Table>
 
-        <h5>Assign <b>{userInfo.name}</b> to a travel:</h5>
+        <h5>Invite <b>{userInfo.name}</b> to travel:</h5>
         <Form>
           <Form.Group>
             <Form.Control as="select">
@@ -52,7 +52,7 @@ import PropTypes from 'prop-types';
           Cancel
         </Button>
         <Button variant="primary" onClick={onToggle}>
-          Save assignment
+          Send invitation
         </Button>
       </Modal.Footer>
     </Modal>
