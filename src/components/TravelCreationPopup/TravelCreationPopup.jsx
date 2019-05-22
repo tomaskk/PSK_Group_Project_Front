@@ -14,6 +14,8 @@ import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
  */
 const officeData = require('./MockOfficeData.json');
 
+const travelTypes = ['by Car', 'by Plane', 'Car and Plane'];
+
 const styles = {
   sectionTitle: {
     fontSize: '20px',
@@ -26,14 +28,14 @@ class TravelCreationPopup extends React.Component {
 
     this.state = {
       name: '',
-      travelFrom: '',
-      travelTo: '',
-      travelStart: '',
-      travelEnd: '',
+      travelFrom: officeData[0],
+      travelTo: officeData[0],
+      travelStart: new Date(),
+      travelEnd: new Date(),
       hotelName: '',
       hotelAddress: '',
       hotelInfo: '',
-      travelType: '',
+      travelType: travelTypes[0],
       travelDescription: '',
     };
   }
@@ -141,7 +143,7 @@ class TravelCreationPopup extends React.Component {
                 <Form.Group>
                   <Form.Label>Start of travel</Form.Label>
                   <DatePicker
-                    selected={this.state.travelStart || new Date()}
+                    selected={this.state.travelStart}
                     onChange={e => this.onTravelStartChange(e)}
                   />
                 </Form.Group>
@@ -150,7 +152,7 @@ class TravelCreationPopup extends React.Component {
                 <Form.Group>
                   <Form.Label>End of travel</Form.Label>
                   <DatePicker
-                    selected={this.state.travelEnd || new Date()}
+                    selected={this.state.travelEnd}
                     onChange={e => this.onTravelEndChange(e)}
                   />
                 </Form.Group>
@@ -198,8 +200,12 @@ class TravelCreationPopup extends React.Component {
             <Form.Label column sm={2}>
               Travel type
             </Form.Label>
-            <ButtonGroup toggle onChange={e => this.onTravelTypeChange(e)}>
-              {['by Car', 'by Plane', 'Car and Plane'].map(travelType => (
+            <ButtonGroup
+              toggle
+              onChange={e => this.onTravelTypeChange(e)}
+              defaultValue={this.state.travelType}
+            >
+              {travelTypes.map(travelType => (
                 <ToggleButton
                   style={{ marginRight: 8 }}
                   type="radio"
