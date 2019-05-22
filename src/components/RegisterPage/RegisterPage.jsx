@@ -9,7 +9,7 @@ import {
     tryRegister,
 } from "./LoginPageComponents/actions/actionCreators";
 
-class LoginPage extends Component {
+class RegisterPage extends Component {
   constructor(props) {
     super(props);
     this.emailInput = React.createRef();
@@ -42,7 +42,7 @@ class LoginPage extends Component {
   };
 
   OnRegisterButtonClick = () => {
-    this.props.history.push("/register");
+    this.props.history.push("/login");
 
     tryRegister(
       this.emailInput.current.value.toString(),
@@ -55,14 +55,13 @@ class LoginPage extends Component {
   render() {
     return (
       <main className="main main__login" style={{ display: "inline" }}>
-
         <div className="content content__login" style={{float: "left" }} >
           <div className="section section--login">
             <div className="form__row form__login--heading">
               <SvgLogo />{" "}
             </div>
             <div className="form__row form__login--heading">
-              <h1 className="heading1">Log in</h1>
+              <h1 className="heading1">Sign up</h1> 
             </div>
             <form className="form" onSubmit={this.OnFormSubmit} method="post">
               <div className="form__row form__row--login">
@@ -174,4 +173,4 @@ class LoginPage extends Component {
   }
 }
 
-export default connect()(LoginPage);
+export default connect()(RegisterPage);

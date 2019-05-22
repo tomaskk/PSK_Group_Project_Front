@@ -13,6 +13,7 @@ import AllVoyagesList from '../components/Menu_Management/Keliones_Tab/VoyagesLi
 import AllPeopleList from '../components/Menu_Management/Zmones_Tab/PeopleList.jsx';
 import UserProfileMainScreen from '../components/UserProfile/UserProfileMainScreen.jsx';
 import loginPage from '../components/LoginPage/LoginPage.jsx';
+import registerPage from '../components/RegisterPage/RegisterPage.jsx';
 
 import HelpPage from '../components/HelpPage/HelpPage.jsx';
 import Favicon from 'react-favicon';
@@ -23,7 +24,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
+
           <Route path="/login" component={loginPage} />
+
+          <Route path="/register" component={registerPage} />
 
           <Route exact path="/" render={ () => {
                 return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen/></div></div> )
