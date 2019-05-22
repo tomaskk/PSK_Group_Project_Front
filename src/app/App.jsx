@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { store } from '../store/store.js';
 
 import Sidebar from '../components/SidebarComp/SidebarComp.jsx';
@@ -12,6 +12,8 @@ import SelfProfileMainScreen from '../components/SelfProfile/SelfProfileMainScre
 import AllVoyagesList from '../components/Menu_Management/Keliones_Tab/VoyagesList.jsx';
 import AllPeopleList from '../components/Menu_Management/Zmones_Tab/PeopleList.jsx';
 import UserProfileMainScreen from '../components/UserProfile/UserProfileMainScreen.jsx';
+import loginPage from '../components/LoginPage/LoginPage.jsx';
+import registerPage from '../components/RegisterPage/RegisterPage.jsx';
 
 import HelpPage from '../components/HelpPage/HelpPage.jsx';
 import Favicon from 'react-favicon';
@@ -22,25 +24,31 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="content-container-div">
-            <Sidebar />
 
-            <div className="containerr">
-              <TopHeader />
-              <Route exact path="/" component={SelfProfileMainScreen} />
+          <Route path="/login" component={loginPage} />
 
-              <Route path="/host/manage/users" component={AllPeopleList} />
-              <Route path="/host/manage/voyages" component={AllVoyagesList} />
+          <Route path="/register" component={registerPage} />
 
-              <Route path="/host/help" component={HelpPage} />
-              <Route
-                path="/host/user/:userId"
-                component={UserProfileMainScreen}
-              />
+          <Route exact path="/" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen/></div></div> )
+          }} />
 
-              <Favicon url={`${window.location.origin}/favicon.ico`} />
-            </div>
-          </div>
+          <Route path="/host/manage/users" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList/></div></div> )
+          }} />
+
+          <Route path="/host/manage/voyages" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllVoyagesList/></div></div> )
+          }} />
+
+          <Route path="/host/help" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <HelpPage/></div></div> )
+          }} />
+
+          <Route path="/host/user/:userId" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <UserProfileMainScreen/></div></div> )
+          }} />
+
         </Router>
       </Provider>
     );

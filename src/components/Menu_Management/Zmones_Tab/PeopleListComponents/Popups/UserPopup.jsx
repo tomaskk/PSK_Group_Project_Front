@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
   return (
     <Modal show={isOpen} onHide={onToggle} className="Popup" size = "lg" centered>
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title> 
           <h4>
             Profile of <b><i> {userInfo.name} {userInfo.surname} </i></b> 

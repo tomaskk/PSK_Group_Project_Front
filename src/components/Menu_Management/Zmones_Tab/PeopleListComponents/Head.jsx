@@ -175,7 +175,7 @@ class Head extends Component {
               <div class="table__header-content">
                 <div class="table__column">
                   <div class="table__label">
-                    <label for="location">Find out more</label>
+                    <label for="location">Actions</label>
                     <a
                       href=""
                       class="table__header-action"
