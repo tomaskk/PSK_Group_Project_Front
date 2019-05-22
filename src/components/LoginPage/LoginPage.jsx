@@ -24,6 +24,11 @@ class LoginPage extends Component {
   };
 
   OnLoginButtonClick = () => {
+
+    alert("Log in details: \n" + this.emailInput.current.value + 
+                          "\n" + this.passwordInput.current.value + 
+                          "\n" + this.state.CheckBoxChecked);
+ 
     tryLogin(
       this.emailInput.current.value.toString(),
       this.passwordInput.current.value.toString(),
@@ -31,6 +36,9 @@ class LoginPage extends Component {
       this.props.history,
       this.props.dispatch
     );
+
+    //immitate successful login
+    this.props.history.push("/");
   };
 
   OnSlackButtonClick = () => {
@@ -44,25 +52,19 @@ class LoginPage extends Component {
   OnRegisterButtonClick = () => {
     this.props.history.push("/register");
 
-    tryRegister(
-      this.emailInput.current.value.toString(),
-      this.passwordInput.current.value.toString(),
-      this.props.history,
-      this.props.dispatch
-    );
   };
 
   render() {
     return (
       <main className="main main__login" style={{ display: "inline" }}>
 
-        <div className="content content__login" style={{float: "left" }} >
+        <div className="content content__login" style={{float: "left", height: "100%" }} >
           <div className="section section--login">
             <div className="form__row form__login--heading">
               <SvgLogo />{" "}
             </div>
             <div className="form__row form__login--heading">
-              <h1 className="heading1">Log in</h1>
+              <h1 className="heading1">Travel Agent - Log in</h1>
             </div>
             <form className="form" onSubmit={this.OnFormSubmit} method="post">
               <div className="form__row form__row--login">
@@ -134,7 +136,7 @@ class LoginPage extends Component {
                   onClick={this.OnRegisterButtonClick}
                   style={{width: "100%"}}
                 >
-                  Sign Up
+                  Create an account
                 </button>
               </div>
             </form>

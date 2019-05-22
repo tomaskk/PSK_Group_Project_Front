@@ -14,6 +14,7 @@ class RegisterPage extends Component {
     super(props);
     this.emailInput = React.createRef();
     this.passwordInput = React.createRef();
+    this.passwordInput2 = React.createRef();
     this.state = {
       CheckBoxChecked: false
     };
@@ -23,11 +24,14 @@ class RegisterPage extends Component {
     e.preventDefault();
   };
 
-  OnLoginButtonClick = () => {
-    tryLogin(
+  OnCreateAccButtonClick = () => {
+    alert("Create my acc: \n" + this.emailInput.current.value + 
+                         "\n" + this.passwordInput.current.value + 
+                         "\n" + this.passwordInput2.current.value);
+                         
+    tryRegister(
       this.emailInput.current.value.toString(),
       this.passwordInput.current.value.toString(),
-      this.state.CheckBoxChecked.toString(),
       this.props.history,
       this.props.dispatch
     );
@@ -44,24 +48,19 @@ class RegisterPage extends Component {
   OnRegisterButtonClick = () => {
     this.props.history.push("/login");
 
-    tryRegister(
-      this.emailInput.current.value.toString(),
-      this.passwordInput.current.value.toString(),
-      this.props.history,
-      this.props.dispatch
-    );
+ 
   };
 
   render() {
     return (
       <main className="main main__login" style={{ display: "inline" }}>
-        <div className="content content__login" style={{float: "left" }} >
+        <div className="content content__login" style={{float: "left", height: "100%" }} >
           <div className="section section--login">
             <div className="form__row form__login--heading">
               <SvgLogo />{" "}
             </div>
             <div className="form__row form__login--heading">
-              <h1 className="heading1">Sign up</h1> 
+              <h1 className="heading1">Travel Agent - Sign up</h1> 
             </div>
             <form className="form" onSubmit={this.OnFormSubmit} method="post">
               <div className="form__row form__row--login">
@@ -95,45 +94,37 @@ class RegisterPage extends Component {
               </div>
 
               <div className="form__row form__row--login">
-                <div className="form__field--with-controls">
-                  <input
-                    type="checkbox"
-                    className="form__input--checkbox"
-                    onClick={this.OnCheckBoxClick}
-                  />
-                  <label className="form__label" htmlFor="">
-                    Remember me
+                <div className="form__field form__field--wide">
+                  <label className="form__label" htmlFor="password-in2">
+                    Confirm password
                   </label>
+                  <input
+                    id="password-in2"
+                    className="form__input "
+                    type="password"
+                    placeholder="Repeat password"
+                    ref={this.passwordInput2}
+                  />
                 </div>
-                <a href={ServerHostName + "/forgot"}>Forgot password?</a>
               </div>
 
               <div className="form__row form__row--login">
                 <button
                   className="button button--primary button--login button--wide"
-                  onClick={this.OnLoginButtonClick}
+                  onClick={this.OnCreateAccButtonClick}
                   style={{width: "100%"}}
                 >
-                  Login
+                  Create my account
                 </button>
               </div>
-              <div className="form__row form__row--login">
-                <button
-                  className="button button--primary button--slack button--wide"
-                  onClick={this.OnSlackButtonClick}
-                  style={{width: "100%"}}
-                >
-                  <SlackLogo className="logo" />
-                  Login via Slack
-                </button>
-              </div>
+
               <div className="form__row form__row--login actions--sign-up">
                 <button
                   className="button button--primary button--login button--wide"
                   onClick={this.OnRegisterButtonClick}
                   style={{width: "100%"}}
                 >
-                  Sign Up
+                  Open Log in Form
                 </button>
               </div>
             </form>
@@ -152,15 +143,15 @@ class RegisterPage extends Component {
           <div className="image__container">
           <img className="image" src={Illustration} alt="background" />
             <div className="edit edit--bottom-right">
-              <a className="edit--text" href={ServerHostName + '/#/login'}>
+              <a className="edit--text" href={ServerHostName + '/#/register'}>
                 Privacy policy
               </a>
               <span className="edit--text"> | </span>
-              <a className="edit--text" href={ServerHostName + '/#/login'}>
+              <a className="edit--text" href={ServerHostName + '/#/register'}>
                 Terms of use
               </a>
               <span className="edit--text"> | </span>
-              <a className="edit--text" href={ServerHostName + '/#/login'}>
+              <a className="edit--text" href={ServerHostName + '/#/register'}>
                 Help
               </a>
             </div>
