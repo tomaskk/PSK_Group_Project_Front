@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { store } from '../store/store.js';
 
 import Sidebar from '../components/SidebarComp/SidebarComp.jsx';
@@ -21,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <HashRouter>
           <div className="content-container-div">
             <Sidebar />
 
@@ -41,7 +42,7 @@ class App extends Component {
               <Favicon url={`${window.location.origin}/favicon.ico`} />
             </div>
           </div>
-        </Router>
+        </HashRouter>
       </Provider>
     );
   }
