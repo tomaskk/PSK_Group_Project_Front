@@ -1,15 +1,15 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { Button, Modal, Table, Form } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
 
-  const AssignTravelPopup = props => {
+const AssignTravelPopup = props => {
   const { onToggle, isOpen, userInfo } = props;
   const items = ['abc123', 'abc234', 'chi001', 'kno223', 'vno890'];
 
   return (
-
-    <Modal show={isOpen} onHide={onToggle} className="Popup" size = "lg" centered>
+    <Modal show={isOpen} onHide={onToggle} className="Popup" size="lg" centered>
       <Modal.Header>
         <Modal.Title> 
           <h4>
@@ -62,7 +62,7 @@ import PropTypes from 'prop-types';
 AssignTravelPopup.propTypes = {
   onToggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  userInfo: PropTypes.object.isRequired
+  userInfo: PropTypes.object.isRequired,
 };
 
 export default AssignTravelPopup;
