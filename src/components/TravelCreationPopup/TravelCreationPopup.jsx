@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import Popup from '../common/Popup/index.js';
 
+import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 /** e.g.:
  * {
  *    "title": "Vilniaus DevBridge",
@@ -49,16 +50,14 @@ class TravelCreationPopup extends React.Component {
 
   onTravelToChange(e) {
     this.setState({ travelTo: e.target.value });
-    console.log(this.state);
   }
 
   onTravelStartChange(e) {
-    this.setState({ travelStart: e.target.value });
-    console.log(this.state);
+    this.setState({ travelStart: e });
   }
 
   onTravelEndChange(e) {
-    this.setState({ travelEnd: e.target.value });
+    this.setState({ travelEnd: e });
     console.log(this.state);
   }
 
@@ -79,7 +78,6 @@ class TravelCreationPopup extends React.Component {
 
   onTravelTypeChange(e) {
     this.setState({ travelType: e.target.value });
-    console.log(this.state);
   }
 
   onTravelDescriptionChange(e) {
@@ -166,7 +164,11 @@ class TravelCreationPopup extends React.Component {
               Hotel name
             </Form.Label>
             <Col sm={10}>
-              <Form.Control type="text" placeholder="Sleepy Hollow inn" />
+              <Form.Control
+                onChange={e => this.onHotelNameChange(e)}
+                type="text"
+                placeholder="Sleepy Hollow inn"
+              />
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
@@ -174,7 +176,11 @@ class TravelCreationPopup extends React.Component {
               Hotel address
             </Form.Label>
             <Col sm={10}>
-              <Form.Control type="text" placeholder="3211 baker st." />
+              <Form.Control
+                type="text"
+                placeholder="3211 baker st."
+                onChange={e => this.onHotelAdressChange(e)}
+              />
             </Col>
           </Form.Group>
           <Form.Group>
@@ -183,6 +189,7 @@ class TravelCreationPopup extends React.Component {
               as="textarea"
               rows="2"
               placeholder="e.g. check emails for bookings"
+              onChange={e => this.onHotelInfoChange(e)}
             />
           </Form.Group>
 
@@ -191,7 +198,7 @@ class TravelCreationPopup extends React.Component {
             <Form.Label column sm={2}>
               Travel type
             </Form.Label>
-            <ButtonGroup toggle>
+            <ButtonGroup toggle onChange={e => this.onTravelTypeChange(e)}>
               {['by Car', 'by Plane', 'Car and Plane'].map(travelType => (
                 <ToggleButton
                   style={{ marginRight: 8 }}
@@ -206,7 +213,11 @@ class TravelCreationPopup extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>transportation info</Form.Label>
-            <Form.Control as="textarea" rows="2" />
+            <Form.Control
+              as="textarea"
+              rows="2"
+              onChange={e => this.onTravelDescriptionChange(e)}
+            />
           </Form.Group>
         </Form>
       </Popup>
