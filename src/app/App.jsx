@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { store } from '../store/store.js';
 
 import Sidebar from '../components/SidebarComp/SidebarComp.jsx';
@@ -23,29 +22,30 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <HashRouter>
-          <div className="content-container-div">
-            <Sidebar />
+        <Router>
+          <Route path="/login" component={loginPage} />
 
-            <div className="containerr">
-              <TopHeader />
-              <Route exact path="/" component={SelfProfileMainScreen} />
+          <Route exact path="/" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen/></div></div> )
+          }} />
 
-              <Route path="/login" component={loginPage} />
-              
-              <Route path="/host/manage/users" component={AllPeopleList} />
-              <Route path="/host/manage/voyages" component={AllVoyagesList} />
+          <Route path="/host/manage/users" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList/></div></div> )
+          }} />
 
-              <Route path="/host/help" component={HelpPage} />
-              <Route
-                path="/host/user/:userId"
-                component={UserProfileMainScreen}
-              />
+          <Route path="/host/manage/voyages" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllVoyagesList/></div></div> )
+          }} />
 
-              <Favicon url={`${window.location.origin}/favicon.ico`} />
-            </div>
-          </div>
-        </HashRouter>
+          <Route path="/host/help" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <HelpPage/></div></div> )
+          }} />
+
+          <Route path="/host/user/:userId" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <UserProfileMainScreen/></div></div> )
+          }} />
+
+        </Router>
       </Provider>
     );
   }
