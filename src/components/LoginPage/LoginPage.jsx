@@ -2,7 +2,7 @@
 import SvgLogo from './LoginPageComponents/img/SvgLogo.jsx';
 import SlackLogo from './LoginPageComponents/img/SlackLogo.jsx';
 import Illustration from './LoginPageComponents/img/illustration.png';
-import { ServerHostName } from '../../constants/UriConstants.js';
+const ServerHostName = 'http://localhost:8080';
 import { connect } from 'react-redux';
 import {
   tryLogin,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ServerHostName } from '../../../../constants/UriConstants';
+const ServerHostName = 'http://localhost:8080';
 import { LOGIN_USER, GET_USER_ROLE } from './ActionTypes';
 
 export const tryLogin = (email, password, rememberme, history, dispatch) => {

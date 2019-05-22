@@ -13,6 +13,7 @@ import SelfProfileMainScreen from '../components/SelfProfile/SelfProfileMainScre
 import AllVoyagesList from '../components/Menu_Management/Keliones_Tab/VoyagesList.jsx';
 import AllPeopleList from '../components/Menu_Management/Zmones_Tab/PeopleList.jsx';
 import UserProfileMainScreen from '../components/UserProfile/UserProfileMainScreen.jsx';
+import loginPage from '../components/LoginPage/LoginPage.jsx';
 
 import HelpPage from '../components/HelpPage/HelpPage.jsx';
 import Favicon from 'react-favicon';
@@ -30,6 +31,8 @@ class App extends Component {
               <TopHeader />
               <Route exact path="/" component={SelfProfileMainScreen} />
 
+              <Route path="/login" component={loginPage} />
+              
               <Route path="/host/manage/users" component={AllPeopleList} />
               <Route path="/host/manage/voyages" component={AllVoyagesList} />
 
