@@ -38,18 +38,23 @@ class UserRow extends Component {
             <td className="table__cell table__cell--long table__cell--first">
               <div className="table__content">{name}</div>
             </td>
+            <td className="table__cell table__cell--tiny table__cell--short table__cell--date">
+              {startsOn}
+            </td>
             <td className="table__cell table__cell--last table__cell--date">
-              <div className="table__content table__content--actions">
-                {startsOn}
-                <div className="table__actions">
-                  <a
-                    href=""
-                    className="table__action"
-                    onClick={this.onDeleteClick}
-                  >
-                    <SvgDelete />
-                  </a>
-                </div>
+              <div
+                className="table__content table__content--actions"
+                style={{ justifyContent: 'space-around' }}
+              >
+                {/* <div className="table__actions"> */}
+                <a
+                  href=""
+                  className="table__action"
+                  onClick={this.onDeleteClick}
+                >
+                  <SvgDelete />
+                </a>
+                {/* </div> */}
               </div>
             </td>
           </tr>
