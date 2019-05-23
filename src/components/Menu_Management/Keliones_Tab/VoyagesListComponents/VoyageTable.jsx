@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import UserRow from './UserRow.jsx';
+import VoyageRow from './VoyageRow.jsx';
 
-class UserTable extends Component {
+class VoyageTable extends Component {
   constructor(props) {
     super(props);
 
@@ -26,12 +26,12 @@ class UserTable extends Component {
       <div className="content__scrollable">
         <table className="table">
           <tbody>
-            {this.state.users.map((user, index) => (
-              <UserRow
+            {this.state.users.map(user => (
+              <VoyageRow
                 onDeleteClick={this.onDeleteClick}
-                key={index}
+                key={user.id}
                 name={user.name}
-                lastActive={user.lastActive}
+                startsOn={user.lastActive}
                 id={user.id}
                 pic={user.pic}
               />
@@ -43,4 +43,4 @@ class UserTable extends Component {
   }
 }
 
-export default UserTable;
+export default VoyageTable;

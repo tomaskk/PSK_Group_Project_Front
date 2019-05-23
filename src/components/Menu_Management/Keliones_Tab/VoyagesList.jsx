@@ -7,10 +7,9 @@ import Button from 'react-bootstrap/Button';
 import { Row, Col } from 'react-bootstrap';
 
 import ColTable from './VoyagesListComponents/ColTable.jsx';
-import UserTable from './VoyagesListComponents/UserTable.jsx';
+import VoyageTable from './VoyagesListComponents/VoyageTable.jsx';
 import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
 import Head from './VoyagesListComponents/Head.jsx';
-import Popup from '../../common/Popup/index.js';
 import TravelCreationPopup from '../../TravelCreationPopup/TravelCreationPopup';
 
 // Provides users - false error
@@ -175,7 +174,7 @@ export default class VoyagesList extends React.Component {
           <Route
             to="host/admin/lost"
             component={() => (
-              <UserTable
+              <VoyageTable
                 users={this.state.users}
                 ref={this.tableElement}
                 onDeleteClick={this.onDeleteUser}
