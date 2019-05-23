@@ -12,6 +12,7 @@
     "eslint-disable-next-line": false,
     "class-methods-use-this": ["off"],
     "react/prefer-stateless-function": ["warn"],
+    "no-plusplus": ["off"],
 
     "jsx-a11y/label-has-for": false,
     "jsx-a11y/label-has-associated-control": false,
