@@ -58,15 +58,15 @@ class RegisterPage extends Component {
   render() {
     return (
       <main className="main main__login" style={{ display: "inline" }}>
-        <div className="content content__login" style={{float: "left", height: "100%" }} >
-          <div className="section section--login">
+        <div className="content content--stretch-login content--double" style={{float: "left", height: "100%" }} >
+          <div className="section section--login" >
             <div className="form__row form__login--heading">
               <SvgLogo />{" "}
             </div>
             <div className="form__row form__login--heading">
               <h1 className="heading1">Travel Agent - Sign up</h1> 
             </div>
-            <form className="form" onSubmit={this.OnFormSubmit} method="post">
+            <form className="form" onSubmit={this.OnFormSubmit} method="post" >
 
             <div className="form__row form__row--login">
                 <div className="form__field form__field--wide">
@@ -176,7 +176,7 @@ class RegisterPage extends Component {
 
         <div className="content content--stretch-login content--double" >
           <div className="image__container">
-          <img className="image" src={Illustration} alt="background" />
+          <img className="image" src={Illustration} alt="background" style={{width: "100%", height: "100%"}}/>
             <div className="edit edit--bottom-right">
               <a className="edit--text" href={ServerHostName + '/#/register'}>
                 Privacy policy

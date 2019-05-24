@@ -58,7 +58,7 @@ class LoginPage extends Component {
     return (
       <main className="main main__login" style={{ display: "inline" }}>
 
-        <div className="content content__login" style={{float: "left", height: "100%" }} >
+        <div className="content content--stretch-login content--double" style={{float: "left", height: "100%" }} >
           <div className="section section--login">
             <div className="form__row form__login--heading">
               <SvgLogo />{" "}
@@ -153,7 +153,7 @@ class LoginPage extends Component {
 
         <div className="content content--stretch-login content--double" >
           <div className="image__container">
-          <img className="image" src={Illustration} alt="background" />
+          <img className="image" src={Illustration} alt="background" style={{width: "100%", height: "100%"}} />
             <div className="edit edit--bottom-right">
               <a className="edit--text" href={ServerHostName + '/#/login'}>
                 Privacy policy
