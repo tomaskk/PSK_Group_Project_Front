@@ -1,16 +1,15 @@
-/* eslint-disable import/order */
-/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
 import Reorder from '../../../../common/images/SvgReorder.jsx';
 import TableSearch from '../../../../common/images/TableSearch.jsx';
 import SvgCaretLines from '../../../../common/images/SvgCaretLines.jsx';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
-import * as actions from './actions/LDActions';
 
+import * as actions from './actions/LDActions';
 import { getSorting, stableSort } from '../../../../../helpers/Sorting';
 
 class Head extends Component {
@@ -108,7 +107,7 @@ class Head extends Component {
               <div className="table__header-content">
                 <div className="table__column">
                   <div className="table__label">
-                    <label htmlFor="goal">Surname</label>
+                    <label htmlFor="goal">Destination</label>
                     <a
                       href=""
                       className="table__header-action"

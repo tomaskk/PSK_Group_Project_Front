@@ -160,8 +160,8 @@ class SelfProfileMainScreen extends Component {
           });
         break;
 
-      case 'change_password':
-        this.handleNavigation('change_password');
+      case 'your_travels':
+        this.handleNavigation('your_travels');
 
         this.setState({
           isEditModeDisabled: true,
@@ -368,7 +368,7 @@ class SelfProfileMainScreen extends Component {
               personalInfoTabComponents}
             {this.props.selfProfileReducer.currentTab === 'skills' &&
               SkillsTabComponents}
-            {this.props.selfProfileReducer.currentTab === 'change_password' &&
+            {this.props.selfProfileReducer.currentTab === 'your_travels' &&
               MyTravelsTabComponent}
             {this.props.selfProfileReducer.currentTab === 'Python' &&
               MyTravelsTabComponent}

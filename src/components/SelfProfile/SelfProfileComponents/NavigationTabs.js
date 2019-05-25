@@ -33,14 +33,14 @@ export default function NavigationTabs(props) {
       <li>
         <a
           className={
-            activeTab === 'change_password'
+            activeTab === 'your_travels'
               ? 'tabs__link tabs__link--active'
               : 'tabs__link '
           }
-          name="change_password"
+          name="your_travels"
           onClick={props.handleButtonClick}
         >
-          RNM: Change password
+          Your travels
         </a>
       </li>
     </ul>

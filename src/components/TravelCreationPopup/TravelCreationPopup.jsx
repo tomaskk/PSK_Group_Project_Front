@@ -42,12 +42,10 @@ class TravelCreationPopup extends React.Component {
 
   onNameChange(e) {
     this.setState({ name: e.target.value });
-    console.log(this.state);
   }
 
   onTravelFromChange(e) {
     this.setState({ travelFrom: e.target.value });
-    console.log(this.state);
   }
 
   onTravelToChange(e) {
@@ -60,22 +58,18 @@ class TravelCreationPopup extends React.Component {
 
   onTravelEndChange(e) {
     this.setState({ travelEnd: e });
-    console.log(this.state);
   }
 
   onHotelAdressChange(e) {
     this.setState({ hotelAddress: e.target.value });
-    console.log(this.state);
   }
 
   onHotelNameChange(e) {
     this.setState({ hotelName: e.target.value });
-    console.log(this.state);
   }
 
   onHotelInfoChange(e) {
     this.setState({ hotelInfo: e.target.value });
-    console.log(this.state);
   }
 
   onTravelTypeChange(e) {
@@ -88,8 +82,7 @@ class TravelCreationPopup extends React.Component {
   }
 
   render() {
-    // eslint-disable-next-line react/prop-types
-    const { popupTitle, showingPopup, onTogglePopup } = this.props;
+    const { popupTitle, showingPopup, onTogglePopup, editable } = this.props;
 
     return (
       <Popup
@@ -233,6 +226,9 @@ class TravelCreationPopup extends React.Component {
 
 TravelCreationPopup.propTypes = {
   onTogglePopup: PropTypes.func.isRequired,
+  showingPopup: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  popupTitle: PropTypes.string,
 };
 
 export default TravelCreationPopup;

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import UserRow from './UserRow.jsx';
+import EmployeeTravelRow from './EmployeeTravelRow.jsx';
 
-class UserTable extends Component {
+class EmployeeTravelTable extends Component {
   render() {
     const { users } = this.props;
     return (
@@ -12,15 +12,11 @@ class UserTable extends Component {
         <table className="table">
           <tbody>
             {users.map(user => (
-              <UserRow
-                name={user.name}
-                surname={user.surname}
-                date={user.date}
-                hours={user.hours}
-                id={user.id}
-                pic={user.pic}
-                activity={user.activity}
-                topic={user.topic}
+              <EmployeeTravelRow
+                column1={user.name}
+                column2={user.surname}
+                column3={user.activity}
+                travelId={user.id}
               />
             ))}
           </tbody>
@@ -37,9 +33,9 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   dispatch => bindActionCreators({}, dispatch)
-)(UserTable);
+)(EmployeeTravelTable);
 
-UserTable.propTypes = {
+EmployeeTravelTable.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
