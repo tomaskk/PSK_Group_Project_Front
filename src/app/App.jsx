@@ -11,7 +11,7 @@ import TopHeader from '../components/TopHeader/TopHeader.jsx';
 import SelfProfileMainScreen from '../components/SelfProfile/SelfProfileMainScreen.js';
 import AllVoyagesList from '../components/Menu_Management/Keliones_Tab/VoyagesList.jsx';
 import AllPeopleList from '../components/Menu_Management/Zmones_Tab/PeopleList.jsx';
-import UserProfileMainScreen from '../components/UserProfile/UserProfileMainScreen.jsx';
+import UserProfileMainScreen from '../components/SkillsTab/UserProfileMainScreen.jsx';
 import loginPage from '../components/LoginPage/LoginPage.jsx';
 import registerPage from '../components/RegisterPage/RegisterPage.jsx';
 
