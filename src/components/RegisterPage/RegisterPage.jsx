@@ -15,6 +15,8 @@ class RegisterPage extends Component {
     this.emailInput = React.createRef();
     this.passwordInput = React.createRef();
     this.passwordInput2 = React.createRef();
+    this.nameInput = React.createRef();
+    this.surnameInput = React.createRef();
     this.state = {
       CheckBoxChecked: false
     };
@@ -27,7 +29,9 @@ class RegisterPage extends Component {
   OnCreateAccButtonClick = () => {
     alert("Create my acc: \n" + this.emailInput.current.value + 
                          "\n" + this.passwordInput.current.value + 
-                         "\n" + this.passwordInput2.current.value);
+                         "\n" + this.passwordInput2.current.value +
+                         "\n" + this.nameInput.current.value +
+                         "\n" + this.surnameInput.current.value);
                          
     tryRegister(
       this.emailInput.current.value.toString(),
@@ -54,15 +58,46 @@ class RegisterPage extends Component {
   render() {
     return (
       <main className="main main__login" style={{ display: "inline" }}>
-        <div className="content content__login" style={{float: "left", height: "100%" }} >
-          <div className="section section--login">
+        <div className="content content--stretch-login content--double" style={{float: "left", height: "100%" }} >
+          <div className="section section--login" >
             <div className="form__row form__login--heading">
               <SvgLogo />{" "}
             </div>
             <div className="form__row form__login--heading">
               <h1 className="heading1">Travel Agent - Sign up</h1> 
             </div>
-            <form className="form" onSubmit={this.OnFormSubmit} method="post">
+            <form className="form" onSubmit={this.OnFormSubmit} method="post" >
+
+            <div className="form__row form__row--login">
+                <div className="form__field form__field--wide">
+                  <label className="form__label" htmlFor="name-in">
+                    First name
+                  </label>
+                  <input
+                    id="name-in"
+                    className="form__input"
+                    type="name"
+                    placeholder="Enter your name"
+                    ref={this.nameInput}
+                  />
+                </div>
+              </div>
+
+              <div className="form__row form__row--login">
+                <div className="form__field form__field--wide">
+                  <label className="form__label" htmlFor="surname-in">
+                    Last name
+                  </label>
+                  <input
+                    id="surname-in"
+                    className="form__input"
+                    type="surname"
+                    placeholder="Enter your surname"
+                    ref={this.surnameInput}
+                  />
+                </div>
+              </div>
+
               <div className="form__row form__row--login">
                 <div className="form__field form__field--wide">
                   <label className="form__label" htmlFor="email-in">
@@ -141,7 +176,7 @@ class RegisterPage extends Component {
 
         <div className="content content--stretch-login content--double" >
           <div className="image__container">
-          <img className="image" src={Illustration} alt="background" />
+          <img className="image" src={Illustration} alt="background" style={{width: "100%", height: "100%"}}/>
             <div className="edit edit--bottom-right">
               <a className="edit--text" href={ServerHostName + '/#/register'}>
                 Privacy policy
