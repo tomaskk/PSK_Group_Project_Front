@@ -40,7 +40,7 @@ export default function NavigationTabs(props) {
           name="change_password"
           onClick={props.handleButtonClick}
         >
-          Change password
+          RNM: Change password
         </a>
       </li>
     </ul>

@@ -1,13 +1,8 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SvgHand from './images/SvgHand.jsx';
-import UserPopup from './Popups/UserPopup.jsx';
-import AssignTravelPopup from './Popups/AssignTravelPopup.jsx';
-import Plus from './images/Plus.jsx';
 
-class UserRow extends Component {
+class EmployeeTravelRow extends Component {
   constructor(props) {
     super(props);
 
@@ -17,21 +12,11 @@ class UserRow extends Component {
     };
 
     this.handleHandClick = this.handleHandClick.bind(this);
-    this.handlePlusClick = this.handlePlusClick.bind(this);
   }
 
   handleHandClick(e) {
-    e.preventDefault();
-    this.setState(prevState => ({
-      showModal: !prevState.showModal,
-    }));
-  }
-
-  handlePlusClick(e) {
-    e.preventDefault();
-    this.setState(prevState => ({
-      assignTravelModal: !prevState.assignTravelModal,
-    }));
+    // e.preventDefault();
+    console.log('You clicked it! You monster...');
   }
 
   render() {
@@ -58,20 +43,15 @@ class UserRow extends Component {
             <a href="" className="table__action" onClick={this.handleHandClick}>
               <SvgHand />
             </a>
-            <a href="" className="table__action" onClick={this.handlePlusClick}>
-              <Plus />
-            </a>
           </div>
         </td>
-        <UserPopup onToggle={this.handleHandClick} isOpen={this.state.showModal} userInfo={this.props} />
-        <AssignTravelPopup onToggle={this.handlePlusClick} isOpen={this.state.assignTravelModal} userInfo={this.props} />
       </tr>
     );
   }
 }
 
 const imgStyle = {
-  width: '36px'
+  width: '36px',
 };
 
-export default UserRow;
+export default EmployeeTravelRow;

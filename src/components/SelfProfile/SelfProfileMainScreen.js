@@ -4,11 +4,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import SelfProfileForm from './SelfProfileComponents/SelfProfileForm';
 import NavigationTabs from './SelfProfileComponents/NavigationTabs';
 import { FAKE_DATA } from './SelfProfileComponents/FakeData';
 import Skills from './SelfProfileComponents/Skills';
 import Goals from './SelfProfileComponents/Goals';
+import TravelList from './tabs/MyTravelsTab/TravelList';
 
 import * as actions from './actions/switchTabs';
 
@@ -351,14 +353,7 @@ class SelfProfileMainScreen extends Component {
       </div>
     );
 
-    // TODO: change this to MyTravelsTab component
-    const MyTravelsTabComponent = (
-      <div>
-        <div className="profile__section section">
-          <h2 className="heading2">Oops - 404</h2>
-        </div>
-      </div>
-    );
+    const MyTravelsTabComponent = <TravelList />;
 
     return (
       <main className="main">
