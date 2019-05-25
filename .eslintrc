@@ -13,6 +13,7 @@
     "class-methods-use-this": ["off"],
     "react/prefer-stateless-function": ["off"],
     "no-plusplus": ["off"],
+    "no-use-before-define": "off",
 
     "jsx-a11y/label-has-for": false,
     "jsx-a11y/label-has-associated-control": false,

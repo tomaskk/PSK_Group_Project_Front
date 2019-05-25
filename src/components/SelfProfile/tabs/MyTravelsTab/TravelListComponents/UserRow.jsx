@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SvgHand from './images/SvgHand.jsx';
+import SvgHand from '../../../../common/images/SvgHand';
 
 class EmployeeTravelRow extends Component {
   constructor(props) {

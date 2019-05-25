@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { default as Reorder } from './images/SvgReorder.jsx';
-import TableSearch from './images/TableSearch.jsx';
-import SvgCaretLines from './images/SvgCaretLines.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+
+import Reorder from '../../../common/images/SvgReorder.jsx';
+import TableSearch from '../../../common/images/TableSearch.jsx';
+import SvgCaretLines from '../../../common/images/SvgCaretLines.jsx';
+
 import * as actions from './actions/LDActions';
 
 class Head extends Component {

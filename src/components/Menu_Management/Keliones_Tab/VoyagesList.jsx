@@ -8,7 +8,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import ColTable from './VoyagesListComponents/ColTable.jsx';
 import VoyageTable from './VoyagesListComponents/VoyageTable.jsx';
-import SvgDownload from './VoyagesListComponents/images/SvgDownload.jsx';
+import SvgDownload from '../../common/images/SvgDownload';
 import Head from './VoyagesListComponents/Head.jsx';
 import TravelCreationPopup from '../../TravelCreationPopup/TravelCreationPopup';
 

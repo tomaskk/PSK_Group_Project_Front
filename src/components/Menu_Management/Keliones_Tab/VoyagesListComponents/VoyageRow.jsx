@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SvgDelete from './images/SvgDelete.jsx';
+import SvgDelete from '../../../common/images/SvgDelete.jsx';
 
 import TravelCreationPopup from '../../../TravelCreationPopup';
 

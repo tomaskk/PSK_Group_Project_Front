@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './SidebarComponents/Logo.jsx';
 import Nav from './SidebarComponents/Nav.jsx';
-import SvgSchool from './SidebarComponents/images/SvgSchool.jsx';
+import SvgSchool from '../../common/images/SvgSchool.jsx';
 import Copyright from './SidebarComponents/Copyright.jsx';
 
 class Sidebar extends Component {

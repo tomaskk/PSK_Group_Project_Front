@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { Component } from 'react';
-import Reorder from './images/SvgReorder.jsx';
-import TableSearch from './images/TableSearch.jsx';
+import Reorder from '../../../common/images/SvgReorder.jsx';
+import TableSearch from '../../../common/images/TableSearch.jsx';
 
 class Head extends Component {
   constructor(props) {

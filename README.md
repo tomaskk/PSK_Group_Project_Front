@@ -17,3 +17,11 @@ Before pushing the code you should lint and format
 
 * `npm run eslint:fix` will solve most simple issues with your code
 * `npm run lint` will show any remaining issues in the project
+
+#### Project structure
+
+Folders containing a Component should be PascalCase
+
+Otherwise default to camelCase
+
+Reusable Components should be in the 'components/common' folder

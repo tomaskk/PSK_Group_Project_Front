@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import SvgHelp from './images/SvgHelp.jsx';
-import SvgHelpActive from './images/SvgHelpActive.jsx';
-import SvgProfile from './images/SvgProfile.jsx';
-import SvgProfileActive from './images/SvgProfileActive.jsx';
-import SvgList from './images/SvgList.jsx';
-import SvgListActive from './images/SvgListActive.jsx';
-import SvgAdmin from './images/SvgAdmin.jsx';
+import SvgHelp from '../../../common/images/SvgHelp.jsx';
+import SvgHelpActive from '../../../common/images/SvgHelpActive.jsx';
+import SvgProfile from '../../../common/images/SvgProfile.jsx';
+import SvgProfileActive from '../../../common/images/SvgProfileActive.jsx';
+import SvgList from '../../../common/images/SvgList.jsx';
+import SvgListActive from '../../../common/images/SvgListActive.jsx';
+import SvgAdmin from '../../../common/images/SvgAdmin.jsx';
 
 const SEARCH_ROUTES = ['search', 'user'];
 

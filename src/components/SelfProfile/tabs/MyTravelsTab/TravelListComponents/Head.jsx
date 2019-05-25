@@ -1,13 +1,12 @@
 /* eslint-disable import/order */
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/prop-types */
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Reorder from './images/SvgReorder.jsx';
-import TableSearch from './images/TableSearch.jsx';
-import SvgCaretLines from './images/SvgCaretLines.jsx';
+import Reorder from '../../../../common/images/SvgReorder.jsx';
+import TableSearch from '../../../../common/images/TableSearch.jsx';
+import SvgCaretLines from '../../../../common/images/SvgCaretLines.jsx';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import * as actions from './actions/LDActions';

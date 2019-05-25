@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SvgHand from './images/SvgHand.jsx';
+import SvgHand from '../../../common/images/SvgHand.jsx';
 import UserPopup from './Popups/UserPopup.jsx';
 import AssignTravelPopup from './Popups/AssignTravelPopup.jsx';
-import Plus from './images/Plus.jsx';
+import Plus from '../../../common/images/Plus.jsx';
 
 class UserRow extends Component {
   constructor(props) {
