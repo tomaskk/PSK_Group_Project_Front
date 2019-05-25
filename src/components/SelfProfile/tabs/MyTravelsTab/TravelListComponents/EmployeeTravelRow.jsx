@@ -24,7 +24,6 @@ class EmployeeTravelRow extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log('You clicked it! You monster...');
     this.togglePopup();
   }
 
