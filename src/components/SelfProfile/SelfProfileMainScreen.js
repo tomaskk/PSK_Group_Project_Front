@@ -1,16 +1,20 @@
+/* eslint-disable no-case-declarations */
+/* eslint-disable radix */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import SelfProfileForm from './SelfProfileComponents/SelfProfileForm';
 import NavigationTabs from './SelfProfileComponents/NavigationTabs';
 import { FAKE_DATA } from './SelfProfileComponents/FakeData';
 import Skills from './SelfProfileComponents/Skills';
 import Goals from './SelfProfileComponents/Goals';
+import TravelList from './tabs/MyTravelsTab/TravelList';
 
 import * as actions from './actions/switchTabs';
 
-const specialistTabItems = FAKE_DATA.specialistTabItems;
-const learnTabItems = FAKE_DATA.learnTabItems;
+const { specialistTabItems, learnTabItems } = FAKE_DATA;
 
 class SelfProfileMainScreen extends Component {
   constructor(props) {
@@ -36,7 +40,7 @@ class SelfProfileMainScreen extends Component {
       newGoalSubject: '',
       newGoalComment: '',
       sld: '2019.04.03',
-      isEditModeDisabled: true
+      isEditModeDisabled: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeArrays = this.handleChangeArrays.bind(this);
@@ -88,7 +92,7 @@ class SelfProfileMainScreen extends Component {
       newSkillRating: 0,
       newSkillSubject: '',
       newGoalSubject: '',
-      newGoalComment: ''
+      newGoalComment: '',
     });
   }
 
@@ -143,7 +147,7 @@ class SelfProfileMainScreen extends Component {
 
         this.state.currentTab !== 'personal_info' &&
           this.setState({
-            isEditModeDisabled: true
+            isEditModeDisabled: true,
           });
         break;
 
@@ -152,7 +156,7 @@ class SelfProfileMainScreen extends Component {
 
         this.state.currentTab !== 'skills' &&
           this.setState({
-            isEditModeDisabled: true
+            isEditModeDisabled: true,
           });
         break;
 
@@ -160,14 +164,14 @@ class SelfProfileMainScreen extends Component {
         this.handleNavigation('change_password');
 
         this.setState({
-          isEditModeDisabled: true
+          isEditModeDisabled: true,
         });
         break;
       // --personal-info-tab
       case 'personal_info_edit':
         this.handleNavigation('personal_info_edit');
         this.setState({
-          isEditModeDisabled: false
+          isEditModeDisabled: false,
         });
         break;
 
@@ -189,7 +193,7 @@ class SelfProfileMainScreen extends Component {
           surname: this.props.selfProfileReducer.surname,
           email: this.props.selfProfileReducer.email,
           city: this.props.selfProfileReducer.city,
-          isEditModeDisabled: true
+          isEditModeDisabled: true,
         });
         break;
 
@@ -202,7 +206,7 @@ class SelfProfileMainScreen extends Component {
         this.setState({
           isEditModeDisabled: true,
           newSkillRating: 0,
-          newSkillSubject: ''
+          newSkillSubject: '',
         });
         break;
 
@@ -211,7 +215,7 @@ class SelfProfileMainScreen extends Component {
         this.setState({
           isEditModeDisabled: true,
           newSkillRating: 0,
-          newSkillSubject: ''
+          newSkillSubject: '',
         });
         break;
 
@@ -234,7 +238,7 @@ class SelfProfileMainScreen extends Component {
           const allSkills = this.props.selfProfileReducer.masterAt;
           const newSkill = {
             subject: this.state.newSkillSubject,
-            stars: parseInt(this.state.newSkillRating)
+            stars: parseInt(this.state.newSkillRating),
           };
           allSkills.push(newSkill);
           this.props.updateMasterAtInStore(allSkills);
@@ -284,7 +288,7 @@ class SelfProfileMainScreen extends Component {
           allSkills = this.props.selfProfileReducer.wantsToLearn;
           const newSkill = {
             subject: this.state.newGoalSubject,
-            comment: this.state.newGoalComment
+            comment: this.state.newGoalComment,
           };
           allSkills.push(newSkill);
           this.props.updateWantsToLearnInStore(allSkills);
@@ -349,13 +353,7 @@ class SelfProfileMainScreen extends Component {
       </div>
     );
 
-    const ChangePWTabComponents = (
-      <div>
-        <div className="profile__section section">
-          <h2 className="heading2">Oops - 404</h2>
-        </div>
-      </div>
-    );
+    const MyTravelsTabComponent = <TravelList />;
 
     return (
       <main className="main">
@@ -371,9 +369,9 @@ class SelfProfileMainScreen extends Component {
             {this.props.selfProfileReducer.currentTab === 'skills' &&
               SkillsTabComponents}
             {this.props.selfProfileReducer.currentTab === 'change_password' &&
-              ChangePWTabComponents}
+              MyTravelsTabComponent}
             {this.props.selfProfileReducer.currentTab === 'Python' &&
-              ChangePWTabComponents}
+              MyTravelsTabComponent}
           </div>
         </div>
       </main>
@@ -383,7 +381,7 @@ class SelfProfileMainScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    selfProfileReducer: state.selfProfileReducer
+    selfProfileReducer: state.selfProfileReducer,
   };
 };
 
@@ -397,7 +395,7 @@ const mapDispatchToProps = dispatch =>
       updateEmailInStore: newString => actions.updateEmail(newString),
       updateCityInStore: newString => actions.updateCity(newString),
       updateMasterAtInStore: newObj => actions.updateMasterAt(newObj),
-      updateWantsToLearnInStore: newObj => actions.updateWantsToLearn(newObj)
+      updateWantsToLearnInStore: newObj => actions.updateWantsToLearn(newObj),
     },
     dispatch
   );
