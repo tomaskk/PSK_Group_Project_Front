@@ -54,9 +54,9 @@ export const LDReducer = (state = initialState, action) => {
       return { ...state, filteredUsers: action.payload };
 
     case 'STORE_FILTER':
-      if (action.property === 'name')
+      if (action.property === 'firstName')
         return { ...state, typedName: action.typed };
-      if (action.property === 'surname')
+      if (action.property === 'lastName')
         return { ...state, typedTopic: action.typed };
 
     case 'USERS_LOAD_ALL':
