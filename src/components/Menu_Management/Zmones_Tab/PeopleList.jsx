@@ -20,7 +20,12 @@ class PeopleList extends React.Component {
 
   componentWillMount() {
 
-	}
+  }
+  
+  handleDownloadDTO = () => {
+
+    return this.props.users;
+  }
 
   render() {
     return (
@@ -35,7 +40,7 @@ class PeopleList extends React.Component {
           >
             <CSVLink
               style={CSVStyle}
-              data={this.props.users}
+              data={ this.handleDownloadDTO() }
               filename="AllUsers.csv"
             >
               <SvgDownload />

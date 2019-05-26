@@ -33,7 +33,7 @@ const AssignTravelPopup = props => {
             </tr>
             <tr>
               <td width="25%"> Status </td>
-              <td width="75%"> {userInfo.activity} </td>
+              <td width="75%"> { userInfo.available == true ? 'Active' : 'Inactive' } </td>
             </tr>
           </tbody>
         </Table>
