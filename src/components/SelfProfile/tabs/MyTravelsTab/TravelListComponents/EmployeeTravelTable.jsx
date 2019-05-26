@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+
 import EmployeeTravelRow from './EmployeeTravelRow.jsx';
 
 import { employeeTravelShape } from '../../../../../types/proptypes';
 
 class EmployeeTravelTable extends Component {
   render() {
-    // const { employeeTravels } = this.props;
-    const employeeTravels = require('../response_example.json');
-    console.log(employeeTravels);
-
+    const { employeeTravels } = this.props;
+    console.log(this.props);
 
     return (
       <div className="content__scrollable">
@@ -33,9 +32,13 @@ class EmployeeTravelTable extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  users: state.LDReducer.filteredUsers,
-});
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    employeeTravels: state.employeeTravelReducer.employeeTravels,
+  };
+};
 
 export default connect(
   mapStateToProps,
