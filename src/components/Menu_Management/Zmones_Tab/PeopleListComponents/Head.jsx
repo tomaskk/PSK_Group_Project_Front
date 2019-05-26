@@ -56,8 +56,8 @@ class Head extends Component {
     let newUsers = this.props.sortedUsers;
     const typedName = this.nameInput.current.value.toLowerCase();
     const typedTopic = this.topicInput.current.value.toLowerCase();
-    this.props.storeFilter('name', typedName);
-    this.props.storeFilter('surname', typedTopic);
+    this.props.storeFilter('firstName', typedName);
+    this.props.storeFilter('lastName', typedTopic);
     if (typedName.length > 0) {
       newUsers = newUsers.filter(i => i.firstName.toLowerCase().match(typedName));
     }
@@ -70,10 +70,9 @@ class Head extends Component {
   onSort(e, orderBy) {
     if (e !== null) e.preventDefault();
     //sets parameters
-    if (orderBy == 'name') var order = !this.props.nameDirection;
-    if (orderBy == 'surname') var order = !this.props.surnameDirection;
-    if (orderBy == 'hours') var order = !this.props.hoursDirection;
-    if (orderBy == 'activity') var order = !this.props.activityDirection;
+    if (orderBy == 'firstName') var order = !this.props.nameDirection;
+    if (orderBy == 'lastName') var order = !this.props.surnameDirection;
+    if (orderBy == 'available') var order = !this.props.activityDirection;
     if (orderBy == '') return;
 
     //updates sort locally
@@ -105,7 +104,7 @@ class Head extends Component {
                       href=""
                       class="table__header-action"
                       onClick={e => {
-                        this.onSort(e, 'name');
+                        this.onSort(e, 'firstName');
                       }}
                     >
                       <Reorder />
@@ -134,7 +133,7 @@ class Head extends Component {
                       href=""
                       class="table__header-action"
                       onClick={e => {
-                        this.onSort(e, 'surname');
+                        this.onSort(e, 'lastName');
                       }}
                     >
                       <Reorder />
@@ -164,7 +163,7 @@ class Head extends Component {
                       href=""
                       class="table__header-action"
                       onClick={e => {
-                        this.onSort(e, 'activity');
+                        this.onSort(e, 'available');
                       }}
                     >
                       <Reorder />

@@ -16,7 +16,7 @@ const initialState = {
 export const LDReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SORT':
-      if (action.property === 'name') {
+      if (action.property === 'firstName') {
         return {
           ...state,
           filteredUsers: action.payload,
@@ -25,7 +25,7 @@ export const LDReducer = (state = initialState, action) => {
           currentSort: action.property
         };
       }
-      if (action.property === 'surname')
+      if (action.property === 'lastName')
         return {
           ...state,
           filteredUsers: action.payload,
@@ -33,7 +33,7 @@ export const LDReducer = (state = initialState, action) => {
           surnameDirection: !state.surnameDirection,
           currentSort: action.property
         };
-      if (action.property === 'activity')
+      if (action.property === 'available')
         return {
           ...state,
           filteredUsers: action.payload,
