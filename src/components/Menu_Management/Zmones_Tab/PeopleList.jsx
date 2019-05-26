@@ -9,7 +9,22 @@ import UserTable from './PeopleListComponents/UserTable.jsx';
 import SvgDownload from '../../common/images/SvgDownload.jsx';
 import Head from './PeopleListComponents/Head.jsx';
 
+import { loadDataFromAPI } from './PeopleListComponents/actions/LDActions.js';
+
 class PeopleList extends React.Component {
+
+	constructor(props) {
+		super(props);
+		loadDataFromAPI();
+	}
+
+  componentWillMount() {
+    //loadDataFromAPI();
+    //this.props.loadDataFromAPI;
+    //this.props.dispatch(loadDataFromAPI());
+    //console.log(this.props.users);
+	}
+
   render() {
     return (
       <main className="main">
@@ -34,7 +49,7 @@ class PeopleList extends React.Component {
         <div className="content content--bottom-square">
           <ColTable />
           <Head />
-          <Route to="host/admin/hours" component={() => <UserTable />} />
+          <Route to="host/manage/users" component={() => <UserTable />} />
         </div>
       </main>
     );

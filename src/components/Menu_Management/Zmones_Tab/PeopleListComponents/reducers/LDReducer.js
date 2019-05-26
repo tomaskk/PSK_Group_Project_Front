@@ -1,9 +1,9 @@
 import LDUserData from '../LDUserData.js';
 
 const initialState = {
-  users: LDUserData.users,
-  filteredUsers: LDUserData.users,
-  sortedUsers: LDUserData.users,
+  users: [],
+  filteredUsers: [],
+  sortedUsers: [],
   currentSort: '',
   typedName: '',
   typedTopic: '',
@@ -58,6 +58,12 @@ export const LDReducer = (state = initialState, action) => {
         return { ...state, typedName: action.typed };
       if (action.property === 'surname')
         return { ...state, typedTopic: action.typed };
+
+    case 'USERS_LOAD_ALL':
+      return{
+        ...state,
+        filteredUsers: action.payload
+      };
 
     default:
       return state;

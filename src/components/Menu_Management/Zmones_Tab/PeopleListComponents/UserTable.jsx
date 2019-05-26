@@ -3,11 +3,13 @@ import UserRow from './UserRow.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { loadDataFromAPI } from './actions/LDActions.js';
 
 class UserTable extends Component {
   constructor(props) {
     super(props);
   }
+
 
   render() {
     var users = this.props.users;

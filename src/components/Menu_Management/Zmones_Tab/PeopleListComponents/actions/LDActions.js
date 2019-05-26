@@ -1,3 +1,6 @@
+import axios from "axios";
+import { ServerHostName } from '../../../../../constants/serverUri.js';
+
 export function sortData(property, data, sorted) {
   return {
     type: 'SORT',
@@ -20,4 +23,22 @@ export function storeFilter(property, typed) {
     property,
     typed
   };
+}
+
+
+export function loadData(data) {
+  return {
+      type: 'USERS_LOAD_ALL',
+      payload: data
+  }
+}
+
+export const loadDataFromAPI = dispatch => {
+  console.log("nigga");
+
+  axios.get(ServerHostName + '/api/Employees')
+  .then(response => {
+      let users = response.data;
+      dispatch(loadData(users))
+  })
 }
