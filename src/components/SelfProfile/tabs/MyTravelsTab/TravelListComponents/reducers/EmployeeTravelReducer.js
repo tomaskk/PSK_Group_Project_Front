@@ -1,9 +1,10 @@
-import LDUserData from '../LDUserData.js';
+const employeeTravels = require('../../response_example.json');
+console.log();
 
 const initialState = {
-  users: LDUserData.users,
-  filteredUsers: LDUserData.users,
-  sortedUsers: LDUserData.users,
+  employeeTravels: employeeTravels,
+  filteredEmployeeTravels: employeeTravels,
+  sortedEmployeeTravels: employeeTravels,
   currentSort: '',
   typedName: '',
   typedTopic: '',
@@ -13,14 +14,14 @@ const initialState = {
   hoursDirection: true
 };
 
-export const LDReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'SORT':
       if (action.property === 'name') {
         return {
           ...state,
-          filteredUsers: action.payload,
-          sortedUsers: action.sorted,
+          filteredEmployeeTravels: action.payload,
+          sortedEmployeeTravels: action.sorted,
           nameDirection: !state.nameDirection,
           currentSort: action.property
         };
@@ -28,30 +29,30 @@ export const LDReducer = (state = initialState, action) => {
       if (action.property === 'surname')
         return {
           ...state,
-          filteredUsers: action.payload,
-          sortedUsers: action.sorted,
+          filteredEmployeeTravels: action.payload,
+          sortedEmployeeTravels: action.sorted,
           surnameDirection: !state.surnameDirection,
           currentSort: action.property
         };
       if (action.property === 'activity')
         return {
           ...state,
-          filteredUsers: action.payload,
-          sortedUsers: action.sorted,
+          filteredEmployeeTravels: action.payload,
+          sortedEmployeeTravels: action.sorted,
           activityDirection: !state.activityDirection,
           currentSort: action.property
         };
       if (action.property === 'hours')
         return {
           ...state,
-          filteredUsers: action.payload,
-          sortedUsers: action.sorted,
+          filteredEmployeeTravels: action.payload,
+          sortedEmployeeTravels: action.sorted,
           hoursDirection: !state.hoursDirection,
           currentSort: action.property
         };
 
     case 'FILTER':
-      return { ...state, filteredUsers: action.payload };
+      return { ...state, filteredEmployeeTravels: action.payload };
 
     case 'STORE_FILTER':
       if (action.property === 'name')

@@ -280,7 +280,9 @@ class TravelCreationPopup extends React.Component {
               rows="2"
               onChange={e => this.onTravelDescriptionChange(e)}
               readOnly={readOnly}
-              value={this.state.transport[0].description}
+              value={
+                this.state.transport && this.state.transport[0].description
+              }
             />
           </Form.Group>
         </Form>
