@@ -62,7 +62,9 @@ export const LDReducer = (state = initialState, action) => {
     case 'USERS_LOAD_ALL':
       return{
         ...state,
-        filteredUsers: action.payload
+        filteredUsers: action.payload,
+        sortedUsers: action.payload,
+        users: action.payload
       };
 
     default:

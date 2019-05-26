@@ -59,10 +59,10 @@ class Head extends Component {
     this.props.storeFilter('name', typedName);
     this.props.storeFilter('surname', typedTopic);
     if (typedName.length > 0) {
-      newUsers = newUsers.filter(i => i.name.toLowerCase().match(typedName));
+      newUsers = newUsers.filter(i => i.firstName.toLowerCase().match(typedName));
     }
     if (typedTopic.length > 0) {
-      newUsers = newUsers.filter(i => i.surname.toLowerCase().match(typedTopic));
+      newUsers = newUsers.filter(i => i.lastName.toLowerCase().match(typedTopic));
     }
     this.props.filterData(newUsers);
   }
