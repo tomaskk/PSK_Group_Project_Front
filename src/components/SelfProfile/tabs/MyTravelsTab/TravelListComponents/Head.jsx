@@ -1,17 +1,15 @@
-/* eslint-disable import/order */
-/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/prop-types */
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Reorder from './images/SvgReorder.jsx';
-import TableSearch from './images/TableSearch.jsx';
-import SvgCaretLines from './images/SvgCaretLines.jsx';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import * as actions from './actions/LDActions';
 
+import Reorder from '../../../../common/images/SvgReorder.jsx';
+import TableSearch from '../../../../common/images/TableSearch.jsx';
+import SvgCaretLines from '../../../../common/images/SvgCaretLines.jsx';
+
+import * as actions from './actions/LDActions';
 import { getSorting, stableSort } from '../../../../../helpers/Sorting';
 
 class Head extends Component {
@@ -109,7 +107,7 @@ class Head extends Component {
               <div className="table__header-content">
                 <div className="table__column">
                   <div className="table__label">
-                    <label htmlFor="goal">Surname</label>
+                    <label htmlFor="goal">Destination</label>
                     <a
                       href=""
                       className="table__header-action"
@@ -202,17 +200,6 @@ export default connect(
 )(Head);
 
 Head.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      surname: PropTypes.string,
-      hours: PropTypes.string,
-      activity: PropTypes.string,
-    })
-  ),
-  onSearch: PropTypes.func,
-  onSort: PropTypes.func,
   sortData: PropTypes.func,
   filterData: PropTypes.func,
   storeFilter: PropTypes.func,

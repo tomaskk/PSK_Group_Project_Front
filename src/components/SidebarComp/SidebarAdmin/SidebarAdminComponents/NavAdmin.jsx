@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import SvgHelp from '../../Sidebar/SidebarComponents/images/SvgHelp.jsx';
-import SvgHelpActive from '../../Sidebar/SidebarComponents/images/SvgHelpActive.jsx';
-import SvgProfile from '../../Sidebar/SidebarComponents/images/SvgProfile.jsx';
-import SvgProfileActive from '../../Sidebar/SidebarComponents/images/SvgProfileActive.jsx';
-import SvgList from '../../Sidebar/SidebarComponents/images/SvgList.jsx';
-import SvgListActive from '../../Sidebar/SidebarComponents/images/SvgListActive.jsx';
-import SvgAdmin from './images/SvgAdmin.jsx';
-import SvgAdminActive from './images/SvgAdminActive.jsx';
+import SvgHelp from '../../../common/images/SvgHelp.jsx';
+import SvgHelpActive from '../../../common/images/SvgHelpActive.jsx';
+import SvgProfile from '../../../common/images/SvgProfile.jsx';
+import SvgProfileActive from '../../../common/images/SvgProfileActive.jsx';
+import SvgList from '../../../common/images/SvgList.jsx';
+import SvgListActive from '../../../common/images/SvgListActive.jsx';
+import SvgAdmin from '../../../common/images/SvgAdmin.jsx';
+import SvgAdminActive from '../../../common/images/SvgAdminActive.jsx';
 
 const ADMIN_ROUTES = ['users', 'lost', 'requests', 'hours', 'user'];
 

@@ -1,4 +1,7 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
   "rules": {
@@ -13,6 +16,8 @@
     "class-methods-use-this": ["off"],
     "react/prefer-stateless-function": ["off"],
     "no-plusplus": ["off"],
+    "no-use-before-define": "warn",
+    "react/require-default-props": ["warn"],
 
     "jsx-a11y/label-has-for": false,
     "jsx-a11y/label-has-associated-control": false,

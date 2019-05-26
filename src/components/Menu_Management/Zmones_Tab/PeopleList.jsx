@@ -1,28 +1,25 @@
 import React from 'react';
+import { CSVLink } from 'react-csv';
+import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import ColTable from './PeopleListComponents/ColTable.jsx';
 import UserTable from './PeopleListComponents/UserTable.jsx';
-import SvgDownload from './PeopleListComponents/images/SvgDownload.jsx';
-import { CSVLink } from 'react-csv';
+import SvgDownload from '../../common/images/SvgDownload.jsx';
 import Head from './PeopleListComponents/Head.jsx';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 class PeopleList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <main className="main">
-        <div class="admin__header">
+        <div className="admin__header">
           <h1 className="heading1" style={{ float: 'left' }}>
             Management
           </h1>
           <a
             href=""
-            class="button button--primary button--spaced admin__action"
+            className="button button--primary button--spaced admin__action"
           >
             <CSVLink
               style={CSVStyle}
@@ -46,11 +43,11 @@ class PeopleList extends React.Component {
 
 const CSVStyle = {
   color: 'white',
-  textDecoration: 'none'
+  textDecoration: 'none',
 };
 
 const mapStateToProps = state => ({
-  users: state.LDReducer.filteredUsers
+  users: state.LDReducer.filteredUsers,
 });
 
 export default connect(mapStateToProps)(PeopleList);
@@ -62,7 +59,7 @@ PeopleList.propTypes = {
       name: PropTypes.string,
       topic: PropTypes.string,
       hours: PropTypes.string,
-      date: PropTypes.string
+      date: PropTypes.string,
     })
-  )
+  ),
 };

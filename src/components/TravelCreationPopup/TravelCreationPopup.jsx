@@ -14,6 +14,11 @@ import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
  */
 const officeData = require('./MockOfficeData.json');
 
+import {
+  employeeTravelShape,
+  travelShape,
+} from '../../types/proptypes';
+
 const travelTypes = ['by Car', 'by Plane', 'Car and Plane'];
 
 const styles = {
@@ -26,28 +31,44 @@ class TravelCreationPopup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: '',
-      travelFrom: officeData[0],
-      travelTo: officeData[0],
-      travelStart: new Date(),
-      travelEnd: new Date(),
-      hotelName: '',
-      hotelAddress: '',
-      hotelInfo: '',
-      travelType: travelTypes[0],
-      travelDescription: '',
-    };
+    const { travelData } = this.props;
+    if (travelData) {
+      this.state = {
+        name: travelData.name,
+        travelFrom: travelData.travelFrom,
+        travelTo: travelData.travelTo,
+        travelStart: travelData.startTime,
+        travelEnd: travelData.startTime,
+        // FIXME: hotel name preset
+        hotelName: 'undefined logic',
+        hotelAddress: 'undefined logic',
+        hotelInfo: 'undefined logic',
+        travelType: 'undefined logic',
+        travelDescription: 'undefined logic',
+      };
+    } else {
+      this.state = {
+        name: '',
+        travelFrom: officeData[0],
+        travelTo: officeData[0],
+        travelStart: new Date(),
+        travelEnd: new Date(),
+        hotelName: '',
+        hotelAddress: '',
+        hotelInfo: '',
+        travelType: travelTypes[0],
+        travelDescription: '',
+      };
+    }
+    console.log(this.state);
   }
 
   onNameChange(e) {
     this.setState({ name: e.target.value });
-    console.log(this.state);
   }
 
   onTravelFromChange(e) {
     this.setState({ travelFrom: e.target.value });
-    console.log(this.state);
   }
 
   onTravelToChange(e) {
@@ -60,22 +81,18 @@ class TravelCreationPopup extends React.Component {
 
   onTravelEndChange(e) {
     this.setState({ travelEnd: e });
-    console.log(this.state);
   }
 
   onHotelAdressChange(e) {
     this.setState({ hotelAddress: e.target.value });
-    console.log(this.state);
   }
 
   onHotelNameChange(e) {
     this.setState({ hotelName: e.target.value });
-    console.log(this.state);
   }
 
   onHotelInfoChange(e) {
     this.setState({ hotelInfo: e.target.value });
-    console.log(this.state);
   }
 
   onTravelTypeChange(e) {
@@ -88,8 +105,7 @@ class TravelCreationPopup extends React.Component {
   }
 
   render() {
-    // eslint-disable-next-line react/prop-types
-    const { popupTitle, showingPopup, onTogglePopup } = this.props;
+    const { popupTitle, showingPopup, onTogglePopup, readOnly } = this.props;
 
     return (
       <Popup
@@ -110,32 +126,49 @@ class TravelCreationPopup extends React.Component {
                   type="text"
                   placeholder="Workation at Ibiza"
                   onChange={e => this.onNameChange(e)}
+                  readOnly={readOnly}
                 />
               </Col>
             </Form.Group>
 
             <Form.Group>
               <Form.Label>Travel from</Form.Label>
-              <Form.Control
-                as="select"
-                onChange={e => this.onTravelFromChange(e)}
-              >
-                {officeData.map(office => (
-                  <option>{office.title}</option>
-                ))}
-              </Form.Control>
+              {readOnly ? (
+                <Form.Control
+                  type="text"
+                  placeholder="Data from back"
+                  readOnly
+                />
+              ) : (
+                <Form.Control
+                  as="select"
+                  onChange={e => this.onTravelFromChange(e)}
+                >
+                  {officeData.map(office => (
+                    <option>{office.title}</option>
+                  ))}
+                </Form.Control>
+              )}
             </Form.Group>
 
             <Form.Group>
               <Form.Label>Travel to</Form.Label>
-              <Form.Control
-                as="select"
-                onChange={e => this.onTravelToChange(e)}
-              >
-                {officeData.map(office => (
-                  <option>{office.title}</option>
-                ))}
-              </Form.Control>
+              {readOnly ? (
+                <Form.Control
+                  type="text"
+                  placeholder="Data from back"
+                  readOnly
+                />
+              ) : (
+                <Form.Control
+                  as="select"
+                  onChange={e => this.onTravelToChange(e)}
+                >
+                  {officeData.map(office => (
+                    <option>{office.title}</option>
+                  ))}
+                </Form.Control>
+              )}
             </Form.Group>
 
             <Row>
@@ -145,6 +178,7 @@ class TravelCreationPopup extends React.Component {
                   <DatePicker
                     selected={this.state.travelStart}
                     onChange={e => this.onTravelStartChange(e)}
+                    readOnly={readOnly}
                   />
                 </Form.Group>
               </Col>
@@ -154,6 +188,7 @@ class TravelCreationPopup extends React.Component {
                   <DatePicker
                     selected={this.state.travelEnd}
                     onChange={e => this.onTravelEndChange(e)}
+                    readOnly={readOnly}
                   />
                 </Form.Group>
               </Col>
@@ -170,6 +205,7 @@ class TravelCreationPopup extends React.Component {
                 onChange={e => this.onHotelNameChange(e)}
                 type="text"
                 placeholder="Sleepy Hollow inn"
+                readOnly={readOnly}
               />
             </Col>
           </Form.Group>
@@ -182,6 +218,7 @@ class TravelCreationPopup extends React.Component {
                 type="text"
                 placeholder="3211 baker st."
                 onChange={e => this.onHotelAdressChange(e)}
+                readOnly={readOnly}
               />
             </Col>
           </Form.Group>
@@ -192,30 +229,47 @@ class TravelCreationPopup extends React.Component {
               rows="2"
               placeholder="e.g. check emails for bookings"
               onChange={e => this.onHotelInfoChange(e)}
+              readOnly={readOnly}
             />
           </Form.Group>
 
           <span style={styles.sectionTitle}>Transportation</span>
           <Form.Group as={Row}>
-            <Form.Label column sm={2}>
+            <Form.Label column sm={4}>
               Travel type
             </Form.Label>
-            <ButtonGroup
-              toggle
-              onChange={e => this.onTravelTypeChange(e)}
-              defaultValue={this.state.travelType}
-            >
-              {travelTypes.map(travelType => (
-                <ToggleButton
-                  style={{ marginRight: 8 }}
-                  type="radio"
-                  name="radio"
-                  value={travelType}
-                >
-                  {travelType}
-                </ToggleButton>
-              ))}
-            </ButtonGroup>
+            {readOnly ? (
+              <Form.Control
+                style={{
+                  marginRight: 16,
+                  marginLeft: 16,
+                }}
+                column
+                sm={8}
+                type="text"
+                placeholder={travelTypes[1]}
+                readOnly={readOnly}
+              />
+            ) : (
+              <ButtonGroup
+                column
+                sm={8}
+                toggle
+                onChange={e => this.onTravelTypeChange(e)}
+                defaultValue={this.state.travelType}
+              >
+                {travelTypes.map(travelType => (
+                  <ToggleButton
+                    style={{ marginRight: 8 }}
+                    type="radio"
+                    name="radio"
+                    value={travelType}
+                  >
+                    {travelType}
+                  </ToggleButton>
+                ))}
+              </ButtonGroup>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>transportation info</Form.Label>
@@ -223,6 +277,7 @@ class TravelCreationPopup extends React.Component {
               as="textarea"
               rows="2"
               onChange={e => this.onTravelDescriptionChange(e)}
+              readOnly={readOnly}
             />
           </Form.Group>
         </Form>
@@ -233,6 +288,10 @@ class TravelCreationPopup extends React.Component {
 
 TravelCreationPopup.propTypes = {
   onTogglePopup: PropTypes.func.isRequired,
+  showingPopup: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  popupTitle: PropTypes.string,
+  travelData: travelShape,
 };
 
 export default TravelCreationPopup;

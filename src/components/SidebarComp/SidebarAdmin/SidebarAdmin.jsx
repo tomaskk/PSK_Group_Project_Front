@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './SidebarAdminComponents/Logo.jsx';
 import NavAdmin from './SidebarAdminComponents/NavAdmin.jsx';
-import SvgSchool from './SidebarAdminComponents/images/SvgSchool.jsx';
+import SvgSchool from '../../common/images/SvgSchool.jsx';
 import Copyright from './SidebarAdminComponents/Copyright.jsx';
 
 class SidebarAdmin extends Component {
