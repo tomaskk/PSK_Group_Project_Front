@@ -33,7 +33,7 @@ export function loadData(data) {
   }
 }
 
-export const loadDataFromAPI = dispatch => {
+export const loadDataFromAPI = () => dispatch => {
   console.log("nigga");
 
   axios.get(ServerHostName + '/api/Employees')

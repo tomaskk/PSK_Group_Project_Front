@@ -9,13 +9,13 @@ import UserTable from './PeopleListComponents/UserTable.jsx';
 import SvgDownload from '../../common/images/SvgDownload.jsx';
 import Head from './PeopleListComponents/Head.jsx';
 
-import { loadDataFromAPI } from './PeopleListComponents/actions/LDActions.js';
+import { loadDataFromAPI } from './PeopleListComponents/actions/LDActions';
 
 class PeopleList extends React.Component {
 
 	constructor(props) {
 		super(props);
-		loadDataFromAPI();
+		this.props.dispatch(loadDataFromAPI())
 	}
 
   componentWillMount() {
