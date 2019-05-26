@@ -19,10 +19,7 @@ class PeopleList extends React.Component {
 	}
 
   componentWillMount() {
-    //loadDataFromAPI();
-    //this.props.loadDataFromAPI;
-    //this.props.dispatch(loadDataFromAPI());
-    //console.log(this.props.users);
+
 	}
 
   render() {

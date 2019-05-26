@@ -25,7 +25,7 @@ export function storeFilter(property, typed) {
   };
 }
 
-
+//-- management -> available users
 export function loadData(data) {
   return {
       type: 'USERS_LOAD_ALL',
@@ -34,11 +34,12 @@ export function loadData(data) {
 }
 
 export const loadDataFromAPI = () => dispatch => {
-  console.log("nigga");
 
   axios.get(ServerHostName + '/api/Employees')
   .then(response => {
       let users = response.data;
+
+      console.log(users);
       dispatch(loadData(users))
   })
 }

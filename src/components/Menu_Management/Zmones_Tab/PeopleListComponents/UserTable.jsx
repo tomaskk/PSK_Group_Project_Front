@@ -3,13 +3,11 @@ import UserRow from './UserRow.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { loadDataFromAPI } from './actions/LDActions.js';
 
 class UserTable extends Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     var users = this.props.users;
@@ -20,13 +18,11 @@ class UserTable extends Component {
             {users.map((user, index) => (
               <UserRow
                 key={index}
-                name={user.name}
-                surname={user.surname}
-                date={user.date}
-                hours={user.hours}
+                name={user.firstName}
+                surname={user.lastName}
                 id={user.id}
-                pic={user.pic}
-                activity={user.activity}
+                pic={user.profilePhoto}
+                activity={user.available}
                 topic={user.topic}
               />
             ))}
@@ -46,15 +42,3 @@ export default connect(
   dispatch => bindActionCreators({}, dispatch)
 )(UserTable);
 
-UserTable.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      surname: PropTypes.string,
-      topic: PropTypes.string,
-      hours: PropTypes.string,
-      date: PropTypes.string
-    })
-  )
-};

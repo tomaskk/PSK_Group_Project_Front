@@ -27,6 +27,5 @@ const enhancers = compose(
 //  rootReducer,
 //  applyMiddleware(thunk)
 //);
-// v3.0
-
+// v3.0 dispatch axios + redux devTools both work :
 export const store = createStore(rootReducer, defaultState, enhancers);
