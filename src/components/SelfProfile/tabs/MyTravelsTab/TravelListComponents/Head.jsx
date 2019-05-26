@@ -200,17 +200,6 @@ export default connect(
 )(Head);
 
 Head.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      surname: PropTypes.string,
-      hours: PropTypes.string,
-      activity: PropTypes.string,
-    })
-  ),
-  onSearch: PropTypes.func,
-  onSort: PropTypes.func,
   sortData: PropTypes.func,
   filterData: PropTypes.func,
   storeFilter: PropTypes.func,

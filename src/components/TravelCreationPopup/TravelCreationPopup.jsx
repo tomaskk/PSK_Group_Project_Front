@@ -14,6 +14,11 @@ import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
  */
 const officeData = require('./MockOfficeData.json');
 
+import {
+  employeeTravelShape,
+  travelShape,
+} from '../../types/proptypes';
+
 const travelTypes = ['by Car', 'by Plane', 'Car and Plane'];
 
 const styles = {
@@ -26,18 +31,36 @@ class TravelCreationPopup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: '',
-      travelFrom: officeData[0],
-      travelTo: officeData[0],
-      travelStart: new Date(),
-      travelEnd: new Date(),
-      hotelName: '',
-      hotelAddress: '',
-      hotelInfo: '',
-      travelType: travelTypes[0],
-      travelDescription: '',
-    };
+    const { travelData } = this.props;
+    if (travelData) {
+      this.state = {
+        name: travelData.name,
+        travelFrom: travelData.travelFrom,
+        travelTo: travelData.travelTo,
+        travelStart: travelData.startTime,
+        travelEnd: travelData.startTime,
+        // FIXME: hotel name preset
+        hotelName: 'undefined logic',
+        hotelAddress: 'undefined logic',
+        hotelInfo: 'undefined logic',
+        travelType: 'undefined logic',
+        travelDescription: 'undefined logic',
+      };
+    } else {
+      this.state = {
+        name: '',
+        travelFrom: officeData[0],
+        travelTo: officeData[0],
+        travelStart: new Date(),
+        travelEnd: new Date(),
+        hotelName: '',
+        hotelAddress: '',
+        hotelInfo: '',
+        travelType: travelTypes[0],
+        travelDescription: '',
+      };
+    }
+    console.log(this.state);
   }
 
   onNameChange(e) {
@@ -268,6 +291,7 @@ TravelCreationPopup.propTypes = {
   showingPopup: PropTypes.bool,
   readOnly: PropTypes.bool,
   popupTitle: PropTypes.string,
+  travelData: travelShape,
 };
 
 export default TravelCreationPopup;

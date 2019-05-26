@@ -4,19 +4,26 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import EmployeeTravelRow from './EmployeeTravelRow.jsx';
 
+import { employeeTravelShape } from '../../../../../types/proptypes';
+
 class EmployeeTravelTable extends Component {
   render() {
-    const { users } = this.props;
+    // const { employeeTravels } = this.props;
+    const employeeTravels = require('../response_example.json');
+    console.log(employeeTravels);
+
+
     return (
       <div className="content__scrollable">
         <table className="table">
           <tbody>
-            {users.map(user => (
+            {employeeTravels.map(empTravel => (
               <EmployeeTravelRow
-                column1={user.name}
-                column2={user.surname}
-                column3={user.activity}
-                travelId={user.id}
+                key={empTravel.id}
+                column1={empTravel.travel.name}
+                column2={empTravel.travel.travelTo.title}
+                column3={empTravel.confirm}
+                travelId={empTravel.id}
               />
             ))}
           </tbody>
@@ -36,14 +43,5 @@ export default connect(
 )(EmployeeTravelTable);
 
 EmployeeTravelTable.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      surname: PropTypes.string,
-      topic: PropTypes.string,
-      hours: PropTypes.string,
-      date: PropTypes.string,
-    })
-  ),
+  employeeTravels: PropTypes.arrayOf(employeeTravelShape).isRequired,
 };

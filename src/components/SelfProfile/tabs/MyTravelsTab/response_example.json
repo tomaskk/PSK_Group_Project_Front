@@ -1,0 +1,65 @@
+[
+  {
+    "id": 2,
+    "employee": {
+      "firstName": null,
+      "lastName": null,
+      "profilePhoto": null,
+      "registeredOffice": null,
+      "available": false,
+      "id": 1,
+      "userName": "f@topayresddpects.com",
+      "normalizedUserName": "F@TOPAYRESDDPECTS.COM",
+      "email": "f@topayresddpects.com",
+      "normalizedEmail": "F@TOPAYRESDDPECTS.COM",
+      "emailConfirmed": false,
+      "passwordHash": "AQAAAAEAACcQAAAAENOSGYeIW0neleXL6ni8zvKI+I62oC4oTKArNAbwFEAFIzohhxq5J97R2uPcAmCohQ==",
+      "securityStamp": "QAUEIMLHSV6RCNOPTHJT2NDVYVYSDO7U",
+      "concurrencyStamp": "45c739d9-0128-4625-80d7-11f727879718"
+    },
+    "travel": {
+      "id": 1,
+      "name": "string",
+      "travelTo": {
+        "id": 3,
+        "officeApartment": "undefined",
+        "title": "The goooood office",
+        "address": "11 wilson str. Vienna"
+      },
+      "travelFrom": {
+        "id": 3,
+        "officeApartment": "undefined",
+        "title": "The goooood office",
+        "address": "11 wilson str. Vienna"
+      },
+      "startTime": "2019-05-26T07:28:18.156",
+      "endTime": "2019-05-26T07:28:18.156",
+      "hotels": null,
+      "transports": null,
+      "cost": 0,
+      "organizedBy": {
+        "firstName": null,
+        "lastName": null,
+        "profilePhoto": null,
+        "registeredOffice": null,
+        "available": false,
+        "id": 1,
+        "userName": "f@topayresddpects.com",
+        "normalizedUserName": "F@TOPAYRESDDPECTS.COM",
+        "email": "f@topayresddpects.com",
+        "normalizedEmail": "F@TOPAYRESDDPECTS.COM",
+        "emailConfirmed": false,
+        "passwordHash": "AQAAAAEAACcQAAAAENOSGYeIW0neleXL6ni8zvKI+I62oC4oTKArNAbwFEAFIzohhxq5J97R2uPcAmCohQ==",
+        "securityStamp": "QAUEIMLHSV6RCNOPTHJT2NDVYVYSDO7U",
+        "concurrencyStamp": "45c739d9-0128-4625-80d7-11f727879718",
+        "phoneNumber": null,
+        "phoneNumberConfirmed": false,
+        "twoFactorEnabled": false,
+        "lockoutEnd": null,
+        "lockoutEnabled": true,
+        "accessFailedCount": 0
+      }
+    },
+    "confirm": true
+  }
+]
