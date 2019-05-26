@@ -3,9 +3,12 @@ import { Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import { travelShape } from '../../types/proptypes';
 import Popup from '../common/Popup/index.js';
 
 import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
+
 /** e.g.:
  * {
  *    "title": "Vilniaus DevBridge",
@@ -13,11 +16,6 @@ import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
  *  },
  */
 const officeData = require('./MockOfficeData.json');
-
-import {
-  employeeTravelShape,
-  travelShape,
-} from '../../types/proptypes';
 
 const travelTypes = ['by Car', 'by Plane', 'Car and Plane'];
 
@@ -37,8 +35,8 @@ class TravelCreationPopup extends React.Component {
         name: travelData.name,
         travelFrom: travelData.travelFrom,
         travelTo: travelData.travelTo,
-        travelStart: travelData.startTime,
-        travelEnd: travelData.startTime,
+        travelStart: moment(travelData.startTime).toDate(),
+        travelEnd: moment(travelData.endTime).toDate(),
         // FIXME: hotel name preset
         hotelName: 'undefined logic',
         hotelAddress: 'undefined logic',
@@ -127,6 +125,7 @@ class TravelCreationPopup extends React.Component {
                   placeholder="Workation at Ibiza"
                   onChange={e => this.onNameChange(e)}
                   readOnly={readOnly}
+                  value={this.state.name}
                 />
               </Col>
             </Form.Group>
@@ -136,13 +135,14 @@ class TravelCreationPopup extends React.Component {
               {readOnly ? (
                 <Form.Control
                   type="text"
-                  placeholder="Data from back"
                   readOnly
+                  value={this.state.travelFrom.title}
                 />
               ) : (
                 <Form.Control
                   as="select"
                   onChange={e => this.onTravelFromChange(e)}
+                  value={this.state.travelFrom.title}
                 >
                   {officeData.map(office => (
                     <option>{office.title}</option>
@@ -156,13 +156,14 @@ class TravelCreationPopup extends React.Component {
               {readOnly ? (
                 <Form.Control
                   type="text"
-                  placeholder="Data from back"
+                  value={this.state.travelTo.title}
                   readOnly
                 />
               ) : (
                 <Form.Control
                   as="select"
                   onChange={e => this.onTravelToChange(e)}
+                  value={this.state.travelTo.title}
                 >
                   {officeData.map(office => (
                     <option>{office.title}</option>
@@ -204,7 +205,7 @@ class TravelCreationPopup extends React.Component {
               <Form.Control
                 onChange={e => this.onHotelNameChange(e)}
                 type="text"
-                placeholder="Sleepy Hollow inn"
+                value={this.state.hotels ? this.state.hotels[0].title : ''}
                 readOnly={readOnly}
               />
             </Col>
@@ -216,8 +217,8 @@ class TravelCreationPopup extends React.Component {
             <Col sm={10}>
               <Form.Control
                 type="text"
-                placeholder="3211 baker st."
                 onChange={e => this.onHotelAdressChange(e)}
+                value={this.state.hotels ? this.state.hotels[0].address : ''}
                 readOnly={readOnly}
               />
             </Col>
@@ -227,7 +228,8 @@ class TravelCreationPopup extends React.Component {
             <Form.Control
               as="textarea"
               rows="2"
-              placeholder="e.g. check emails for bookings"
+              value={this.state.hotels ? this.state.hotels[0].description : ''}
+              placeholder={!readOnly && 'e.g.+ check emails for bookings'}
               onChange={e => this.onHotelInfoChange(e)}
               readOnly={readOnly}
             />
@@ -247,7 +249,7 @@ class TravelCreationPopup extends React.Component {
                 column
                 sm={8}
                 type="text"
-                placeholder={travelTypes[1]}
+                value={this.state.travelType}
                 readOnly={readOnly}
               />
             ) : (
@@ -278,6 +280,7 @@ class TravelCreationPopup extends React.Component {
               rows="2"
               onChange={e => this.onTravelDescriptionChange(e)}
               readOnly={readOnly}
+              value={this.state.transport[0].description}
             />
           </Form.Group>
         </Form>
