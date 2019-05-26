@@ -23,7 +23,7 @@ class EmployeeTravelTable extends Component {
                 column1={empTravel.travel.name}
                 column2={empTravel.travel.travelTo.title}
                 column3={empTravel.confirm}
-                travelId={empTravel.id}
+                travelData={empTravel.travel}
               />
             ))}
           </tbody>
