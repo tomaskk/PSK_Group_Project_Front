@@ -1,6 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import { Button, Modal, Table, Form } from 'react-bootstrap';
+import { Button, Modal, Table, Form, InputGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -125,17 +125,14 @@ class AssignTravelPopup extends React.Component {
             </Form.Group>
           </Form>
 
-          <h5> Pick apartments (if needed) </h5>
-          <Form>
-            <Form.Group>
-              <Form.Control as="select" value={this.state.pickedApartment} onChange={e => this.handlePickApartment(e)}>
-                <option>Pick an apartment...</option>
-                {this.getApartmentsDTO().map((item, index) => (
-                  <option> { item.title } | { item.address }</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-          </Form>
+          <h5> Are apartments needed? </h5>
+          <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Checkbox aria-label='Checkbox for following text input' />
+            </InputGroup.Prepend>
+            <Form.Control aria-label='Text input with checkbox' value='Pick apartments automatically' readOnly/>
+          </InputGroup>
+
 
         </Modal.Body>
 
