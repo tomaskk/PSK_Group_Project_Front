@@ -13,7 +13,11 @@ import PropTypes from 'prop-types';
         <Modal.Title> 
           <h4>
             Profile of <b><i> {userInfo.name} {userInfo.surname} </i></b> 
-            <img src={userInfo.pic} alt="Profile pic" height="42" width="42" style={{borderRadius: "50%", marginLeft: "24px"}}/> 
+            <img 
+              src={ userInfo.pic == null ? 'https://www.w3schools.com/howto/img_avatar.png'
+                  : userInfo.pic == 'string' ? 'https://www.w3schools.com/howto/img_avatar2.png' 
+                  : userInfo.pic }
+              alt="Profile pic" height="42" width="42" style={{borderRadius: "50%", marginLeft: "24px"}}/> 
           </h4>
         </Modal.Title>
       </Modal.Header>
@@ -28,7 +32,7 @@ import PropTypes from 'prop-types';
             </tr>
             <tr>
               <td width="25%"> Status </td>
-              <td width="75%"> {userInfo.activity} </td>
+              <td width="75%"> { userInfo.available == true ? 'Active' : 'Inactive' } </td>
             </tr>
           </tbody>
         </Table>

@@ -1,9 +1,9 @@
 import LDUserData from '../LDUserData.js';
 
 const initialState = {
-  users: LDUserData.users,
-  filteredUsers: LDUserData.users,
-  sortedUsers: LDUserData.users,
+  users: [],
+  filteredUsers: [],
+  sortedUsers: [],
   currentSort: '',
   typedName: '',
   typedTopic: '',
@@ -16,7 +16,7 @@ const initialState = {
 export const LDReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SORT':
-      if (action.property === 'name') {
+      if (action.property === 'firstName') {
         return {
           ...state,
           filteredUsers: action.payload,
@@ -25,7 +25,7 @@ export const LDReducer = (state = initialState, action) => {
           currentSort: action.property
         };
       }
-      if (action.property === 'surname')
+      if (action.property === 'lastName')
         return {
           ...state,
           filteredUsers: action.payload,
@@ -33,7 +33,7 @@ export const LDReducer = (state = initialState, action) => {
           surnameDirection: !state.surnameDirection,
           currentSort: action.property
         };
-      if (action.property === 'activity')
+      if (action.property === 'available')
         return {
           ...state,
           filteredUsers: action.payload,
@@ -54,10 +54,18 @@ export const LDReducer = (state = initialState, action) => {
       return { ...state, filteredUsers: action.payload };
 
     case 'STORE_FILTER':
-      if (action.property === 'name')
+      if (action.property === 'firstName')
         return { ...state, typedName: action.typed };
-      if (action.property === 'surname')
+      if (action.property === 'lastName')
         return { ...state, typedTopic: action.typed };
+
+    case 'USERS_LOAD_ALL':
+      return{
+        ...state,
+        filteredUsers: action.payload,
+        sortedUsers: action.payload,
+        users: action.payload
+      };
 
     default:
       return state;

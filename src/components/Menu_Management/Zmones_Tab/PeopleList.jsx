@@ -9,7 +9,24 @@ import UserTable from './PeopleListComponents/UserTable.jsx';
 import SvgDownload from '../../common/images/SvgDownload.jsx';
 import Head from './PeopleListComponents/Head.jsx';
 
+import { loadDataFromAPI } from './PeopleListComponents/actions/LDActions';
+
 class PeopleList extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.props.dispatch(loadDataFromAPI())
+	}
+
+  componentWillMount() {
+
+  }
+  
+  handleDownloadDTO = () => {
+
+    return this.props.users;
+  }
+
   render() {
     return (
       <main className="main">
@@ -23,7 +40,7 @@ class PeopleList extends React.Component {
           >
             <CSVLink
               style={CSVStyle}
-              data={this.props.users}
+              data={ this.handleDownloadDTO() }
               filename="AllUsers.csv"
             >
               <SvgDownload />
@@ -34,7 +51,7 @@ class PeopleList extends React.Component {
         <div className="content content--bottom-square">
           <ColTable />
           <Head />
-          <Route to="host/admin/hours" component={() => <UserTable />} />
+          <Route to="host/manage/users" component={() => <UserTable />} />
         </div>
       </main>
     );

@@ -39,7 +39,10 @@ class UserRow extends Component {
           <div class="table__content">
             <Link to={`/host/user/${this.props.id}`}>
               <img
-                src={this.props.pic}
+                //src={this.props.pic}
+                src={ this.props.pic == null ? 'https://www.w3schools.com/howto/img_avatar.png'
+                    : this.props.pic == 'string' ? 'https://www.w3schools.com/howto/img_avatar2.png' 
+                    : this.props.pic }
                 style={imgStyle}
                 class="photo table__photo"
               />
@@ -49,7 +52,7 @@ class UserRow extends Component {
         </td>
         <td class="table__cell table__cell--main ">{this.props.surname}</td>
         <td class="table__cell table__cell--tiny table__cell--short table__cell--date">
-          {this.props.activity}
+          {this.props.activity == true ? 'Active' : 'Inactive'}
         </td>
         <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
           <div class="table__actions">
