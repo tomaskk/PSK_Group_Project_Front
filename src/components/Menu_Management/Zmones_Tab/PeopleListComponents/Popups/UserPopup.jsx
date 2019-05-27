@@ -16,37 +16,21 @@ class UserPopup extends React.Component {
 
   getUpcomingTravelsDTO = () => {
 
-   // let DTO = this.props.travelsList.map(function(item, i) { 
-   //   var item_date = new Date(Date.parse(item["startTime"]));
-
-     // if( item_date <= Date.now() ){
-        //console.log('\n | datenow ' + Date.now() + "\n | date time " + item["startTime"] + "\n | new date " + item_date.getTime());
-  //      return item; 
-      //}
-
-
- 
-   // });
-//console.log('dto' + DTO);
-
-
+    //-- for each travel
     let DTO = this.props.travelsList.filter( item => {
 
       let thisUserIncluded = false;
+      //-- check each record if user is travelling
       this.props.employeeTravel.forEach(record => {
         if(record.travel.id === item["id"] 
         && record.employee.firstName === this.props.userInfo.name
         && record.employee.lastName === this.props.userInfo.surname){
           thisUserIncluded = true;
         }
-        console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + 
-"\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
+        //console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + "\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
       });
 
-
-
       let item_date = new Date(Date.parse(item["startTime"]));
-      //console.log("nigga :" + item["name"] + "|" + this.props.userInfo.name);
       return (Date.now() <= item_date && thisUserIncluded);
     });
 
@@ -98,12 +82,12 @@ class UserPopup extends React.Component {
               </tr>
             </thead>
             <tbody>
-              { this.getUpcomingTravelsDTO().map(item => 
+              { this.getUpcomingTravelsDTO().map((item, index) => 
                 <tr>
-                  <td>X</td>
-                  <td>{item.name}</td>
-                  <td>{item.startTime}</td>
-                  <td>{item.endTime}</td>
+                  <td>{ index + 1 }</td>
+                  <td>{ item.name }</td>
+                  <td>{ item.startTime.replace('T', ' | ') }</td>
+                  <td>{ item.endTime.replace('T', ' | ') }</td>
                 </tr>
               )}
             </tbody>
