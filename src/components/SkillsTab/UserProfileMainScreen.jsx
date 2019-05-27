@@ -8,15 +8,28 @@ import { connect } from 'react-redux';
 class UserProfileMainScreen extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      currentTab: 'Specialist'
+      currentTab: 'tab1',
+      selectedUser: null,
     };
+  }
+
+  getCurrentUser = () => {
+
+    let userId = parseInt(window.location.href.substring(34));
+
+    let DTO = this.props.users.filter( item => {
+      return (parseInt(item.id) == parseInt(userId));
+    });
+  
+    return DTO[0];
   }
 
   changeState = () => {
     this.setState({
       currentTab:
-        this.state.currentTab === 'Specialist' ? 'Learn' : 'Specialist'
+        this.state.currentTab === 'tab1' ? 'tab2' : 'tab1'
     });
   };
 
@@ -25,19 +38,22 @@ class UserProfileMainScreen extends Component {
       <main className="main">
         <div className="content content--stretch">
           <UserProfile1Header
-            pictureLocation="https://via.placeholder.com/96x96"
-            firstName={this.props.userInfo.name}
-            lastName={this.props.userInfo.surname}
-            position="Senior Software Engineer"
-            email={this.props.userInfo.email}
+            pictureLocation={ this.getCurrentUser().profilePhoto == null ? 'https://www.w3schools.com/howto/img_avatar.png'
+                            : this.getCurrentUser().profilePhoto == 'string' ? 'https://www.w3schools.com/howto/img_avatar2.png' 
+                            : this.getCurrentUser().profilePhoto }
+            firstName={this.getCurrentUser().firstName}
+            lastName={this.getCurrentUser().lastName}
+            position={this.getCurrentUser().email}
+            email={this.getCurrentUser().email}
             slackButtonName="Slack"
           />
 
           <UserProfile2Nav
-            link1Name="Specialist at"
+            link1Name="My upcoming plans"
             link2Name="Wants to learn"
             currentState={this.state.currentTab}
             stateChanger={this.changeState}
+            userid={this.getCurrentUser().id}
           />
 
           <UserProfile3Footer
@@ -45,6 +61,7 @@ class UserProfileMainScreen extends Component {
             currentState={this.state.currentTab}
             specialistTabItems={this.props.specialistTabItems}
             learnTabItems={this.props.learnTabItems}
+            travelsList={this.props.travelsList}
           />
         </div>
       </main>
@@ -56,7 +73,10 @@ function mapStateToProps(state) {
   return {
     userInfo: state.userProfileReducer.userInfo,
     specialistTabItems: state.userProfileReducer.specialistTabItems,
-    learnTabItems: state.userProfileReducer.learnTabItems
+    learnTabItems: state.userProfileReducer.learnTabItems,
+
+    users: state.LDReducer.filteredUsers,
+    travelsList: state.LDReducer.travelsList,
   };
 }
 

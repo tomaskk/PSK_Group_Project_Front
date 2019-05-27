@@ -16,7 +16,7 @@ class PeopleList extends React.Component {
 	constructor(props) {
     super(props);
     
-    //---> load all stuff to store when entering management tab
+  //---> load all stuff to store when entering management tab
     this.props.dispatch(loadUsersFromAPI());
     this.props.dispatch(loadTravelsFromAPI());
     this.props.dispatch(loadEmployeeTravelFromAPI());

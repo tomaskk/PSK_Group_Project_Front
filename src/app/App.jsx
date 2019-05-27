@@ -46,7 +46,7 @@ class App extends Component {
           }} />
 
           <Route path="/host/user/:userId" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <UserProfileMainScreen/></div></div> )
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <UserProfileMainScreen /></div></div> )
           }} />
 
         </Router>

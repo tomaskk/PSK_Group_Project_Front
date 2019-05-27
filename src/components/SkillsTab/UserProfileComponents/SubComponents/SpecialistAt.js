@@ -4,7 +4,7 @@ import SkillsList from './SpecialistAt/SkillsList';
 export default function SpecialistAt(props) {
   return (
     <div>
-      <SkillsList specialistTabItems={props.specialistTabItems} />
+      <SkillsList specialistTabItems={props.specialistTabItems} travelsList={props.travelsList}/>
     </div>
   );
 }
