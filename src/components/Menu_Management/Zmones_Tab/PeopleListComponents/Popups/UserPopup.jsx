@@ -50,11 +50,27 @@ class UserPopup extends React.Component {
         && record.employee.lastName === this.props.userInfo.surname){
           thisUserIncluded = true;
         }
-        //console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + "\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
       });
 
       let item_date = new Date(Date.parse(item["startTime"]));
       return (Date.now() > item_date && thisUserIncluded);
+    });
+
+    return DTO;
+  }
+
+  getCreatedTravelsDTO = () => {
+
+    //-- check each travel
+    let DTO = this.props.travelsList.filter( item => {
+
+      let thisUserIsCreator = false;
+      if(item.organizedBy.firstName === this.props.userInfo.name 
+      && item.organizedBy.lastName === this.props.userInfo.surname){
+        thisUserIsCreator = true;
+      }
+
+      return (thisUserIsCreator);
     });
 
     return DTO;
@@ -109,8 +125,8 @@ class UserPopup extends React.Component {
                 <tr>
                   <td>{ index + 1 }</td>
                   <td>{ item.name }</td>
-                  <td>{ item.startTime.replace('T', ' | ') }</td>
-                  <td>{ item.endTime.replace('T', ' | ') }</td>
+                  <td>{ item.startTime.replace('T', ' | ').substring(0, 21) }</td>
+                  <td>{ item.endTime.replace('T', ' | ').substring(0, 21) }</td>
                 </tr>
               )}
             </tbody>
@@ -131,8 +147,8 @@ class UserPopup extends React.Component {
                 <tr>
                   <td>{ index + 1 }</td>
                   <td>{ item.name }</td>
-                  <td>{ item.startTime.replace('T', ' | ') }</td>
-                  <td>{ item.endTime.replace('T', ' | ') }</td>
+                  <td>{ item.startTime.replace('T', ' | ').substring(0, 21) }</td>
+                  <td>{ item.endTime.replace('T', ' | ').substring(0, 21) }</td>
                 </tr>
               )}
             </tbody>
@@ -149,12 +165,14 @@ class UserPopup extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>CHI-998</td>
-                <td>2010-10-10</td>
-                <td>2010-10-11</td>
-              </tr>
+            { this.getCreatedTravelsDTO().map((item, index) => 
+                <tr>
+                  <td>{ index + 1 }</td>
+                  <td>{ item.name }</td>
+                  <td>{ item.startTime.replace('T', ' | ').substring(0, 21) }</td>
+                  <td>{ item.endTime.replace('T', ' | ').substring(0, 21) }</td>
+                </tr>
+              )}
             </tbody>
           </Table>
         </Modal.Body>
