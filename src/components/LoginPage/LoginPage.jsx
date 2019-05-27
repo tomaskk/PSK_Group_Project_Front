@@ -2,12 +2,14 @@
 import SvgLogo from "./LoginPageComponents/img/SvgLogo.jsx";
 import SlackLogo from "./LoginPageComponents/img/SlackLogo.jsx";
 import Illustration from "./LoginPageComponents/img/illustration.png";
-const ServerHostName = 'http://localhost:8080';
+const ServerHostName = 'http://localhost:5001';
 import { connect } from "react-redux";
 import {
     tryLogin,
     tryRegister,
 } from "./LoginPageComponents/actions/actionCreators";
+
+
 
 class LoginPage extends Component {
   constructor(props) {
@@ -25,9 +27,9 @@ class LoginPage extends Component {
 
   OnLoginButtonClick = () => {
 
-    alert("Log in details: \n" + this.emailInput.current.value + 
+    /*alert("Log in details: \n" + this.emailInput.current.value + 
                           "\n" + this.passwordInput.current.value + 
-                          "\n" + this.state.CheckBoxChecked);
+                          "\n" + this.state.CheckBoxChecked);*/
  
     tryLogin(
       this.emailInput.current.value.toString(),
@@ -38,7 +40,7 @@ class LoginPage extends Component {
     );
 
     //immitate successful login
-    this.props.history.push("/");
+    //this.props.history.push("/");
   };
 
   OnSlackButtonClick = () => {

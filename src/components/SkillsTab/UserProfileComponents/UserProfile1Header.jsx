@@ -9,6 +9,7 @@ export default class UserProfile1Header extends Component {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+    alert('Email to: ' + this.props.email);
   };
 
   openConversation = () => {
@@ -21,8 +22,8 @@ export default class UserProfile1Header extends Component {
     const wName = 'window_1';
 
     // constants; to be replaced with parameters in refactored version
-    const userID = 'UD0G9NH37';
-    const teamID = 'TD1MK9F6J';
+    //const userID = 'UD0G9NH37';
+    //const teamID = 'TD1MK9F6J';
 
     // quering native Slack app
     var paramsNative = new URLSearchParams();
@@ -47,6 +48,7 @@ export default class UserProfile1Header extends Component {
             src={this.props.pictureLocation}
             className="photo about__photo"
             alt="profile-pic"
+            height='100' width='100'
           />
           <div>
             <h2 className="heading2 heading2--large">

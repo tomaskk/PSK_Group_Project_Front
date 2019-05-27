@@ -9,18 +9,19 @@ import UserTable from './PeopleListComponents/UserTable.jsx';
 import SvgDownload from '../../common/images/SvgDownload.jsx';
 import Head from './PeopleListComponents/Head.jsx';
 
-import { loadDataFromAPI } from './PeopleListComponents/actions/LDActions';
+import { loadUsersFromAPI, loadTravelsFromAPI, loadEmployeeTravelFromAPI, loadApartmentsFromAPI } from './PeopleListComponents/actions/LDActions';
 
 class PeopleList extends React.Component {
 
 	constructor(props) {
-		super(props);
-		this.props.dispatch(loadDataFromAPI())
+    super(props);
+    
+  //---> load all stuff to store when entering management tab
+    this.props.dispatch(loadUsersFromAPI());
+    this.props.dispatch(loadTravelsFromAPI());
+    this.props.dispatch(loadEmployeeTravelFromAPI());
+    this.props.dispatch(loadApartmentsFromAPI());
 	}
-
-  componentWillMount() {
-
-  }
   
   handleDownloadDTO = () => {
 

@@ -1,21 +1,21 @@
 import axios from "axios";
-const ServerHostName = 'http://localhost:8080';
+import { ServerHostName } from '../../../../constants/serverUri';
 import { LOGIN_USER, GET_USER_ROLE } from '../actions/ActionTypes';
 
 export const tryLogin = (email, password, rememberme, history, dispatch) => {
     axios
-        .post(ServerHostName + "/api/Auth/login", {
-            email: email,
+        .post(ServerHostName + "/api/accounts/login", {
+            userName: email,
             password: password,
-            rememberme: rememberme
+            rememberMe: rememberme
         })
         .then(response => {
-            if (response.request.status == 204) {
-                dispatch({ type: LOGIN_USER, data: true });
-                getRole(history, dispatch)
-            }
+            dispatch({ type: LOGIN_USER, data: true });
+            //getRole(history, dispatch)
+            history.push("/");
         })
         .catch(error => {
+            alert('Failed attempt.');
             document.getElementById("error").classList = "error";
             console.log(error);
         });

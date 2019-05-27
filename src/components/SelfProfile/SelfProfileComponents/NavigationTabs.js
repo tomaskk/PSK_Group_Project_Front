@@ -27,7 +27,7 @@ export default function NavigationTabs(props) {
           name="skills"
           onClick={props.handleButtonClick}
         >
-          Skills
+          Invitations
         </a>
       </li>
       <li>

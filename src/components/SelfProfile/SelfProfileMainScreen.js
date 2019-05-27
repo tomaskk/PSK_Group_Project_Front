@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Table } from 'react-bootstrap';
 
 import SelfProfileForm from './SelfProfileComponents/SelfProfileForm';
 import NavigationTabs from './SelfProfileComponents/NavigationTabs';
@@ -11,6 +12,7 @@ import { FAKE_DATA } from './SelfProfileComponents/FakeData';
 import Skills from './SelfProfileComponents/Skills';
 import Goals from './SelfProfileComponents/Goals';
 import TravelList from './tabs/MyTravelsTab/TravelList';
+import SvgHand from '../common/images/SvgHand.jsx';
 
 import * as actions from './actions/switchTabs';
 
@@ -42,9 +44,11 @@ class SelfProfileMainScreen extends Component {
       sld: '2019.04.03',
       isEditModeDisabled: true,
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeArrays = this.handleChangeArrays.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleInvitationalHandClick = this.handleInvitationalHandClick.bind(this);
   }
 
   handleNavigation(newTab) {
@@ -313,6 +317,12 @@ class SelfProfileMainScreen extends Component {
     }
   }
 
+  handleInvitationalHandClick(e) {
+    e.preventDefault();
+    alert('Hand clicked!');
+  }
+  
+
   render() {
     const personalInfoTabComponents = (
       <div>
@@ -328,27 +338,36 @@ class SelfProfileMainScreen extends Component {
 
     const SkillsTabComponents = (
       <div>
-        <div className="profile__section section profile__separator">
-          <Skills
-            learningData={specialistTabItems}
-            dataShared={this.state}
-            handleChange={this.handleChange}
-            handleChangeArrays={this.handleChangeArrays}
-            handleButtonClick={this.handleButtonClick}
-            userInfo={this.props.selfProfileReducer}
-            updateMasterat={this.props.updateMasterAtInStore}
-          />
+        <div className="content content--stretch" style={{ margin: "20px" }}>
+          <h5> You've been invited to participate in these trips: </h5>
         </div>
-
-        <div className="profile__section section">
-          <Goals
-            learningData={learnTabItems}
-            dataShared={this.state}
-            handleChange={this.handleChange}
-            handleChangeArrays={this.handleChangeArrays}
-            handleButtonClick={this.handleButtonClick}
-            userInfo={this.props.selfProfileReducer}
-          />
+        <div>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              { ['gotta', 'wait', 'for', 'authorization'].map((item, index) => 
+                 <tr>
+                 <td>{item}</td>
+                 <td>{item}</td>
+                 <td>{item}</td>
+                 <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
+                   <div class="table__actions">
+                     <a href="" class="table__action" onClick={this.handleInvitationalHandClick}>
+                       <SvgHand />
+                     </a>
+                   </div>
+                 </td>
+               </tr>
+              )}
+            </tbody>
+          </Table>
         </div>
       </div>
     );

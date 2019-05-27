@@ -2,7 +2,7 @@
 import SvgLogo from "./LoginPageComponents/img/SvgLogo.jsx";
 import SlackLogo from "./LoginPageComponents/img/SlackLogo.jsx";
 import Illustration from "./LoginPageComponents/img/illustration.png";
-const ServerHostName = 'http://localhost:8080';
+const ServerHostName = 'http://localhost:5001';
 import { connect } from "react-redux";
 import {
     tryLogin,
@@ -27,15 +27,18 @@ class RegisterPage extends Component {
   };
 
   OnCreateAccButtonClick = () => {
-    alert("Create my acc: \n" + this.emailInput.current.value + 
+    /*alert("Create my acc: \n" + this.emailInput.current.value + 
                          "\n" + this.passwordInput.current.value + 
                          "\n" + this.passwordInput2.current.value +
                          "\n" + this.nameInput.current.value +
-                         "\n" + this.surnameInput.current.value);
+                         "\n" + this.surnameInput.current.value);*/
                          
     tryRegister(
       this.emailInput.current.value.toString(),
       this.passwordInput.current.value.toString(),
+      this.passwordInput2.current.value.toString(),
+      this.nameInput.current.value.toString(),
+      this.surnameInput.current.value.toString(),
       this.props.history,
       this.props.dispatch
     );
@@ -51,8 +54,6 @@ class RegisterPage extends Component {
 
   OnRegisterButtonClick = () => {
     this.props.history.push("/login");
-
- 
   };
 
   render() {
@@ -163,8 +164,9 @@ class RegisterPage extends Component {
                 </button>
               </div>
             </form>
+            
             <div className="error__hidden" id="error">
-
+             
             </div>
 
             <div className="sidebar__copyrightt sidebar__copyrightt--login">
