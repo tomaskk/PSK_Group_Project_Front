@@ -38,6 +38,7 @@ export const tryRegister = (mail, pw, confirmPw, name, surname, history, dispatc
             document.getElementById("error").classList = "error__hidden";
         })
         .catch(error => {
+            alert('Failed attempt.');
             document.getElementById("error").classList = "error";
         });
 };
