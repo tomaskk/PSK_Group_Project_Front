@@ -1,51 +1,63 @@
 import React from 'react';
 import SkillRow from './SkillRow';
+import { Table } from 'react-bootstrap';
 
-export default function SkillsList(props) {
-  const skillRows = [...props.specialistTabItems];
-  const travels = [...props.travelsList];
-  const users = [...props.employeesList];
-  const myName = [...props.name];
-  const mySurname = [...props.surname];
+import { Component } from 'react';
 
-  const skillRowItems = skillRows.map(skillRow => (
-    <li key={skillRow.id} className="skills__row">
-      <SkillRow
-        knowTechName={skillRow.knowTechName}
-        starCount={skillRow.stars}
-      />
-    </li>
-  ));
+//export default function SkillsList(props)
+
+
+export default class SkillsList extends Component {
+  constructor(props){
+    super(props);
+    
+  }
 
   getUpcomingTravelsDTO = () => {
 
-    //-- for each travel
-    let DTO = travels.filter( item => {
+    let DTO = this.props.travelsList.filter( item => {
 
       let thisUserIncluded = false;
-      //-- check each record if user is travelling
-      this.props.users.forEach(record => {
+      this.props.employeesList.forEach(record => {
         if(record.travel.id === item["id"] 
-        && record.employee.firstName === myName
-        && record.employee.lastName === mySurname){
+        && record.employee.firstName === this.props.name
+        && record.employee.lastName === this.props.surname){
           thisUserIncluded = true;
         }
-        //console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + "\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
       });
 
       let item_date = new Date(Date.parse(item["startTime"]));
       return (Date.now() <= item_date && thisUserIncluded);
     });
-
+    console.log(DTO[0])
     return DTO;
   }
+  
+  render(){
+    const skillRows = [...this.props.specialistTabItems];
+  
+    const skillRowItems = skillRows.map(skillRow => (
+      <li key={skillRow.id} className="skills__row">
+        <SkillRow
+          knowTechName={skillRow.knowTechName}
+          starCount={skillRow.stars}
+        />
+      </li>
+    ));
 
-  return (
-    <div>
-      <ul className="skills">{skillRowItems}</ul>
-      
-
-      { travels.map((item, index) => 
+    return (
+      <div>      
+        <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Start time</th>
+                <th>End time</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.getUpcomingTravelsDTO().map((item, index) => 
                 <tr>
                   <td>{ index + 1 }</td>
                   <td>{ item.name }</td>
@@ -53,8 +65,9 @@ export default function SkillsList(props) {
                   <td>{ item.endTime.replace('T', ' | ').substring(0, 21) }</td>
                 </tr>
               )}
-
-
-    </div>
-  );
+            </tbody>
+          </Table>
+      </div>
+    );
+  }
 }

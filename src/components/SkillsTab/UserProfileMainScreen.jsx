@@ -61,7 +61,11 @@ class UserProfileMainScreen extends Component {
             currentState={this.state.currentTab}
             specialistTabItems={this.props.specialistTabItems}
             learnTabItems={this.props.learnTabItems}
+
             travelsList={this.props.travelsList}
+            employeesList={this.props.employeeTravel}
+            name={this.getCurrentUser().firstName}
+            surname={this.getCurrentUser().lastName}
           />
         </div>
       </main>
@@ -76,6 +80,7 @@ function mapStateToProps(state) {
     learnTabItems: state.userProfileReducer.learnTabItems,
 
     users: state.LDReducer.filteredUsers,
+    employeeTravel: state.LDReducer.employeeTravel,
     travelsList: state.LDReducer.travelsList,
   };
 }
