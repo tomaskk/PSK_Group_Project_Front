@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import axios from "axios";
+import { ServerHostName } from '../../../../../constants/serverUri.js';
+
 class AssignTravelPopup extends React.Component {
 
   constructor(props) {
@@ -40,13 +43,45 @@ class AssignTravelPopup extends React.Component {
     });
   }
 
-  handleSendInvitationClick(closePopup){
+  handleSendInvitationClick(e) {
+    e.preventDefault();
+  
+    //-- get correct IDs
+    let userId = -500;
+    let travellingId = -500;
+    let apartId = -500;
 
+    this.props.filteredUsers.forEach(user => {
+      if(user.firstName === this.props.userInfo.name && user.lastName === this.props.userInfo.surname){
+        userId = user.id;
+      }
+    });
+
+    this.props.travelsList.forEach(travel => {
+      if(travel.startTime.substring(0, 10) === this.state.pickedTravel.substring(1, 11) 
+      && travel.name === this.state.pickedTravel.substring(26)){
+        travellingId = travel.id;
+      }
+    });
+
+    alert(this.state.pickedTravel + '\n' + this.state.pickedApartment + '\n user: ' + userId + '\n travel: ' + travellingId);
+
+    //-- add new EmployeeTravel record (to appear in my profile for user to accept/deny)
+    axios.post(ServerHostName + '/api/EmployeeTravel', {
+      employeeId: userId, 
+      travelId: travellingId,
+      //apartmentId: apartId
+      confirm: false,
+    })
+    .then(response => {
+        console.log(response);
+    })
+
+    this.props.onToggle(e);
   }
 
   render(){
     const { onToggle, isOpen, userInfo } = this.props;
-    const items = ['abc123', 'abc234', 'chi001', 'kno223', 'vno890'];
 
     return (
       <Modal show={isOpen} onHide={onToggle} className="Popup" size="lg" centered>
@@ -83,7 +118,7 @@ class AssignTravelPopup extends React.Component {
             <Form.Group>
               <Form.Control as="select" value={this.state.pickedTravel} onChange={e => this.handlePickTravel(e)}> 
                 <option>Pick a travel...</option>
-                {this.getTravelsDTO().map(item => (
+                {this.getTravelsDTO().map((item, index) => (
                   <option> [{item.startTime.substring(0, 10)} - {item.endTime.substring(0, 10)}] { item.name }  </option>
                 ))}
               </Form.Control>
@@ -95,7 +130,7 @@ class AssignTravelPopup extends React.Component {
             <Form.Group>
               <Form.Control as="select" value={this.state.pickedApartment} onChange={e => this.handlePickApartment(e)}>
                 <option>Pick an apartment...</option>
-                {this.getApartmentsDTO().map(item => (
+                {this.getApartmentsDTO().map((item, index) => (
                   <option> { item.title } | { item.address }</option>
                 ))}
               </Form.Control>
@@ -108,7 +143,7 @@ class AssignTravelPopup extends React.Component {
           <Button variant="secondary" onClick={onToggle}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={onToggle}>
+          <Button variant="primary" onClick={e => this.handleSendInvitationClick(e)}>
             Send invitation
           </Button>
         </Modal.Footer>
@@ -121,6 +156,7 @@ const mapStateToProps = state => ({
   travelsList: state.LDReducer.travelsList,
   employeeTravel: state.LDReducer.employeeTravel,
   apartmentsList: state.LDReducer.apartmentsList,
+  filteredUsers: state.LDReducer.filteredUsers,
 });
 
 export default connect(mapStateToProps)(AssignTravelPopup);
