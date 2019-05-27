@@ -36,6 +36,9 @@ class RegisterPage extends Component {
     tryRegister(
       this.emailInput.current.value.toString(),
       this.passwordInput.current.value.toString(),
+      this.passwordInput2.current.value.toString(),
+      this.nameInput.current.value.toString(),
+      this.surnameInput.current.value.toString(),
       this.props.history,
       this.props.dispatch
     );
@@ -51,8 +54,6 @@ class RegisterPage extends Component {
 
   OnRegisterButtonClick = () => {
     this.props.history.push("/login");
-
- 
   };
 
   render() {

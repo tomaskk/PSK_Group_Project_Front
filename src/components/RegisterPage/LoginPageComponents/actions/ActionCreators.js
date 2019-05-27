@@ -1,5 +1,5 @@
-import axios from "axios";
-const ServerHostName = 'http://localhost:8080';
+import axios from 'axios';
+import { ServerHostName } from '../../../../constants/serverUri';
 import { LOGIN_USER, GET_USER_ROLE } from '../actions/ActionTypes';
 
 export const tryLogin = (email, password, rememberme, history, dispatch) => {
@@ -21,15 +21,20 @@ export const tryLogin = (email, password, rememberme, history, dispatch) => {
         });
 };
 
-export const tryRegister = (email, password, history, dispatch) => {
+export const tryRegister = (mail, pw, confirmPw, name, surname, history, dispatch) => {
     axios
-        .post(ServerHostName + "/api/auth/register", {
-            email: email,
-            password: password
+        .post(ServerHostName + "/api/accounts/register", {
+            email: mail,
+            password: pw,
+            confirmPassword: confirmPw,
+            firstName: name,
+            lastName: surname,
+            profilePhoto: "https://randomuser.me/api/portraits/lego/6.jpg",
+            registeredOfficeId: 1
         })
         .then(() => {
-            dispatch({ type: LOGIN_USER, data: true });
-            history.push("/");
+            //dispatch({ type: LOGIN_USER, data: true });
+            history.push("/login");
             document.getElementById("error").classList = "error__hidden";
         })
         .catch(error => {
