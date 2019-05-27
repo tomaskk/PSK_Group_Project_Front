@@ -9,7 +9,7 @@ import UserTable from './PeopleListComponents/UserTable.jsx';
 import SvgDownload from '../../common/images/SvgDownload.jsx';
 import Head from './PeopleListComponents/Head.jsx';
 
-import { loadUsersFromAPI, loadTravelsFromAPI, loadEmployeeTravelFromAPI } from './PeopleListComponents/actions/LDActions';
+import { loadUsersFromAPI, loadTravelsFromAPI, loadEmployeeTravelFromAPI, loadApartmentsFromAPI } from './PeopleListComponents/actions/LDActions';
 
 class PeopleList extends React.Component {
 
@@ -20,6 +20,7 @@ class PeopleList extends React.Component {
     this.props.dispatch(loadUsersFromAPI());
     this.props.dispatch(loadTravelsFromAPI());
     this.props.dispatch(loadEmployeeTravelFromAPI());
+    this.props.dispatch(loadApartmentsFromAPI());
 	}
   
   handleDownloadDTO = () => {

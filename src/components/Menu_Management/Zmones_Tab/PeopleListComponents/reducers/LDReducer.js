@@ -13,7 +13,8 @@ const initialState = {
   hoursDirection: true,
 
   travelsList: [],
-  employeeTravel: []
+  employeeTravel: [],
+  apartmentsList: []
 };
 
 export const LDReducer = (state = initialState, action) => {
@@ -80,6 +81,12 @@ export const LDReducer = (state = initialState, action) => {
       return{
         ...state,
         employeeTravel: action.payload
+      };
+
+    case 'APARTMENTS_LOAD_ALL':
+      return{
+        ...state,
+        apartmentsList: action.payload
       };
 
     default:

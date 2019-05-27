@@ -33,7 +33,7 @@ export function loadData(data, dispatchType) {
   }
 }
 
-//-- management -> available users
+//-- management -> get available users
 export const loadUsersFromAPI = () => dispatch => {
 
   axios.get(ServerHostName + '/api/Employees')
@@ -45,7 +45,7 @@ export const loadUsersFromAPI = () => dispatch => {
   })
 }
 
-//-- management -> available travels
+//-- management -> get available travels
 export const loadTravelsFromAPI = () => dispatch => {
 
   axios.get(ServerHostName + '/api/Travels')
@@ -57,7 +57,7 @@ export const loadTravelsFromAPI = () => dispatch => {
   })
 }
 
-//-- load employee_travel to the system
+//-- get employee_travel records
 export const loadEmployeeTravelFromAPI = () => dispatch => {
 
   axios.get(ServerHostName + '/api/EmployeeTravel')
@@ -66,5 +66,17 @@ export const loadEmployeeTravelFromAPI = () => dispatch => {
 
       //console.log(travels);
       dispatch(loadData(travels, 'EMPLOYEE_TRAVEL_LOAD_ALL'))
+  })
+}
+
+//-- get records of apartments 
+export const loadApartmentsFromAPI = () => dispatch => {
+
+  axios.get(ServerHostName + '/api/Apartments')
+  .then(response => {
+      let data = response.data;
+
+      //console.log(data);
+      dispatch(loadData(data, 'APARTMENTS_LOAD_ALL'))
   })
 }

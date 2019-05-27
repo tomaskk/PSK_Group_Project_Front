@@ -43,7 +43,7 @@ class UserPopup extends React.Component {
     let DTO = this.props.travelsList.filter( item => {
 
       let thisUserIncluded = false;
-      //-- check each record if user is travelling
+      //-- check each record if user has participated
       this.props.employeeTravel.forEach(record => {
         if(record.travel.id === item["id"] 
         && record.employee.firstName === this.props.userInfo.name
