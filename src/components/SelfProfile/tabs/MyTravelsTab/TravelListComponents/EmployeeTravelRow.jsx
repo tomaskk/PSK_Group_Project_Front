@@ -37,7 +37,9 @@ class EmployeeTravelRow extends Component {
   }
 
   render() {
-    const { column1, column2, column3, travelData } = this.props;
+    const {
+      column1, column2, column3, travelData
+    } = this.props;
 
     return (
       <tr className="table__row">

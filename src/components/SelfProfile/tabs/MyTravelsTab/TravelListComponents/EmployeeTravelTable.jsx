@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+
+import {
+  loadTravelsFromAPI,
+  loadEmployeeTravelFromAPI,
+  loadApartmentsFromAPI,
+} from '../../../../Menu_Management/Zmones_Tab/PeopleListComponents/actions/LDActions';
 
 import EmployeeTravelRow from './EmployeeTravelRow.jsx';
 
 import { employeeTravelShape } from '../../../../../types/proptypes';
 
 class EmployeeTravelTable extends Component {
+  constructor(props) {
+    super(props);
+
+    // this.props.dispatch(loadTravelsFromAPI());
+    this.props.dispatch(loadEmployeeTravelFromAPI());
+    // this.props.dispatch(loadApartmentsFromAPI());
+  }
+
   render() {
     const { employeeTravels } = this.props;
     console.log(this.props);
@@ -20,7 +33,7 @@ class EmployeeTravelTable extends Component {
               <EmployeeTravelRow
                 key={empTravel.id}
                 column1={empTravel.travel.name}
-                column2={empTravel.travel.travelTo.title}
+                column2={empTravel.travel.travelTo ? empTravel.travel.travelTo.title : '!missingDestination!'}
                 column3={empTravel.confirm}
                 travelData={empTravel.travel}
               />
@@ -32,17 +45,12 @@ class EmployeeTravelTable extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-
-  return {
-    employeeTravels: state.employeeTravelReducer.employeeTravels,
-  };
-};
+const mapStateToProps = state => ({
+  employeeTravels: state.LDReducer.employeeTravels,
+});
 
 export default connect(
-  mapStateToProps,
-  dispatch => bindActionCreators({}, dispatch)
+  mapStateToProps
 )(EmployeeTravelTable);
 
 EmployeeTravelTable.propTypes = {

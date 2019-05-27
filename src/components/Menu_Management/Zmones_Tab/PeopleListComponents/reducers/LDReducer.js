@@ -1,5 +1,3 @@
-import LDUserData from '../LDUserData.js';
-
 const initialState = {
   users: [],
   filteredUsers: [],
@@ -13,7 +11,7 @@ const initialState = {
   hoursDirection: true,
 
   travelsList: [],
-  employeeTravel: [],
+  employeeTravels: [],
   apartmentsList: []
 };
 
@@ -80,7 +78,7 @@ export const LDReducer = (state = initialState, action) => {
     case 'EMPLOYEE_TRAVEL_LOAD_ALL':
       return{
         ...state,
-        employeeTravel: action.payload
+        employeeTravels: action.payload
       };
 
     case 'APARTMENTS_LOAD_ALL':

@@ -33,29 +33,33 @@ class TravelCreationPopup extends React.Component {
     if (travelData) {
       this.state = {
         name: travelData.name,
-        travelFrom: travelData.travelFrom,
-        travelTo: travelData.travelTo,
-        travelStart: moment(travelData.startTime).toDate(),
-        travelEnd: moment(travelData.endTime).toDate(),
-        // FIXME: hotel name preset
-        hotelName: 'undefined logic',
-        hotelAddress: 'undefined logic',
-        hotelInfo: 'undefined logic',
-        travelType: 'undefined logic',
-        travelDescription: 'undefined logic',
+        travelFrom: travelData.travelFrom || '',
+        travelTo: travelData.travelTo || '',
+        startTime: moment(travelData.startTime).toDate(),
+        endTime: moment(travelData.endTime).toDate(),
+        hotels: travelData.hotels,
+        transports: travelData.transports,
+        cost: travelData.cost,
+        organizedBy: travelData.organizedBy
       };
     } else {
       this.state = {
         name: '',
         travelFrom: officeData[0],
         travelTo: officeData[0],
-        travelStart: new Date(),
-        travelEnd: new Date(),
-        hotelName: '',
-        hotelAddress: '',
-        hotelInfo: '',
-        travelType: travelTypes[0],
-        travelDescription: '',
+        startTime: new Date(),
+        endTime: new Date(),
+        hotels: [{
+          title: '',
+          description: '',
+          address: ''
+        }],
+        transports: [{
+          description: '',
+          typeOfTransport: ''
+        }],
+        cost: 0,
+        organizedBy: 'User check not implemented',
       };
     }
     console.log(this.state);
@@ -73,32 +77,32 @@ class TravelCreationPopup extends React.Component {
     this.setState({ travelTo: e.target.value });
   }
 
-  onTravelStartChange(e) {
-    this.setState({ travelStart: e });
+  onstartTimeChange(e) {
+    this.setState({ startTime: e });
   }
 
-  onTravelEndChange(e) {
-    this.setState({ travelEnd: e });
+  onendTimeChange(e) {
+    this.setState({ endTime: e });
   }
 
   onHotelAdressChange(e) {
-    this.setState({ hotelAddress: e.target.value });
+    this.setState({ hotels: [{...this.state.hotels[0], hotelAddress: e.target.value }] });
   }
 
   onHotelNameChange(e) {
-    this.setState({ hotelName: e.target.value });
+    this.setState({ hotels: [{...this.state.hotels[0], title: e.target.value }] });    
   }
 
   onHotelInfoChange(e) {
-    this.setState({ hotelInfo: e.target.value });
+    this.setState({ hotels: [{...this.state.hotels[0], description: e.target.value }] });
   }
 
   onTravelTypeChange(e) {
-    this.setState({ travelType: e.target.value });
+    this.setState({ transports: [{...this.state.transports[0], typeOfTransport: e.target.value }] });
   }
 
   onTravelDescriptionChange(e) {
-    this.setState({ travelDescription: e.target.value });
+    this.setState({ transports: [{...this.state.transports[0], description: e.target.value }] });
     console.log(this.state);
   }
 
@@ -177,8 +181,8 @@ class TravelCreationPopup extends React.Component {
                 <Form.Group>
                   <Form.Label>Start of travel</Form.Label>
                   <DatePicker
-                    selected={this.state.travelStart}
-                    onChange={e => this.onTravelStartChange(e)}
+                    selected={this.state.startTime}
+                    onChange={e => this.onstartTimeChange(e)}
                     readOnly={readOnly}
                   />
                 </Form.Group>
@@ -187,8 +191,8 @@ class TravelCreationPopup extends React.Component {
                 <Form.Group>
                   <Form.Label>End of travel</Form.Label>
                   <DatePicker
-                    selected={this.state.travelEnd}
-                    onChange={e => this.onTravelEndChange(e)}
+                    selected={this.state.endTime}
+                    onChange={e => this.onendTimeChange(e)}
                     readOnly={readOnly}
                   />
                 </Form.Group>
