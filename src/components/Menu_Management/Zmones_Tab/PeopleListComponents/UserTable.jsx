@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import UserRow from './UserRow.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 
 class UserTable extends Component {
   constructor(props) {
@@ -24,6 +23,7 @@ class UserTable extends Component {
                 pic={user.profilePhoto}
                 activity={user.available}
                 topic={user.topic}
+                email= { user.email }
               />
             ))}
           </tbody>

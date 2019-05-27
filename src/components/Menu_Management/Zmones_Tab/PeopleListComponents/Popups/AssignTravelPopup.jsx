@@ -29,7 +29,7 @@ const AssignTravelPopup = props => {
           <tbody>
             <tr>
               <td width="25%"> E-mail address </td>
-              <td width="75%"> random@mail.com </td>
+              <td width="75%"> { userInfo.email } </td>
             </tr>
             <tr>
               <td width="25%"> Status </td>

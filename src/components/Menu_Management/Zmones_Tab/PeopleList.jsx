@@ -17,10 +17,6 @@ class PeopleList extends React.Component {
 		super(props);
 		this.props.dispatch(loadDataFromAPI())
 	}
-
-  componentWillMount() {
-
-  }
   
   handleDownloadDTO = () => {
 
