@@ -2,11 +2,8 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier"],
+  "extends": ["airbnb"],
   "rules": {
-    "prettier/prettier": ["error"],
-
     "import/prefer-default-export": false,
     "react/destructuring-assignment": false,
     "prefer-destructuring": ["warn"],
@@ -18,6 +15,13 @@
     "no-plusplus": ["off"],
     "no-use-before-define": "warn",
     "react/require-default-props": ["warn"],
+
+    "linebreak-style": "off",
+    "semi": "off",
+    "quotes": "off",
+    "comma-dangle": "off",
+    "arrow-parens": "off",
+    "prefer-template": "off",
 
     "jsx-a11y/label-has-for": false,
     "jsx-a11y/label-has-associated-control": false,
