@@ -70,10 +70,10 @@ class Head extends Component {
   onSort(e, orderBy) {
     if (e !== null) e.preventDefault();
     //sets parameters
-    if (orderBy == 'firstName') var order = !this.props.nameDirection;
-    if (orderBy == 'lastName') var order = !this.props.surnameDirection;
-    if (orderBy == 'available') var order = !this.props.activityDirection;
-    if (orderBy == '') return;
+    if (orderBy === 'firstName') var order = !this.props.nameDirection;
+    if (orderBy === 'lastName') var order = !this.props.surnameDirection;
+    if (orderBy === 'available') var order = !this.props.activityDirection;
+    if (orderBy === '') return;
 
     //updates sort locally
     let newUsers = this.stableSort(

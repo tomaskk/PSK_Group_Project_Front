@@ -18,6 +18,7 @@ const defaultState = {};
 const middlewareEnhancer = applyMiddleware(thunk)
 
 const enhancers = compose(
+  /* global window */
   middlewareEnhancer,
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
