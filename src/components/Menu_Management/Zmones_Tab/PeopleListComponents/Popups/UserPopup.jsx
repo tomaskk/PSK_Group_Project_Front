@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-  //const UserPopup = props => {
 class UserPopup extends React.Component {
 
   constructor(props) {
@@ -11,7 +11,46 @@ class UserPopup extends React.Component {
   }
 
   componentDidMount(){
-    
+  
+  }
+
+  getUpcomingTravelsDTO = () => {
+
+   // let DTO = this.props.travelsList.map(function(item, i) { 
+   //   var item_date = new Date(Date.parse(item["startTime"]));
+
+     // if( item_date <= Date.now() ){
+        //console.log('\n | datenow ' + Date.now() + "\n | date time " + item["startTime"] + "\n | new date " + item_date.getTime());
+  //      return item; 
+      //}
+
+
+ 
+   // });
+//console.log('dto' + DTO);
+
+
+    let DTO = this.props.travelsList.filter( item => {
+
+      let thisUserIncluded = false;
+      this.props.employeeTravel.forEach(record => {
+        if(record.travel.id === item["id"] 
+        && record.employee.firstName === this.props.userInfo.name
+        && record.employee.lastName === this.props.userInfo.surname){
+          thisUserIncluded = true;
+        }
+        console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + 
+"\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
+      });
+
+
+
+      let item_date = new Date(Date.parse(item["startTime"]));
+      //console.log("nigga :" + item["name"] + "|" + this.props.userInfo.name);
+      return (Date.now() <= item_date && thisUserIncluded);
+    });
+
+    return DTO;
   }
 
   render(){
@@ -59,12 +98,14 @@ class UserPopup extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>CHI-3000</td>
-                <td>2020-10-12</td>
-                <td>2021-10-12</td>
-              </tr>
+              { this.getUpcomingTravelsDTO().map(item => 
+                <tr>
+                  <td>X</td>
+                  <td>{item.name}</td>
+                  <td>{item.startTime}</td>
+                  <td>{item.endTime}</td>
+                </tr>
+              )}
             </tbody>
           </Table>
 
@@ -79,10 +120,10 @@ class UserPopup extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {items.map(item => 
+              {this.props.travelsList.map(item => 
                 <tr>
                   <td>X</td>
-                  <td>{item}</td>
+                  <td>{item.name}</td>
                   <td>2010-10-16</td>
                   <td>2010-10-17</td>
                 </tr>
@@ -121,10 +162,15 @@ class UserPopup extends React.Component {
   }
 };
 
+const mapStateToProps = state => ({
+  travelsList: state.LDReducer.travelsList,
+  employeeTravel: state.LDReducer.employeeTravel,
+});
+
+export default connect(mapStateToProps)(UserPopup);
+
 UserPopup.propTypes = {
   onToggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   userInfo: PropTypes.object.isRequired
 };
-
-export default UserPopup;

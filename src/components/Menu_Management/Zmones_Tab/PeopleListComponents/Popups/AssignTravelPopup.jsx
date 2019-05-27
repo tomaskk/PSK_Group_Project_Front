@@ -3,64 +3,76 @@ import React from 'react';
 import { Button, Modal, Table, Form } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
+import axios from "axios";
 
-const AssignTravelPopup = props => {
-  const { onToggle, isOpen, userInfo } = props;
-  const items = ['abc123', 'abc234', 'chi001', 'kno223', 'vno890'];
+class AssignTravelPopup extends React.Component {
 
-  return (
-    <Modal show={isOpen} onHide={onToggle} className="Popup" size="lg" centered>
-      <Modal.Header>
-        <Modal.Title> 
-          <h4>
-            Selected person: &nbsp; <b><i> {userInfo.name} {userInfo.surname} </i></b> 
-            <img 
-              src={ userInfo.pic == null ? 'https://www.w3schools.com/howto/img_avatar.png'
-                  : userInfo.pic == 'string' ? 'https://www.w3schools.com/howto/img_avatar2.png' 
-                  : userInfo.pic }
-              alt="Profile pic" height="42" width="42" style={{borderRadius: "50%", marginLeft: "24px"}}/> 
-          </h4>
-        </Modal.Title>
-      </Modal.Header>
+  constructor(props) {
+    super(props);
+  }
 
-      <Modal.Body>
-        <h5>User's details:</h5>
-        <Table responsive bordered>
-          <tbody>
-            <tr>
-              <td width="25%"> E-mail address </td>
-              <td width="75%"> { userInfo.email } </td>
-            </tr>
-            <tr>
-              <td width="25%"> Status </td>
-              <td width="75%"> { userInfo.available == true ? 'Active' : 'Inactive' } </td>
-            </tr>
-          </tbody>
-        </Table>
+  componentDidMount(){
+    
+  }
 
-        <h5>Invite <b>{userInfo.name}</b> to travel:</h5>
-        <Form>
-          <Form.Group>
-            <Form.Control as="select">
-              {items.map(item => (
-                <option>{item}</option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-        </Form>
+  render(){
+    const { onToggle, isOpen, userInfo } = this.props;
+    const items = ['abc123', 'abc234', 'chi001', 'kno223', 'vno890'];
 
-      </Modal.Body>
+    return (
+      <Modal show={isOpen} onHide={onToggle} className="Popup" size="lg" centered>
+        <Modal.Header>
+          <Modal.Title> 
+            <h4>
+              Selected person: &nbsp; <b><i> {userInfo.name} {userInfo.surname} </i></b> 
+              <img 
+                src={ userInfo.pic == null ? 'https://www.w3schools.com/howto/img_avatar.png'
+                    : userInfo.pic == 'string' ? 'https://www.w3schools.com/howto/img_avatar2.png' 
+                    : userInfo.pic }
+                alt="Profile pic" height="42" width="42" style={{borderRadius: "50%", marginLeft: "24px"}}/> 
+            </h4>
+          </Modal.Title>
+        </Modal.Header>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick={onToggle}>
-          Cancel
-        </Button>
-        <Button variant="primary" onClick={onToggle}>
-          Send invitation
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
+        <Modal.Body>
+          <h5>User's details:</h5>
+          <Table responsive bordered>
+            <tbody>
+              <tr>
+                <td width="25%"> E-mail address </td>
+                <td width="75%"> { userInfo.email } </td>
+              </tr>
+              <tr>
+                <td width="25%"> Status </td>
+                <td width="75%"> { userInfo.available == true ? 'Active' : 'Inactive' } </td>
+              </tr>
+            </tbody>
+          </Table>
+
+          <h5>Invite <b>{userInfo.name}</b> to travel:</h5>
+          <Form>
+            <Form.Group>
+              <Form.Control as="select">
+                {items.map(item => (
+                  <option>{item}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Form>
+
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={onToggle}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={onToggle}>
+            Send invitation
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 };
 
 AssignTravelPopup.propTypes = {

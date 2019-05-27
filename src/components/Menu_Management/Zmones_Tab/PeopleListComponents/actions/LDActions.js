@@ -25,21 +25,46 @@ export function storeFilter(property, typed) {
   };
 }
 
-//-- management -> available users
-export function loadData(data) {
+// -- dispatch action to update store
+export function loadData(data, dispatchType) {
   return {
-      type: 'USERS_LOAD_ALL',
+      type: dispatchType,
       payload: data
   }
 }
 
-export const loadDataFromAPI = () => dispatch => {
+//-- management -> available users
+export const loadUsersFromAPI = () => dispatch => {
 
   axios.get(ServerHostName + '/api/Employees')
   .then(response => {
       let users = response.data;
 
-      console.log(users);
-      dispatch(loadData(users))
+      //console.log(users);
+      dispatch(loadData(users, 'USERS_LOAD_ALL'))
+  })
+}
+
+//-- management -> available travels
+export const loadTravelsFromAPI = () => dispatch => {
+
+  axios.get(ServerHostName + '/api/Travels')
+  .then(response => {
+      let travels = response.data;
+
+      //console.log(travels);
+      dispatch(loadData(travels, 'TRAVELS_LOAD_ALL'))
+  })
+}
+
+//-- load employee_travel to the system
+export const loadEmployeeTravelFromAPI = () => dispatch => {
+
+  axios.get(ServerHostName + '/api/EmployeeTravel')
+  .then(response => {
+      let travels = response.data;
+
+      //console.log(travels);
+      dispatch(loadData(travels, 'EMPLOYEE_TRAVEL_LOAD_ALL'))
   })
 }

@@ -10,7 +10,10 @@ const initialState = {
   nameDirection: true,
   surnameDirection: true,
   activityDirection: true,
-  hoursDirection: true
+  hoursDirection: true,
+
+  travelsList: [],
+  employeeTravel: []
 };
 
 export const LDReducer = (state = initialState, action) => {
@@ -65,6 +68,18 @@ export const LDReducer = (state = initialState, action) => {
         filteredUsers: action.payload,
         sortedUsers: action.payload,
         users: action.payload
+      };
+
+    case 'TRAVELS_LOAD_ALL':
+      return{
+        ...state,
+        travelsList: action.payload
+      };
+
+    case 'EMPLOYEE_TRAVEL_LOAD_ALL':
+      return{
+        ...state,
+        employeeTravel: action.payload
       };
 
     default:
