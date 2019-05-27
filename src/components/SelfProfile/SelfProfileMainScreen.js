@@ -321,6 +321,7 @@ class SelfProfileMainScreen extends Component {
     e.preventDefault();
     alert('Hand clicked!');
   }
+  
 
   render() {
     const personalInfoTabComponents = (
@@ -351,28 +352,20 @@ class SelfProfileMainScreen extends Component {
               </tr>
             </thead>
             <tbody>
-              { /*this.getUpcomingTravelsDTO().map((item, index) => 
-                <tr>
-                  <td>{ index + 1 }</td>
-                  <td>{ item.name }</td>
-                  <td>{ item.startTime.replace('T', ' | ').substring(0, 21) }</td>
-                  <td>{ item.endTime.replace('T', ' | ').substring(0, 21) }</td>
-                </tr>
-              )*/
-              <tr>
-                <td>hi</td>
-                <td>hi</td>
-                <td>hi</td>
-                <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
-                  <div class="table__actions">
-                    <a href="" class="table__action" onClick={this.handleInvitationalHandClick}>
-                      <SvgHand />
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              
-              }
+              { ['gotta', 'wait', 'for', 'authorization'].map((item, index) => 
+                 <tr>
+                 <td>{item}</td>
+                 <td>{item}</td>
+                 <td>{item}</td>
+                 <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
+                   <div class="table__actions">
+                     <a href="" class="table__action" onClick={this.handleInvitationalHandClick}>
+                       <SvgHand />
+                     </a>
+                   </div>
+                 </td>
+               </tr>
+              )}
             </tbody>
           </Table>
         </div>
