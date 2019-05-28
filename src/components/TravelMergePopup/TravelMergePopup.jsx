@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { travelShape } from "../../types/proptypes";
 import Popup from "../common/Popup/index.js";
+import { mergeTravels } from '../Menu_Management/Keliones_Tab/BackEndCalls'
 
 import "../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss";
 
@@ -15,26 +16,42 @@ class TravelMergePopup extends React.Component {
       toMerge: null,
       mergeInto: null
     };
-    console.log(this.state);
+
+    this.onMergeTravel = this.onMergeTravel.bind(this);
   }
 
   onToMergeChange(e) {
     this.setState({ toMerge: e.target.value });
+    console.log(e);
+
+    console.log(this.state);
   }
 
   onMergeIntoChange(e) {
     this.setState({ mergeInto: e.target.value });
   }
 
+  onMergeTravel() {
+    const { onTogglePopup } = this.props;
+    const { toMerge, mergeInto } = this.state;
+    console.log(this.state);
+    mergeTravels(toMerge.id, mergeInto.id, (res) => {
+      console.log(res);
+      onTogglePopup();
+    });
+  }
+
   render() {
-    const { popupTitle, showingPopup, onTogglePopup, travels } = this.props;
+    const {
+      popupTitle, showingPopup, onTogglePopup, travels
+    } = this.props;
 
     return (
       <Popup
         title={popupTitle}
         onExit={onTogglePopup}
         onCancel={onTogglePopup}
-        onAccept={onTogglePopup}
+        onAccept={this.onMergeTravel}
         isOpen={showingPopup}
       >
         <Form style={{ margin: 10 }}>
