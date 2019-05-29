@@ -9,7 +9,7 @@ import Reorder from '../../../../common/images/SvgReorder.jsx';
 import TableSearch from '../../../../common/images/TableSearch.jsx';
 import SvgCaretLines from '../../../../common/images/SvgCaretLines.jsx';
 
-import * as actions from './actions/LDActions';
+import * as actions from '../../../../Menu_Management/Zmones_Tab/PeopleListComponents/actions/LDActions';
 import { getSorting, stableSort } from '../../../../../helpers/Sorting';
 
 class Head extends Component {

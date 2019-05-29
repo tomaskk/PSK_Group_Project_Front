@@ -1,6 +1,8 @@
 /* eslint-disable react/sort-comp */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { CSVLink } from 'react-csv';
 import { Route } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -11,10 +13,13 @@ import VoyageTable from './VoyagesListComponents/VoyageTable.jsx';
 import SvgDownload from '../../common/images/SvgDownload';
 import Head from './VoyagesListComponents/Head.jsx';
 import TravelCreationPopup from '../../TravelCreationPopup/TravelCreationPopup';
+import TravelMergePopup from '../../TravelMergePopup'
 
-// Provides users - false error
-// eslint-disable-next-line no-unused-vars
-import storage from './VoyagesListComponents/LocalStorage.js';
+// Misc
+import {
+  loadTravelsFromAPI
+} from '../Zmones_Tab/PeopleListComponents/actions/LDActions';
+import { travelShape } from '../../../types/proptypes';
 import { getSorting, stableSort } from '../../../helpers/Sorting';
 
 const ButtonTextStyle = {
@@ -34,7 +39,7 @@ const styles = {
   },
 };
 
-export default class VoyagesList extends React.Component {
+class VoyagesList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,9 +50,11 @@ export default class VoyagesList extends React.Component {
       data: [],
 
       showingPopup: false,
+      showingMergePopup: false,
     };
 
     this.tableElement = React.createRef();
+
     this.sortByLastActive = this.sortByLastActive.bind(this);
     this.sortByName = this.sortByName.bind(this);
     this.onNameSearch = this.onNameSearch.bind(this);
@@ -55,6 +62,9 @@ export default class VoyagesList extends React.Component {
     this.sortList = this.sortList.bind(this);
 
     this.togglePopup = this.togglePopup.bind(this);
+    this.toggleMergePopup = this.toggleMergePopup.bind(this);
+
+    this.props.dispatch(loadTravelsFromAPI());
   }
 
   componentWillMount() {
@@ -71,6 +81,12 @@ export default class VoyagesList extends React.Component {
   togglePopup() {
     this.setState(prevState => ({
       showingPopup: !prevState.showingPopup,
+    }));
+  }
+
+  toggleMergePopup() {
+    this.setState(prevState => ({
+      showingMergePopup: !prevState.showingMergePopup,
     }));
   }
 
@@ -130,6 +146,7 @@ export default class VoyagesList extends React.Component {
 
   render() {
     const createButtonText = 'Create Travel';
+    const mergeButtonText = "Merge Travels";
 
     return (
       <main className="main">
@@ -157,10 +174,22 @@ export default class VoyagesList extends React.Component {
             >
               {createButtonText}
             </Button>
+            <Button
+              style={styles.createTravelButton}
+              onClick={this.toggleMergePopup}
+            >
+              {mergeButtonText}
+            </Button>
             <TravelCreationPopup
               popupTitle={createButtonText}
               showingPopup={this.state.showingPopup}
               onTogglePopup={this.togglePopup}
+            />
+            <TravelMergePopup
+              popupTitle={mergeButtonText}
+              showingPopup={this.state.showingMergePopup}
+              onTogglePopup={this.toggleMergePopup}
+              travels={this.props.travels}
             />
           </Col>
         </Row>
@@ -186,3 +215,15 @@ export default class VoyagesList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  travels: state.LDReducer.travelsList,
+});
+
+export default connect(
+  mapStateToProps
+)(VoyagesList);
+
+VoyagesList.propTypes = {
+  travels: PropTypes.arrayOf(travelShape).isRequired,
+};
