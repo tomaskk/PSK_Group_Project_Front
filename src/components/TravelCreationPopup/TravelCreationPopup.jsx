@@ -62,7 +62,6 @@ class TravelCreationPopup extends React.Component {
         organizedBy: 'User check not implemented',
       };
     }
-    console.log(this.state);
   }
 
   onNameChange(e) {
@@ -86,7 +85,7 @@ class TravelCreationPopup extends React.Component {
   }
 
   onHotelAdressChange(e) {
-    this.setState({ hotels: [{...this.state.hotels[0], hotelAddress: e.target.value }] });
+    this.setState({ hotels: [{...this.state.hotels[0], address: e.target.value }] });
   }
 
   onHotelNameChange(e) {

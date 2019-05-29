@@ -44,7 +44,7 @@ class VoyagesList extends React.Component {
     super(props);
 
     this.state = {
-      users: [],
+      travels: [],
       nameOrder: 'asc',
       lastActiveOrder: 'asc',
       data: [],
@@ -58,24 +58,12 @@ class VoyagesList extends React.Component {
     this.sortByLastActive = this.sortByLastActive.bind(this);
     this.sortByName = this.sortByName.bind(this);
     this.onNameSearch = this.onNameSearch.bind(this);
-    this.onDeleteUser = this.onDeleteUser.bind(this);
     this.sortList = this.sortList.bind(this);
 
     this.togglePopup = this.togglePopup.bind(this);
     this.toggleMergePopup = this.toggleMergePopup.bind(this);
 
     this.props.dispatch(loadTravelsFromAPI());
-  }
-
-  componentWillMount() {
-    this.state.users = [
-      // eslint-disable-next-line no-undef
-      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users,
-    ];
-    this.state.data = [
-      // eslint-disable-next-line no-undef
-      ...JSON.parse(window.localStorage.getItem('usersWhoLeftData')).users,
-    ];
   }
 
   togglePopup() {
@@ -91,26 +79,14 @@ class VoyagesList extends React.Component {
   }
 
   sortList(order, orderBy) {
-    const { users: prevUsers } = this.state;
+    const { travels: prevUsers } = this.state;
 
-    const newUsers = stableSort(prevUsers, getSorting(order, orderBy));
-    this.setState({ users: newUsers });
-    this.tableElement.current.changeUsers(newUsers);
+    const newTravels = stableSort(prevUsers, getSorting(order, orderBy));
+    this.setState({ travels: newTravels });
+    this.tableElement.current.changeUsers(newTravels);
   }
 
   // Events-------------------------------------
-
-  onDeleteUser(id) {
-    const { users: prevUsers } = this.state;
-
-    let newUsers = Array.from(prevUsers);
-    const ind = newUsers.findIndex(i => i.id === id);
-    newUsers.splice(ind, 1);
-
-    if (newUsers === null) newUsers = [];
-    this.setState({ users: newUsers, data: newUsers });
-    this.tableElement.current.changeUsers(newUsers);
-  }
 
   sortByName() {
     let order = 'desc';
@@ -140,7 +116,7 @@ class VoyagesList extends React.Component {
         return i.name.toLowerCase().match(searchString);
       });
     }
-    this.setState({ users: libraries });
+    this.setState({ travels: libraries });
     this.tableElement.current.changeUsers(libraries);
   }
 
@@ -160,7 +136,7 @@ class VoyagesList extends React.Component {
             <a href="" className="button--primary admin__action">
               <CSVLink
                 style={{ ...styles.CSVButton, marginLeft: 0 }}
-                data={this.state.users}
+                data={this.state.travels}
                 filename="AllVoyages.csv"
               >
                 <SvgDownload />
@@ -204,7 +180,7 @@ class VoyagesList extends React.Component {
             to="host/admin/lost"
             component={() => (
               <VoyageTable
-                users={this.state.users}
+                travels={this.props.travels}
                 ref={this.tableElement}
                 onDeleteClick={this.onDeleteUser}
               />

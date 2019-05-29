@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SvgDelete from '../../../common/images/SvgDelete.jsx';
+import SvgHand from '../../../common/images/SvgHand.jsx';
 
 import TravelCreationPopup from '../../../TravelCreationPopup';
 
@@ -10,17 +10,12 @@ class UserRow extends Component {
       showPopup: false,
     };
 
-    this.onDeleteClick = this.onDeleteClick.bind(this);
     this.onRowClick = this.onRowClick.bind(this);
     this.onExitVoyagePopup = this.onExitVoyagePopup.bind(this);
   }
 
-  onDeleteClick(e) {
+  onRowClick(e) {
     e.preventDefault();
-    this.props.onDeleteClick(this.props.id);
-  }
-
-  onRowClick() {
     this.setState({ showPopup: true });
   }
 
@@ -41,20 +36,11 @@ class UserRow extends Component {
             <td className="table__cell table__cell--tiny table__cell--short table__cell--date">
               {startsOn}
             </td>
-            <td className="table__cell table__cell--last table__cell--date">
-              <div
-                className="table__content table__content--actions"
-                style={{ justifyContent: 'space-around' }}
-              >
-                {/* <div className="table__actions"> */}
-                <a
-                  href=""
-                  className="table__action"
-                  onClick={this.onDeleteClick}
-                >
-                  <SvgDelete />
+            <td className="table__cell table__cell--tiny table__cell--short table__cell--last">
+              <div className="table__actions">
+                <a href="" className="table__action" onClick={this.onRowClick}>
+                  <SvgHand />
                 </a>
-                {/* </div> */}
               </div>
             </td>
           </tr>
