@@ -24,3 +24,25 @@ export async function mergeTravels(toMergeId, mergeIntoId, callback) {
   }
   return null;
 }
+
+export async function updateTravel(travelData, callback) {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      // "Authorization": authToken,
+    },
+  };
+
+  const reqData = JSON.stringify(travelData);
+
+  try {
+    const travelId = travelData.id;
+    const val = await axios.put(`${ServerHostName}/api/Travels/${travelId}`, reqData, config);
+    callback(val);
+    return val;
+  } catch (error) {
+    // eslint-disable-next-line
+    alert(error);
+  }
+  return null;
+}

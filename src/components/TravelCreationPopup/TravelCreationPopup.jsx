@@ -1,14 +1,17 @@
 import React from 'react';
-import { Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import {
+  Form, Row, Col, ButtonGroup, ToggleButton,
+} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { travelShape } from '../../types/proptypes';
 import Popup from '../common/Popup/index.js';
+import { updateTravel } from "../Menu_Management/Keliones_Tab/BackEndCalls";
 
 import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
+// FIXME: use actual offices
 /** e.g.:
  * {
  *    "title": "Vilniaus DevBridge",
@@ -64,6 +67,23 @@ class TravelCreationPopup extends React.Component {
     }
   }
 
+  onSubmitChanges() {
+    const travelChangeBucket = {};
+    if (this.state.name) travelChangeBucket.name = this.state.name;
+    if (this.state.travelFrom) travelChangeBucket.travelFrom = this.state.travelFrom;
+    if (this.state.travelTo) travelChangeBucket.travelTo = this.state.travelTo;
+    if (this.state.startTime) travelChangeBucket.startTime = this.state.startTime;
+    if (this.state.endTime) travelChangeBucket.endTime = this.state.endTime;
+    if (this.state.hotels) travelChangeBucket.hotels = this.state.hotels;
+    if (this.state.transports) travelChangeBucket.transports = this.state.transports;
+    if (this.state.cost) travelChangeBucket.cost = this.state.cost;
+    if (this.state.organizedBy) travelChangeBucket.organizedBy = this.state.organizedBy;
+
+    console.log(travelChangeBucket);
+
+    updateTravel(travelChangeBucket, () => this.props.onTogglePopup());
+  }
+
   onNameChange(e) {
     this.setState({ name: e.target.value });
   }
@@ -106,14 +126,16 @@ class TravelCreationPopup extends React.Component {
   }
 
   render() {
-    const { popupTitle, showingPopup, onTogglePopup, readOnly } = this.props;
+    const {
+      popupTitle, showingPopup, onTogglePopup, readOnly
+    } = this.props;
 
     return (
       <Popup
         title={popupTitle}
         onExit={onTogglePopup}
         onCancel={onTogglePopup}
-        onAccept={onTogglePopup}
+        onAccept={() => this.onSubmitChanges()}
         isOpen={showingPopup}
       >
         <Form>
@@ -145,10 +167,9 @@ class TravelCreationPopup extends React.Component {
                 <Form.Control
                   as="select"
                   onChange={e => this.onTravelFromChange(e)}
-                  value={this.state.travelFrom.title}
                 >
                   {officeData.map(office => (
-                    <option>{office.title}</option>
+                    <option value={office.id}>{office.title}</option>
                   ))}
                 </Form.Control>
               )}
@@ -166,10 +187,9 @@ class TravelCreationPopup extends React.Component {
                 <Form.Control
                   as="select"
                   onChange={e => this.onTravelToChange(e)}
-                  value={this.state.travelTo.title}
                 >
                   {officeData.map(office => (
-                    <option>{office.title}</option>
+                    <option value={office.id}>{office.title}</option>
                   ))}
                 </Form.Control>
               )}
