@@ -38,7 +38,12 @@ class LoginPage extends Component {
       this.props.history,
       this.props.dispatch
     );
+    alert(this.emailInput.current.value.toString());
+    console.log('\nb4');
+    this.props.setCurrentUser();
+    console.log('\nafter');
 
+    //this.props.history.push("/");
     //immitate successful login
     //this.props.history.push("/");
   };
