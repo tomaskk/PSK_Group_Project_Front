@@ -15,28 +15,6 @@ class UserPopup extends React.Component {
   }
 
   getUpcomingTravelsDTO = () => {
-/*
-    //-- for each travel
-    let statuses = [];
-    let DTO = this.props.travelsList.filter( item => {
-
-      let thisUserIncluded = false;
-      //-- check each record if user is travelling
-      this.props.employeeTravel.forEach(record => {
-        if(record.travel.id === item["id"] 
-        && record.employee.firstName === this.props.userInfo.name
-        && record.employee.lastName === this.props.userInfo.surname){
-          thisUserIncluded = true;
-          statuses.push(record.confirm);
-        }
-        //console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + "\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
-      });
-
-      let item_date = new Date(Date.parse(item["startTime"]));
-      return (Date.now() <= item_date && thisUserIncluded);
-    });
-
-    return DTO; */
 
     let DTO = this.props.employeeTravel.filter( item => {
 
