@@ -32,14 +32,11 @@ class App extends Component {
   }
 
   handleFakeSignIn(param)  {
-    //console.log(param);
     this.setState({
       currentUser: param
     });
   }
-/* <Route exact path="/" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen {...props} currentUser={ this.state.currentUser }/></div></div> )
-          }} />*/
+
   render() {
     return (
       <Provider store={store}>
