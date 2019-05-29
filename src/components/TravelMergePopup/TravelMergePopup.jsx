@@ -8,6 +8,8 @@ import { mergeTravels } from '../Menu_Management/Keliones_Tab/BackEndCalls'
 
 import "../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss";
 
+const _ = require('lodash');
+
 class TravelMergePopup extends React.Component {
   constructor(props) {
     super(props);
@@ -22,9 +24,6 @@ class TravelMergePopup extends React.Component {
 
   onToMergeChange(e) {
     this.setState({ toMerge: e.target.value });
-    console.log(e);
-
-    console.log(this.state);
   }
 
   onMergeIntoChange(e) {
@@ -32,10 +31,14 @@ class TravelMergePopup extends React.Component {
   }
 
   onMergeTravel() {
-    const { onTogglePopup } = this.props;
+    const { onTogglePopup, travels } = this.props;
     const { toMerge, mergeInto } = this.state;
+
+    // const toMerge = _.find(travels, ['id', toMergeId]);
+    // const mergeInto = _.find(travels, ['id', mergeIntoId]);
+
     console.log(this.state);
-    mergeTravels(toMerge.id, mergeInto.id, (res) => {
+    mergeTravels(toMerge, mergeInto, (res) => {
       console.log(res);
       onTogglePopup();
     });
@@ -63,10 +66,9 @@ class TravelMergePopup extends React.Component {
               <Form.Control
                 as="select"
                 onChange={e => this.onToMergeChange(e)}
-                value={this.state.toMerge && this.state.toMerge.title}
               >
                 {travels.map(travel => (
-                  <option value={travel}>{travel.name}</option>
+                  <option value={travel.id}>{travel.name}</option>
                 ))}
               </Form.Control>
             </Col>
@@ -79,10 +81,9 @@ class TravelMergePopup extends React.Component {
               <Form.Control
                 as="select"
                 onChange={e => this.onMergeIntoChange(e)}
-                value={this.state.mergeInto && this.state.mergeInto.title}
               >
                 {travels.map(travel => (
-                  <option value={travel}>{travel.name}</option>
+                  <option value={travel.id}>{travel.name}</option>
                 ))}
               </Form.Control>
             </Col>
