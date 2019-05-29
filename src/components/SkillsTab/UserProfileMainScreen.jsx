@@ -80,7 +80,7 @@ function mapStateToProps(state) {
     learnTabItems: state.userProfileReducer.learnTabItems,
 
     users: state.LDReducer.filteredUsers,
-    employeeTravel: state.LDReducer.employeeTravel,
+    employeeTravel: state.LDReducer.employeeTravels,
     travelsList: state.LDReducer.travelsList,
   };
 }

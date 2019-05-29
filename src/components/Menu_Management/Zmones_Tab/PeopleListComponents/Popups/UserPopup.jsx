@@ -189,7 +189,7 @@ class UserPopup extends React.Component {
 
 const mapStateToProps = state => ({
   travelsList: state.LDReducer.travelsList,
-  employeeTravel: state.LDReducer.employeeTravel,
+  employeeTravel: state.LDReducer.employeeTravels,
 });
 
 export default connect(mapStateToProps)(UserPopup);
