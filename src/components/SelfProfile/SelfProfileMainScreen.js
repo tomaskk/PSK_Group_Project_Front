@@ -13,6 +13,7 @@ import Skills from './SelfProfileComponents/Skills';
 import Goals from './SelfProfileComponents/Goals';
 import TravelList from './tabs/MyTravelsTab/TravelList';
 import SvgHand from '../common/images/SvgHand.jsx';
+import InvitationRow from './InvitationRow.jsx';
 
 import * as actions from './actions/switchTabs';
 
@@ -48,7 +49,6 @@ class SelfProfileMainScreen extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeArrays = this.handleChangeArrays.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.handleInvitationalHandClick = this.handleInvitationalHandClick.bind(this);
   }
 
   handleNavigation(newTab) {
@@ -316,11 +316,6 @@ class SelfProfileMainScreen extends Component {
         this.setState({ isEditModeDisabled: false });
     }
   }
-
-  handleInvitationalHandClick(e) {
-    e.preventDefault();
-    alert('Hand clicked!');
-  }
   
   getUpcomingTravelsDTO = () => {
 
@@ -337,6 +332,7 @@ class SelfProfileMainScreen extends Component {
       let item_date = new Date(Date.parse(item.travel.startTime));
       return (Date.now() <= item_date && thisUserIncluded);
     });
+    
     return DTO;
   }
 
@@ -372,21 +368,8 @@ class SelfProfileMainScreen extends Component {
             </thead>
             <tbody>
               { this.getUpcomingTravelsDTO().map((item, index) => 
-                 <tr>
-
-                  <td>{ item.travel.name }</td>
-                  <td>{ item.travel.startTime.replace('T', ' | ').substring(0, 21) }</td>
-                  <td>{ item.travel.endTime.replace('T', ' | ').substring(0, 21) }</td>
-                  <td>{ item.confirm == true ? 'Accepted' : 'Invited' }</td>
-                 <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
-                   <div class="table__actions">
-                     <a href="" class="table__action" onClick={this.handleInvitationalHandClick}>
-                       <SvgHand />
-                     </a>
-                   </div>
-                 </td>
-               </tr>
-              )}
+                <InvitationRow item = {item} currentUser= {this.props.currentUser} />
+                 )}
             </tbody>
           </Table>
         </div>
