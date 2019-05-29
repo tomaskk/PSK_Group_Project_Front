@@ -330,7 +330,7 @@ class SelfProfileMainScreen extends Component {
         }
 
       let item_date = new Date(Date.parse(item.travel.startTime));
-      return (Date.now() <= item_date && thisUserIncluded);
+      return (Date.now() <= item_date && thisUserIncluded && !item.confirm);
     });
     
     return DTO;

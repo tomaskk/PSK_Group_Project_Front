@@ -17,12 +17,9 @@ class InvitationRow extends React.Component {
   }
 
   handleInvitationalHandClick(param) {
-    //alert('stravel id: ' + param + " | username: " + this.props.currentUser);
 
-    // get user id
     let userId = -500;
-    //console.log(this.props.users);
-
+    let recordId = -500;
     this.props.users.forEach(user => {
         if(user.userName == this.props.currentUser)
             userId = user.id;
@@ -34,9 +31,13 @@ class InvitationRow extends React.Component {
     }
     else
     {
-        axios.post(ServerHostName + "/api/EmployeeTravel", {
-            employeeId: param,
-            travelId: userId,
+        this.props.employeeTravel.forEach(item => {
+            if(item.travel.id === param && item.employee.id === userId)
+                recordId = item.id;
+        });
+
+
+        axios.put(ServerHostName + "/api/employeeTravel/" + recordId, {
             confirm: true
             }).then(response => {
                 alert('This invitation was marked as `Accepted`. Please re-enter the page.');
