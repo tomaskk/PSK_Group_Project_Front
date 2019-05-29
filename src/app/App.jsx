@@ -31,12 +31,15 @@ class App extends Component {
     this.handleFakeSignIn = this.handleFakeSignIn.bind(this);
   }
 
-  handleFakeSignIn()  {
-    //alert(e.target.value);
-    console.log('\nnigguj');
-    console.log('\nb4WTFFF');
+  handleFakeSignIn(param)  {
+    //console.log(param);
+    this.setState({
+      currentUser: param
+    });
   }
-
+/* <Route exact path="/" render={ () => {
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen {...props} currentUser={ this.state.currentUser }/></div></div> )
+          }} />*/
   render() {
     return (
       <Provider store={store}>
@@ -46,9 +49,7 @@ class App extends Component {
 
           <Route path="/register" component={registerPage} />
 
-          <Route exact path="/" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen/></div></div> )
-          }} />
+          <Route exact path="/" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen {...props} currentUser={ this.state.currentUser }/></div></div> } />
 
           <Route path="/host/manage/users" render={ () => {
                 return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList/></div></div> )
