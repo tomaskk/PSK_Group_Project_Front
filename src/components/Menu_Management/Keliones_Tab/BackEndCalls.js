@@ -1,6 +1,9 @@
 import axios from "axios";
 import { ServerHostName } from '../../../constants/serverUri.js';
 
+// Required for data calls
+import "babel-polyfill";
+
 export async function mergeTravels(toMergeId, mergeIntoId, callback) {
   const config = {
     headers: {
@@ -11,7 +14,13 @@ export async function mergeTravels(toMergeId, mergeIntoId, callback) {
 
   const reqData = JSON.stringify({ id: toMergeId });
 
-  const val = await axios.post(`https://${ServerHostName}/api/Travels/JoinTravels/${mergeIntoId}`, reqData, config);
-  callback(val);
-  return val;
+  try {
+    const val = await axios.put(`${ServerHostName}/api/Travels/JoinTravels/${mergeIntoId}`, reqData, config);
+    callback(val);
+    return val;
+  } catch (error) {
+    // eslint-disable-next-line
+    alert(error);
+  }
+  return null;
 }
