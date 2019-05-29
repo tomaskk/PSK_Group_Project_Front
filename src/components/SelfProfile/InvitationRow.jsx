@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SvgHand from '../common/images/SvgHand.jsx';
-
+import { ServerHostName } from '../../constants/serverUri';
+import axios from "axios";
 
 class InvitationRow extends React.Component {
 
@@ -20,21 +21,28 @@ class InvitationRow extends React.Component {
 
     // get user id
     let userId = -500;
-    console.log(this.props.users);
+    //console.log(this.props.users);
 
     this.props.users.forEach(user => {
         if(user.userName == this.props.currentUser)
             userId = user.id;
     });
 
-   
-
-    /* {
-  "employeeId": 5,
-  "travelId": 3,
-  "confirm": true
-}*/
- 
+    if(userId < 0)
+    {
+        alert('Please log in first.');
+    }
+    else
+    {
+        axios.post(ServerHostName + "/api/EmployeeTravel", {
+            employeeId: param,
+            travelId: userId,
+            confirm: true
+            }).then(response => {
+                alert('This invitation was marked as `Accepted`. Please re-enter the page.');
+                console.log(response);
+            });
+    }
   }
 
   render(){
