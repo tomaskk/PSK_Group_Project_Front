@@ -329,8 +329,6 @@ class SelfProfileMainScreen extends Component {
   loadDataFromAPI() {
     this.props.loadUsers();
     this.props.loadEmployeeTravel();
-    console.log(this.props.users);
-    console.log(this.props.employeeTravel);
   }
 
   setCurrentUsersProfile() {
