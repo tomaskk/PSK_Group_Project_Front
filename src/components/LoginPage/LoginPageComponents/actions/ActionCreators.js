@@ -29,7 +29,7 @@ export const tryRegister = (email, password, history, dispatch) => {
         })
         .then(() => {
             dispatch({ type: LOGIN_USER, data: true });
-            history.push("/");
+            //history.push("/");
             document.getElementById("error").classList = "error__hidden";
         })
         .catch(error => {

@@ -12,7 +12,7 @@ import SelfProfileMainScreen from '../components/SelfProfile/SelfProfileMainScre
 import AllVoyagesList from '../components/Menu_Management/Keliones_Tab/VoyagesList.jsx';
 import AllPeopleList from '../components/Menu_Management/Zmones_Tab/PeopleList.jsx';
 import UserProfileMainScreen from '../components/SkillsTab/UserProfileMainScreen.jsx';
-import loginPage from '../components/LoginPage/LoginPage.jsx';
+import LoginPage from '../components/LoginPage/LoginPage.jsx';
 import registerPage from '../components/RegisterPage/RegisterPage.jsx';
 
 import HelpPage from '../components/HelpPage/HelpPage.jsx';
@@ -20,18 +20,33 @@ import Favicon from 'react-favicon';
 import 'react-bootstrap/dist/react-bootstrap.min.js';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+
+    this.state={
+      currentUser: 'empty'
+    };
+    
+    this.handleFakeSignIn = this.handleFakeSignIn.bind(this);
+  }
+
+  handleFakeSignIn(param)  {
+    this.setState({
+      currentUser: param
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>
         <Router>
 
-          <Route path="/login" component={loginPage} />
+          <Route path="/login" render={(props) => <LoginPage {...props} setCurrentUser={ this.handleFakeSignIn } />} />
 
           <Route path="/register" component={registerPage} />
 
-          <Route exact path="/" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen/></div></div> )
-          }} />
+          <Route exact path="/" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen {...props} currentUser={ this.state.currentUser }/></div></div> } />
 
           <Route path="/host/manage/users" render={ () => {
                 return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList/></div></div> )

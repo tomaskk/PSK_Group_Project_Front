@@ -13,6 +13,7 @@ import Skills from './SelfProfileComponents/Skills';
 import Goals from './SelfProfileComponents/Goals';
 import TravelList from './tabs/MyTravelsTab/TravelList';
 import SvgHand from '../common/images/SvgHand.jsx';
+import InvitationRow from './InvitationRow.jsx';
 
 import * as actions from './actions/switchTabs';
 
@@ -48,7 +49,6 @@ class SelfProfileMainScreen extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeArrays = this.handleChangeArrays.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.handleInvitationalHandClick = this.handleInvitationalHandClick.bind(this);
   }
 
   handleNavigation(newTab) {
@@ -316,14 +316,28 @@ class SelfProfileMainScreen extends Component {
         this.setState({ isEditModeDisabled: false });
     }
   }
-
-  handleInvitationalHandClick(e) {
-    e.preventDefault();
-    alert('Hand clicked!');
-  }
   
+  getUpcomingTravelsDTO = () => {
+
+    //console.log(this.props.employeeTravel);
+
+    let DTO = this.props.employeeTravel.filter( item => {
+      //-- for each travel
+      let thisUserIncluded = false;
+      //-- check each record if user is travelling
+        if( item.employee.userName === this.props.currentUser){
+          thisUserIncluded = true;
+        }
+
+      let item_date = new Date(Date.parse(item.travel.startTime));
+      return (Date.now() <= item_date && thisUserIncluded && !item.confirm);
+    });
+    
+    return DTO;
+  }
 
   render() {
+
     const personalInfoTabComponents = (
       <div>
         <div className="profile__section section">
@@ -348,24 +362,14 @@ class SelfProfileMainScreen extends Component {
                 <th>Title</th>
                 <th>Start time</th>
                 <th>End time</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              { ['gotta', 'wait', 'for', 'authorization'].map((item, index) => 
-                 <tr>
-                 <td>{item}</td>
-                 <td>{item}</td>
-                 <td>{item}</td>
-                 <td class="table__cell table__cell--tiny table__cell--short table__cell--last">
-                   <div class="table__actions">
-                     <a href="" class="table__action" onClick={this.handleInvitationalHandClick}>
-                       <SvgHand />
-                     </a>
-                   </div>
-                 </td>
-               </tr>
-              )}
+              { this.getUpcomingTravelsDTO().map((item, index) => 
+                <InvitationRow item = {item} currentUser= {this.props.currentUser} />
+                 )}
             </tbody>
           </Table>
         </div>
@@ -376,7 +380,7 @@ class SelfProfileMainScreen extends Component {
 
     return (
       <main className="main">
-        <h1 className="heading1">My profile</h1>
+        <h1 className="heading1">My profile { this.props.currentUser === 'empty' ? '[Offline]' : '(' + this.props.currentUser + ')' } </h1>
         <div className="content content--stretch">
           <NavigationTabs
             dataShared={this.props.selfProfileReducer.currentTab}
@@ -401,6 +405,7 @@ class SelfProfileMainScreen extends Component {
 const mapStateToProps = state => {
   return {
     selfProfileReducer: state.selfProfileReducer,
+    employeeTravel: state.LDReducer.employeeTravels,
   };
 };
 

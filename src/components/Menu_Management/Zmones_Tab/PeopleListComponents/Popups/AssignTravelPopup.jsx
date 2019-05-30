@@ -64,7 +64,7 @@ class AssignTravelPopup extends React.Component {
       }
     });
 
-    alert(this.state.pickedTravel + '\n' + this.state.pickedApartment + '\n user: ' + userId + '\n travel: ' + travellingId);
+    //alert(this.state.pickedTravel + '\n' + this.state.pickedApartment + '\n user: ' + userId + '\n travel: ' + travellingId);
 
     //-- add new EmployeeTravel record (to appear in my profile for user to accept/deny)
     axios.post(ServerHostName + '/api/EmployeeTravel', {
@@ -75,7 +75,12 @@ class AssignTravelPopup extends React.Component {
     })
     .then(response => {
         console.log(response);
+        alert('Invitation has been sent.');
     })
+    .catch(error => {
+      alert('Failed attempt.');
+      console.log(error);
+  });
 
     this.props.onToggle(e);
   }

@@ -16,21 +16,17 @@ class UserPopup extends React.Component {
 
   getUpcomingTravelsDTO = () => {
 
-    //-- for each travel
-    let DTO = this.props.travelsList.filter( item => {
+    let DTO = this.props.employeeTravel.filter( item => {
 
+      //-- for each travel
       let thisUserIncluded = false;
       //-- check each record if user is travelling
-      this.props.employeeTravel.forEach(record => {
-        if(record.travel.id === item["id"] 
-        && record.employee.firstName === this.props.userInfo.name
-        && record.employee.lastName === this.props.userInfo.surname){
+        if( item.employee.firstName === this.props.userInfo.name
+        && item.employee.lastName === this.props.userInfo.surname){
           thisUserIncluded = true;
         }
-        //console.log("thisuserincluded: " + thisUserIncluded + "\nfirstname: " + record.employee.firstName + " | " + this.props.userInfo.name + "\nlastname: " + record.employee.lastName + " | " + this.props.userInfo.surname + "\nitem: " + item);
-      });
 
-      let item_date = new Date(Date.parse(item["startTime"]));
+      let item_date = new Date(Date.parse(item.travel.startTime));
       return (Date.now() <= item_date && thisUserIncluded);
     });
 
@@ -78,7 +74,6 @@ class UserPopup extends React.Component {
 
   render(){
     const { onToggle, isOpen, userInfo } = this.props;
-    const items = ['Apple', 'Orange', 'Banana', 'Pear'];
         
     return (
       <Modal show={isOpen} onHide={onToggle} className="Popup" size = "lg" centered>
@@ -118,15 +113,17 @@ class UserPopup extends React.Component {
                 <th>Title</th>
                 <th>Start time</th>
                 <th>End time</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
               { this.getUpcomingTravelsDTO().map((item, index) => 
                 <tr>
                   <td>{ index + 1 }</td>
-                  <td>{ item.name }</td>
-                  <td>{ item.startTime.replace('T', ' | ').substring(0, 21) }</td>
-                  <td>{ item.endTime.replace('T', ' | ').substring(0, 21) }</td>
+                  <td>{ item.travel.name }</td>
+                  <td>{ item.travel.startTime.replace('T', ' | ').substring(0, 21) }</td>
+                  <td>{ item.travel.endTime.replace('T', ' | ').substring(0, 21) }</td>
+                  <td>{ item.confirm == true ? 'Accepted' : 'Invited' }</td>
                 </tr>
               )}
             </tbody>
