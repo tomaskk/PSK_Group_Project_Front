@@ -16,6 +16,7 @@ import SvgHand from '../common/images/SvgHand.jsx';
 import InvitationRow from './InvitationRow.jsx';
 
 import * as actions from './actions/switchTabs';
+import * as loadFromAPI from '../Menu_Management/Zmones_Tab/PeopleListComponents/actions/LDActions.js'
 
 const { specialistTabItems, learnTabItems } = FAKE_DATA;
 
@@ -103,6 +104,7 @@ class SelfProfileMainScreen extends Component {
   }
 
   componentDidMount() {
+    this.loadDataFromAPI();
     this.getUserDataFromReduxStore();
     this.setCurrentUsersProfile();
   }
@@ -320,6 +322,13 @@ class SelfProfileMainScreen extends Component {
     }
   }
 
+  loadDataFromAPI() {
+    this.props.loadUsers();
+    this.props.loadEmployeeTravel();
+    console.log(this.props.users);
+    console.log(this.props.employeeTravel);
+  }
+
   setCurrentUsersProfile() {
     let currUser = this.props.users.filter(user => {
         if(user.userName == this.props.currentUser)
@@ -442,6 +451,9 @@ const mapDispatchToProps = dispatch =>
       updateCityInStore: newString => actions.updateCity(newString),
       updateMasterAtInStore: newObj => actions.updateMasterAt(newObj),
       updateWantsToLearnInStore: newObj => actions.updateWantsToLearn(newObj),
+
+      loadUsers: () => loadFromAPI.loadUsersFromAPI(),
+      loadEmployeeTravel: () => loadFromAPI.loadEmployeeTravelFromAPI(),
     },
     dispatch
   );
