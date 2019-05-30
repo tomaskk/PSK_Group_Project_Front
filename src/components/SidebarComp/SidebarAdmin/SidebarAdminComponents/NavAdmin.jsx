@@ -77,6 +77,25 @@ class NavAdmin extends Component {
             </NavLink>
           </li>
         </ul>
+
+        <ul className="nav">
+          <li>
+            <NavLink
+              to="/login"
+              className="nav-link"
+              activeClassName="nav-link nav-link--active"
+            >
+              <div className="nav-link__icon">
+                {this.isNavigationLinkActive('/login') ? (
+                  <SvgAdminActive />
+                ) : (
+                  <SvgAdmin />
+                )}
+              </div>
+              Log out
+            </NavLink>
+          </li>
+        </ul>
       </nav>
     );
   }
