@@ -36,9 +36,7 @@ class App extends Component {
       currentUser: param
     });
   }
-/* <Route path="/host/manage/users" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList/></div></div> )
-          }} />*/
+
   render() {
     return (
       <Provider store={store}>
@@ -49,7 +47,6 @@ class App extends Component {
           <Route path="/register" component={registerPage} />
 
           <Route exact path="/" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <SelfProfileMainScreen {...props} currentUser={ this.state.currentUser } /></div></div> } />
-
           
           <Route path="/host/manage/users" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList {...props} currentUser={ this.state.currentUser } /></div></div> } />
 
@@ -57,9 +54,7 @@ class App extends Component {
                 return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllVoyagesList/></div></div> )
           }} />
 
-          <Route path="/host/help" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <HelpPage/></div></div> )
-          }} />
+          <Route path="/host/help" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <HelpPage {...props} currentUser={ this.state.currentUser } /></div></div> } />
 
           <Route path="/host/user/:userId" render={ () => {
                 return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <UserProfileMainScreen /></div></div> )
