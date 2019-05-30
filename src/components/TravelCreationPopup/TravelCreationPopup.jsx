@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Form, Row, Col, ButtonGroup, ToggleButton,
 } from 'react-bootstrap';
@@ -7,7 +8,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { travelShape } from '../../types/proptypes';
 import Popup from '../common/Popup/index.js';
-import { updateTravel } from "../Menu_Management/Keliones_Tab/BackEndCalls";
+import { updateTravel, addTravel } from "../Menu_Management/Keliones_Tab/BackEndCalls";
 
 import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
@@ -31,6 +32,9 @@ const styles = {
 class TravelCreationPopup extends React.Component {
   constructor(props) {
     super(props);
+
+    console.log(this.props);
+
 
     const { travelData } = this.props;
     if (travelData) {
@@ -70,18 +74,28 @@ class TravelCreationPopup extends React.Component {
   onSubmitChanges() {
     const travelChangeBucket = {};
     if (this.state.name) travelChangeBucket.name = this.state.name;
-    if (this.state.travelFrom) travelChangeBucket.travelFrom = this.state.travelFrom;
-    if (this.state.travelTo) travelChangeBucket.travelTo = this.state.travelTo;
+    if (this.state.travelFrom) travelChangeBucket.travelFromId = 1;
+    if (this.state.travelTo) travelChangeBucket.travelToId = 2;
     if (this.state.startTime) travelChangeBucket.startTime = this.state.startTime;
     if (this.state.endTime) travelChangeBucket.endTime = this.state.endTime;
     if (this.state.hotels) travelChangeBucket.hotels = this.state.hotels;
     if (this.state.transports) travelChangeBucket.transports = this.state.transports;
     if (this.state.cost) travelChangeBucket.cost = this.state.cost;
-    if (this.state.organizedBy) travelChangeBucket.organizedBy = this.state.organizedBy;
+
+    const { users } = this.props;
+
+    let currUser = this.props.users.filter(user => {
+      if(user.userName == this.props.currentUser)
+          return user;
+  });
+
+    
+    travelChangeBucket.organizedById = currUser[0].id;
+    // travelChangeBucket.organizedById = 1;
 
     console.log(travelChangeBucket);
 
-    updateTravel(travelChangeBucket, () => this.props.onTogglePopup());
+    addTravel(travelChangeBucket, () => this.props.onTogglePopup());
   }
 
   onNameChange(e) {
@@ -105,23 +119,23 @@ class TravelCreationPopup extends React.Component {
   }
 
   onHotelAdressChange(e) {
-    this.setState({ hotels: [{...this.state.hotels[0], address: e.target.value }] });
+    this.setState({ hotels: [{ ...this.state.hotels[0], address: e.target.value }] });
   }
 
   onHotelNameChange(e) {
-    this.setState({ hotels: [{...this.state.hotels[0], title: e.target.value }] });    
+    this.setState({ hotels: [{ ...this.state.hotels[0], title: e.target.value }] });
   }
 
   onHotelInfoChange(e) {
-    this.setState({ hotels: [{...this.state.hotels[0], description: e.target.value }] });
+    this.setState({ hotels: [{ ...this.state.hotels[0], description: e.target.value }] });
   }
 
   onTravelTypeChange(e) {
-    this.setState({ transports: [{...this.state.transports[0], typeOfTransport: e.target.value }] });
+    this.setState({ transports: [{ ...this.state.transports[0], typeOfTransport: e.target.value }] });
   }
 
   onTravelDescriptionChange(e) {
-    this.setState({ transports: [{...this.state.transports[0], description: e.target.value }] });
+    this.setState({ transports: [{ ...this.state.transports[0], description: e.target.value }] });
     console.log(this.state);
   }
 
@@ -322,4 +336,8 @@ TravelCreationPopup.propTypes = {
   travelData: travelShape,
 };
 
-export default TravelCreationPopup;
+const mapStateToProps = state => ({
+  users: state.LDReducer.users,
+});
+
+export default connect(mapStateToProps)(TravelCreationPopup);

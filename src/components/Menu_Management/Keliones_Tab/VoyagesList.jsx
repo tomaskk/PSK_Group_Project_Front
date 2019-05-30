@@ -160,6 +160,7 @@ class VoyagesList extends React.Component {
               popupTitle={createButtonText}
               showingPopup={this.state.showingPopup}
               onTogglePopup={this.togglePopup}
+              currentUser={ this.props.currentUser }
             />
             <TravelMergePopup
               popupTitle={mergeButtonText}

@@ -51,7 +51,7 @@ class App extends Component {
           <Route path="/host/manage/users" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllPeopleList {...props} currentUser={ this.state.currentUser } /></div></div> } />
 
           <Route path="/host/manage/voyages" render={ () => {
-                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllVoyagesList/></div></div> )
+                return ( <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <AllVoyagesList currentUser={ this.state.currentUser }/></div></div> )
           }} />
 
           <Route path="/host/help" render={(props) => <div className="content-container-div"><Sidebar /><div className="containerr"><TopHeader /> <HelpPage {...props} currentUser={ this.state.currentUser } /></div></div> } />

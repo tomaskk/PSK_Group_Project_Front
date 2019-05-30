@@ -46,3 +46,24 @@ export async function updateTravel(travelData, callback) {
   }
   return null;
 }
+
+export async function addTravel(travelData, callback) {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const reqData = JSON.stringify(travelData);
+  console.log(reqData);
+
+  try {
+    const val = await axios.post(`${ServerHostName}/api/Travels`, reqData, config);
+    callback(val);
+    return val;
+  } catch (error) {
+    // eslint-disable-next-line
+    alert(error);
+  }
+  return null;
+}
