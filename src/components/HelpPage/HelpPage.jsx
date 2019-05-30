@@ -22,11 +22,11 @@ const HelpPage = () => {
 
         <ul>
           <p style={{marginLeft: "20px", marginBottom: "10px"}}> Software engineering - 3rd course, 5th group: </p>
-          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Elena Reivytytė       </li>
-          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Emilija Lamanauskaitė </li>
-          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Karolis Staskevičius  </li>
-          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Paulius Grigaliūnas   </li>
           <li style={{marginLeft: "32px", marginBottom: "10px"}}> Tomas Kazlauskas      </li>
+          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Paulius Grigaliūnas   </li>
+          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Karolis Staskevičius  </li>
+          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Emilija Lamanauskaitė </li>
+          <li style={{marginLeft: "32px", marginBottom: "10px"}}> Elena Reivytytė       </li>
         </ul>
 
         <p style={{marginLeft: "20px", marginBottom: "10px"}}> <b> Instructions of usage: </b></p>
