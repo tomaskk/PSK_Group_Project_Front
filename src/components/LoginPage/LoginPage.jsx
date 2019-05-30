@@ -9,7 +9,7 @@ import {
     tryRegister,
 } from "./LoginPageComponents/actions/actionCreators";
 
-
+import { loadUsersFromAPI, loadTravelsFromAPI, loadEmployeeTravelFromAPI, loadApartmentsFromAPI } from '../Menu_Management/Zmones_Tab/PeopleListComponents/actions/LDActions.js';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -19,6 +19,13 @@ class LoginPage extends Component {
     this.state = {
       CheckBoxChecked: false
     };
+
+  //---> load all stuff to store when entering management tab
+    this.props.dispatch(loadUsersFromAPI());
+    this.props.dispatch(loadTravelsFromAPI());
+    this.props.dispatch(loadEmployeeTravelFromAPI());
+    this.props.dispatch(loadApartmentsFromAPI());
+
   }
 
   OnFormSubmit = e => {
