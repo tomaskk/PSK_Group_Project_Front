@@ -62,7 +62,11 @@ export default function SelfProfileForm(props) {
           <div className="profile__photos">
             <div className="progress-circle progress-circle--full">
               <img
-                src={props.dataShared.photo}
+                src={ props.dataShared.photo === undefined 
+                   || props.dataShared.photo === null 
+                   || props.dataShared.photo ==='string' 
+                   ? 'https://www.w3schools.com/howto/img_avatar.png' 
+                   : props.dataShared.photo }
                 className="photo profile__photo"
                 height="64"
                 width="64"

@@ -341,11 +341,13 @@ class SelfProfileMainScreen extends Component {
         name: currUser[0].firstName,
         surname: currUser[0].lastName,
         email: currUser[0].email,
+        photo: currUser[0].profilePhoto,
       });
 
       this.props.updateNameInStore(currUser[0].firstName);
       this.props.updateSurnameInStore(currUser[0].lastName);
       this.props.updateEmailInStore(currUser[0].email);
+      this.props.updatePhotoInStore(currUser[0].profilePhoto);
     }
   }
   
