@@ -16,7 +16,11 @@ class SidebarAdmin extends Component {
             <Link to="/" className="nav-link">
               <div className="progress-circle">
                 <img
-                  src={this.props.userInfo.photo}
+                  src={ this.props.userInfo.photo === undefined 
+                      || this.props.userInfo.photo === null 
+                      || this.props.userInfo.photo ==='string' 
+                      ? 'https://www.w3schools.com/howto/img_avatar.png' 
+                      : this.props.userInfo.photo }
                   className="photo me__photo"
                   height="64"
                   width="64"
