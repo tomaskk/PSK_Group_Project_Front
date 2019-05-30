@@ -19,7 +19,7 @@ export default class ColTable extends Component {
           </li>
           <li>
             <Link to="/host/manage/voyages" className="tabs__link">
-              Available voyages
+              Travels list
             </Link>
           </li>
         </ul>
