@@ -16,12 +16,17 @@ import SvgHand from '../common/images/SvgHand.jsx';
 import InvitationRow from './InvitationRow.jsx';
 
 import * as actions from './actions/switchTabs';
+import * as loadFromAPI from '../Menu_Management/Zmones_Tab/PeopleListComponents/actions/LDActions.js'
 
 const { specialistTabItems, learnTabItems } = FAKE_DATA;
 
 class SelfProfileMainScreen extends Component {
   constructor(props) {
     super(props);
+
+    if(props.currentUser == 'empty'){
+      props.history.push('/login');
+    }
 
     this.state = {
       photo: '',
@@ -49,6 +54,8 @@ class SelfProfileMainScreen extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeArrays = this.handleChangeArrays.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+
+    //turi this.props.history.push
   }
 
   handleNavigation(newTab) {
@@ -101,7 +108,9 @@ class SelfProfileMainScreen extends Component {
   }
 
   componentDidMount() {
+    this.loadDataFromAPI();
     this.getUserDataFromReduxStore();
+    this.setCurrentUsersProfile();
   }
 
   handleChangeArrays(event) {
@@ -316,10 +325,35 @@ class SelfProfileMainScreen extends Component {
         this.setState({ isEditModeDisabled: false });
     }
   }
+
+  loadDataFromAPI() {
+    this.props.loadUsers();
+    this.props.loadEmployeeTravel();
+  }
+
+  setCurrentUsersProfile() {
+    let currUser = this.props.users.filter(user => {
+        if(user.userName == this.props.currentUser)
+            return user;
+    });
+
+    if(currUser[0] !== undefined)
+    {
+      this.setState({
+        name: currUser[0].firstName,
+        surname: currUser[0].lastName,
+        email: currUser[0].email,
+        photo: currUser[0].profilePhoto,
+      });
+
+      this.props.updateNameInStore(currUser[0].firstName);
+      this.props.updateSurnameInStore(currUser[0].lastName);
+      this.props.updateEmailInStore(currUser[0].email);
+      this.props.updatePhotoInStore(currUser[0].profilePhoto);
+    }
+  }
   
   getUpcomingTravelsDTO = () => {
-
-    //console.log(this.props.employeeTravel);
 
     let DTO = this.props.employeeTravel.filter( item => {
       //-- for each travel
@@ -406,6 +440,7 @@ const mapStateToProps = state => {
   return {
     selfProfileReducer: state.selfProfileReducer,
     employeeTravel: state.LDReducer.employeeTravels,
+    users: state.LDReducer.filteredUsers,
   };
 };
 
@@ -420,6 +455,9 @@ const mapDispatchToProps = dispatch =>
       updateCityInStore: newString => actions.updateCity(newString),
       updateMasterAtInStore: newObj => actions.updateMasterAt(newObj),
       updateWantsToLearnInStore: newObj => actions.updateWantsToLearn(newObj),
+
+      loadUsers: () => loadFromAPI.loadUsersFromAPI(),
+      loadEmployeeTravel: () => loadFromAPI.loadEmployeeTravelFromAPI(),
     },
     dispatch
   );

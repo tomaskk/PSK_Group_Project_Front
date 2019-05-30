@@ -28,7 +28,10 @@ class AssignTravelPopup extends React.Component {
   }
 
   getTravelsDTO = () => {
-    return this.props.travelsList;
+    return this.props.travelsList.filter(item => {
+      let item_date = new Date(Date.parse(item.startTime));
+      return (Date.now() <= item_date);
+    });
   }
 
   handlePickTravel(e) {

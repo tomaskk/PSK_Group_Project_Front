@@ -21,6 +21,10 @@ class PeopleList extends React.Component {
     this.props.dispatch(loadTravelsFromAPI());
     this.props.dispatch(loadEmployeeTravelFromAPI());
     this.props.dispatch(loadApartmentsFromAPI());
+
+    if(props.currentUser == 'empty'){
+      props.history.push('/login');
+    }
 	}
   
   handleDownloadDTO = () => {

@@ -62,7 +62,11 @@ export default function SelfProfileForm(props) {
           <div className="profile__photos">
             <div className="progress-circle progress-circle--full">
               <img
-                src={props.dataShared.photo}
+                src={ props.dataShared.photo === undefined 
+                   || props.dataShared.photo === null 
+                   || props.dataShared.photo ==='string' 
+                   ? 'https://www.w3schools.com/howto/img_avatar.png' 
+                   : props.dataShared.photo }
                 className="photo profile__photo"
                 height="64"
                 width="64"
@@ -119,44 +123,6 @@ export default function SelfProfileForm(props) {
               disabled={editIsDisabled}
               onChange={props.handleChange}
             />
-          </div>
-        </div>
-        <div className="form__row">
-          <div className="form__field">
-            <label htmlFor="city" className="form__label">
-              City
-            </label>
-            <select
-              name="city"
-              className={className}
-              value={props.dataShared.city}
-              disabled={editIsDisabled}
-              onChange={props.handleChange}
-            >
-              <option>Vilnius</option>
-              <option>Kaunas</option>
-              <option>Chicago</option>
-              <option>Toronto</option>
-              <option>London</option>
-            </select>
-          </div>
-        </div>
-        <div className="form__row form__row--last">
-          <div className="form__field">
-            <label htmlFor="sld" className="form__label">
-              Next SLD
-            </label>
-            <div className="form__input-suffix-container">
-              <input
-                type="text"
-                name="sld"
-                className={`${className} form__input-suffix-field`}
-                value={props.dataShared.sld}
-                disabled={editIsDisabled}
-                onChange={props.handleChange}
-              />
-              {editIsDisabled ? <CalendarDisabled /> : <Calendar />}
-            </div>
           </div>
         </div>
         <div className="form__row form__row--last">
