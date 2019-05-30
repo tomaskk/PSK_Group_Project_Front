@@ -24,6 +24,10 @@ class SelfProfileMainScreen extends Component {
   constructor(props) {
     super(props);
 
+    if(props.currentUser == 'empty'){
+      props.history.push('/login');
+    }
+
     this.state = {
       photo: '',
       name: '',
