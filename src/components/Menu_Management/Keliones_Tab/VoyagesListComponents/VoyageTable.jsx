@@ -6,19 +6,8 @@ class VoyageTable extends Component {
     super(props);
 
     this.state = {
-      users: props.users
+      travels: props.travels
     };
-    this.onDeleteClick = this.onDeleteClick.bind(this);
-  }
-
-  onDeleteClick(id) {
-    this.props.onDeleteClick(id);
-  }
-
-  changeUsers(newUsers) {
-    this.setState({
-      users: newUsers
-    });
   }
 
   render() {
@@ -26,14 +15,12 @@ class VoyageTable extends Component {
       <div className="content__scrollable">
         <table className="table">
           <tbody>
-            {this.state.users.map(user => (
+            {this.state.travels.map(travel => (
               <VoyageRow
-                onDeleteClick={this.onDeleteClick}
-                key={user.id}
-                name={user.name}
-                startsOn={user.lastActive}
-                id={user.id}
-                pic={user.pic}
+                key={travel.id}
+                name={travel.name}
+                startsOn={travel.startTime}
+                id={travel.id}
               />
             ))}
           </tbody>
